@@ -5,6 +5,21 @@ characters = ['@', '#', '$', '%', '&', '?']
 
 
 def generate_password(pass_len):
+    """
+    Generate a password with uppercase, lowercase, digits, and special characters.
+
+    Contract:
+    - Precondition: pass_len (int) >= 4 (smallest valid input established by logic at lines 15-23 and main() line 64).
+    - Returns: tuple (pass_word: str, total_cap: int, total_low: int, total_nums: int, total_symbols: int)
+      where:
+        len(pass_word) == pass_len
+        total_cap >= 1
+        total_low >= 1
+        total_nums >= 1
+        total_symbols >= 1
+        total_cap + total_low + total_nums + total_symbols == pass_len
+    - Mutation: Does not mutate the module-level `characters` anchor (line 4) or any input object.
+    """
     # Initialize counters
     total_nums = 0
     total_symbols = 0
