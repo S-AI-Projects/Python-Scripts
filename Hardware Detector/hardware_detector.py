@@ -1,5 +1,8 @@
 import psutil
-import pynvml
+try:
+    import pynvml
+except (ImportError, Exception):
+    pynvml = None
 import time
 import os
 
@@ -7,6 +10,25 @@ import os
 class HardwareDetector:
     """
     This class detects the hardware specifications of the computer and monitors them continuously.
+
+    Contract and Specification:
+    - Anchor: self.hardware_profile = {} (initialized empty in __init__, source line 18)
+    - get_computer_specs() populates:
+        - ram_total_gb (float, rounded to 2 decimal places): memory.total / 1024^3
+        - ram_used_gb (float, rounded to 2 decimal places): memory.used / 1024^3
+        - available_diskspace_gb (float, rounded to 2 decimal places): disk_usage('/').free / 1024^3
+        - cpu_cores (int): psutil.cpu_count(logical=True)
+        - cpu_usage_percent (float): psutil.cpu_percent()
+    - Representative Example:
+        Given a system with:
+          RAM total = 17,179,869,184 bytes (16 GB)
+          RAM used  = 8,589,934,592 bytes (8 GB)
+          Disk free = 107,374,182,400 bytes (100 GB)
+          CPU cores = 8
+          CPU usage = 15.5%
+        Resulting profile:
+          {'ram_total_gb': 16.0, 'ram_used_gb': 8.0, 'available_diskspace_gb': 100.0,
+           'cpu_cores': 8, 'cpu_usage_percent': 15.5}
     """
 
     def __init__(self):
@@ -17,22 +39,32 @@ class HardwareDetector:
         Detects the GPU specifications of the computer.
         :return: None
         """
-        pynvml.nvmlInit()
-        device_count = pynvml.nvmlDeviceGetCount()
-        if device_count == 0:
+        if pynvml is None:
             self.hardware_profile['gpu_name'] = "None available"
             self.hardware_profile['gpu_total_memory_gb'] = 0
             self.hardware_profile['gpu_used_memory_gb'] = 0
             return
-        gpu_handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-        gpu_name = pynvml.nvmlDeviceGetName(gpu_handle)
-        gpu_mem_info = pynvml.nvmlDeviceGetMemoryInfo(gpu_handle)
-        gpu_total_mem = gpu_mem_info.total / (1024 ** 3)
-        gpu_used_mem = gpu_mem_info.used / (1024 ** 3)
-        pynvml.nvmlShutdown()
-        self.hardware_profile['gpu_name'] = gpu_name
-        self.hardware_profile['gpu_total_memory_gb'] = round(gpu_total_mem, 2)
-        self.hardware_profile['gpu_used_memory_gb'] = round(gpu_used_mem, 2)
+        try:
+            pynvml.nvmlInit()
+            device_count = pynvml.nvmlDeviceGetCount()
+            if device_count == 0:
+                self.hardware_profile['gpu_name'] = "None available"
+                self.hardware_profile['gpu_total_memory_gb'] = 0
+                self.hardware_profile['gpu_used_memory_gb'] = 0
+                return
+            gpu_handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+            gpu_name = pynvml.nvmlDeviceGetName(gpu_handle)
+            gpu_mem_info = pynvml.nvmlDeviceGetMemoryInfo(gpu_handle)
+            gpu_total_mem = gpu_mem_info.total / (1024 ** 3)
+            gpu_used_mem = gpu_mem_info.used / (1024 ** 3)
+            pynvml.nvmlShutdown()
+            self.hardware_profile['gpu_name'] = gpu_name
+            self.hardware_profile['gpu_total_memory_gb'] = round(gpu_total_mem, 2)
+            self.hardware_profile['gpu_used_memory_gb'] = round(gpu_used_mem, 2)
+        except Exception:
+            self.hardware_profile['gpu_name'] = "None available"
+            self.hardware_profile['gpu_total_memory_gb'] = 0
+            self.hardware_profile['gpu_used_memory_gb'] = 0
 
     def get_computer_specs(self) -> None:
         """
@@ -71,6 +103,7 @@ class HardwareDetector:
             print("\nMonitoring stopped.")
 
 
-# Run the continuous monitor
-hardware = HardwareDetector()
-hardware.monitor_resources(interval=0.5)
+if __name__ == "__main__":
+    # Run the continuous monitor
+    hardware = HardwareDetector()
+    hardware.monitor_resources(interval=0.5)
