@@ -15,11 +15,14 @@ one ordinary successful retweet, eleven repeated successes across the
 one-/two-digit count boundary, and a failed retweet followed by a success.
 They assert exact return values, query arguments, retweet IDs, delays, output,
 and bot.txt contents. All Tweepy, input, bot.txt, and sleep I/O is mocked.
+See the [focused runner](https://github.com/riya1503235/Python-Scripts/blob/R35-T021/work/R35-T021/check.py),
+[regression tests](https://github.com/riya1503235/Python-Scripts/blob/R35-T021/Keyword%20Retweet%20Twitter%20Bot/tests/test_main.py),
+and [test evidence](https://github.com/riya1503235/Python-Scripts/blob/R35-T021/work/R35-T021/results.txt).
 
 ### The changes are as follows:
 - Add the module contract and correct successful-retweet counting and counter writes.
 - Add focused unittest cases and allow this test folder through the repository ignore rule.
-- Add work/R35-T021/check.py and work/R35-T021/results.txt with the runner, baseline comparison, fixtures, and tool versions.
+- Add the focused runner, baseline comparison, fixtures, and tool versions under work/R35-T021/.
 
 <!-- You can add all your changes here -->
 
