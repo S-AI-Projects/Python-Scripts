@@ -1,0 +1,85 @@
+R35-T021 focused check record
+
+Tool versions
+-------------
+Python: 3.14.6
+Git: 2.50.1 (Apple Git-155)
+Test framework: unittest from the Python standard library
+
+Test configuration and command
+------------------------------
+The repository has no root pytest/pyproject test configuration. The existing
+Currency Script/tests suite uses unittest, so the focused check uses unittest
+discovery for only Keyword Retweet Twitter Bot/tests.
+
+Command run:
+python3 work/R35-T021/check.py
+
+Command run by the focused runner:
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest discover -s '/Users/riyaagrawal/Desktop/snai_project/Python-Scripts/Keyword Retweet Twitter Bot/tests' -p 'test_*.py' -v
+
+Result: 4 tests run, 4 passed, 0 failures.
+The runner printed "Focused tests run: 4" and returned status 0.
+Failure propagation was checked separately: a mocked child status of 7 was
+returned as 7, and a zero-test child run was rejected with status 1.
+
+External I/O
+------------
+The test module imports only Keyword Retweet Twitter Bot/main.py. Tweepy,
+input(), bot.txt access, and time.sleep() are mocked; no Twitter calls or real
+bot.txt I/O are performed by the tests.
+
+Pre-change baseline
+-------------------
+Fixture inputs: keyword "python"; bot.txt contents "0"; fake tweet IDs
+[101, 102, 103]; every fake retweet succeeds.
+
+Independent expected result:
+keyword "python"; retweeted IDs [101, 102, 103]; sleeps [30, 30, 30];
+bot.txt contents "3".
+
+Observed result from the source at HEAD before the implementation change:
+keyword "python"; retweeted IDs [101, 102, 103]; bot.txt contents "01233".
+Mismatch: the old code read bot.txt, leaving its pointer at EOF, then called
+truncate() without seeking to the beginning before each write. The count was
+appended instead of replacing the previous contents.
+
+With the checked-in empty bot.txt as the baseline input, the old source raised
+ValueError at its int(counts) conversion before it prompted for a keyword.
+
+Focused fixtures: expected versus actual
+----------------------------------------
+1. Smallest keyword / empty result
+Input: keyword "x"; no fake tweets; empty bot.txt.
+Expected: return None; query "x"; limit 500; no retweets or sleeps; bot.txt
+"0"; output ["fixture_user"].
+Actual: same as expected.
+Preconditions: main.py:30 reads the keyword; main.py:33-35 opens the counter
+and constructs the bounded search.
+
+2. Ordinary keyword / one successful retweet
+Input: keyword "python"; fake tweet ID 101; empty bot.txt.
+Expected: return None; query "python"; retweeted [101]; sleep [30]; bot.txt
+"1"; output ["fixture_user", "tweet-number 0 retweeted", "RETWEETED: 1"].
+Actual: same as expected.
+Preconditions: main.py:35 iterates the search result; main.py:39 retweets;
+main.py:44-49 increments, persists, and prints the successful count.
+
+3. Repeated successes across the one-/two-digit count boundary
+Input: keyword "python"; fake tweet IDs [301, 302, 303, 304, 305, 306, 307,
+308, 309, 310, 311]; empty bot.txt.
+Expected: all 11 IDs retweeted; 11 sleeps of 30 seconds; final bot.txt "11";
+output contains each sequential tweet number and retweet count from 1 through
+11.
+Actual: same as expected.
+Preconditions: main.py:44 increments the successful count; main.py:46-48
+seeks, writes, and truncates the counter on each success.
+
+4. A failed retweet followed by a successful retweet
+Input: keyword "python"; fake ID 201 raises "not permitted", then ID 202
+succeeds; empty bot.txt.
+Expected: attempted [201, 202]; retweeted [202]; one sleep of 30 seconds;
+bot.txt "1"; the error is printed and the later success is counted.
+Actual: same as expected.
+Preconditions: main.py:39 invokes the retweet; main.py:40-42 reports a
+TweepError and continues without counting the failed attempt.
