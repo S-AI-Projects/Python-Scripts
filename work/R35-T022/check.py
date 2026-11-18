@@ -1,3 +1,4 @@
+# Import standard-library helpers for metadata, command execution, and paths.
 import json
 import shlex
 import subprocess
@@ -5,11 +6,13 @@ import sys
 from pathlib import Path
 
 
+# Resolve the focused test file and result report relative to this repository.
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TEST_FILE = Path(__file__).with_name("notify_suite_test.py").resolve()
 RESULTS_FILE = Path(__file__).with_name("check_results.json")
 
 
+# Capture a tool version and its output for the saved validation record.
 def run_version_command(command: list[str]) -> dict[str, object]:
     result = subprocess.run(
         command,
@@ -25,10 +28,12 @@ def run_version_command(command: list[str]) -> dict[str, object]:
     }
 
 
+# Persist the runner's command, environment, and test evidence as JSON.
 def write_results(results: dict[str, object]) -> None:
     RESULTS_FILE.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
 
 
+# Run only the notifier tests, record their output, and return a failing status.
 def main() -> int:
     command = [
         sys.executable,
@@ -75,5 +80,6 @@ def main() -> int:
     )
 
 
+# Invoke the runner when executed directly and expose pytest failures to the shell.
 if __name__ == "__main__":
     raise SystemExit(main())

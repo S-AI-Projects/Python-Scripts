@@ -1,9 +1,11 @@
+# Import helpers for loading one module and replacing interactive/network I/O.
 import json
 import importlib.util
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 
+# Point the report and dynamic import at the notifier under test.
 RESULTS_FILE = Path(__file__).with_name("check_results.json")
 MODULE_PATH = (
     Path(__file__).resolve().parents[2]
@@ -16,12 +18,14 @@ MODULE_SPEC = importlib.util.spec_from_file_location(
 assert MODULE_SPEC is not None
 assert MODULE_SPEC.loader is not None
 run_then_notify = importlib.util.module_from_spec(MODULE_SPEC)
+# Supply fake credentials so importing the script does not wait for user input.
 with patch("builtins.input", return_value="sender@example.com"), patch(
     "getpass.getpass", return_value="test-password"
 ):
     MODULE_SPEC.loader.exec_module(run_then_notify)
 
 
+# Save the case inputs and compare actual observations with the expected result.
 def record_check(
     name: str,
     inputs: dict[str, object],
@@ -44,6 +48,7 @@ def record_check(
     assert passed, f"{name}: expected {expected!r}, got {actual!r}"
 
 
+# Replace the SMTP network client and return its observations with the result.
 def send_with_mocked_smtp(arguments: dict[str, object]) -> tuple[object, Mock, Mock]:
     smtp = Mock()
     with patch.object(
@@ -53,6 +58,7 @@ def send_with_mocked_smtp(arguments: dict[str, object]) -> tuple[object, Mock, M
     return result, smtp, smtp_factory
 
 
+# Exercise the smallest non-empty sample values without contacting an SMTP host.
 def test_send_text_email_sends_smallest_nonempty_inputs() -> None:
     inputs: dict[str, object] = {
         "subject": "x",
@@ -90,6 +96,7 @@ def test_send_text_email_sends_smallest_nonempty_inputs() -> None:
     record_check("smallest_nonempty_inputs", inputs, expected, actual)
 
 
+# Exercise ordinary email values and verify the constructed message and SMTP calls.
 def test_send_text_email_sends_ordinary_inputs() -> None:
     inputs: dict[str, object] = {
         "subject": "Build status",
@@ -127,6 +134,7 @@ def test_send_text_email_sends_ordinary_inputs() -> None:
     record_check("ordinary_inputs", inputs, expected, actual)
 
 
+# Verify the existing SMTP exception handler reports failure without re-raising.
 def test_send_text_email_reports_smtp_failure() -> None:
     inputs: dict[str, object] = {
         "subject": "Build status",
