@@ -1,0 +1,46 @@
+=== R35-T011 REGRESSION TEST RESULTS ===
+Command: /Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest -v Face Reaction/tests/test_app.py
+Test Count: 6
+Python Version: 3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]
+Platform: macOS-27.0.1-arm64-arm-64bit-Mach-O
+Git Branch: R35-T011
+Git Commit: fc8d0d0d5bbeb6f25a6a5ddc0f1f79526dbe8c9b
+
+--- DIRECT CHECKS SUMMARY ---
+[PASSED] smallest_valid_input: Load smallest valid empty JSON object fixture
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/smallest.json', 'content': '{}'}
+  Expected: {}
+  Actual:   {}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:32', 'expected_state': 'emotion_history = []'}, {'anchor': 'Face Reaction/app.py:85', 'expected_state': 'org = (40, 210)'}]
+
+[PASSED] ordinary_input: Load standard multi-emotion configuration mapping
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/ordinary.json', 'content': {'happy': 'emojis/happy.png', 'sad': 'emojis/sad.png', 'angry': 'emojis/angry.png'}}
+  Expected: {'happy': 'emojis/happy.png', 'sad': 'emojis/sad.png', 'angry': 'emojis/angry.png'}
+  Actual:   {'happy': 'emojis/happy.png', 'sad': 'emojis/sad.png', 'angry': 'emojis/angry.png'}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:32', 'expected_state': 'emotion_history = []'}, {'anchor': 'Face Reaction/app.py:85', 'expected_state': 'org = (40, 210)'}]
+
+[PASSED] repeated_value_boundary_input: Domain boundary with multiple keys mapping to repeated emoji value
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/repeated.json', 'content': {'happy': 'emojis/common_smile.png', 'surprise': 'emojis/common_smile.png', 'excited': 'emojis/common_smile.png'}}
+  Expected: {'happy': 'emojis/common_smile.png', 'surprise': 'emojis/common_smile.png', 'excited': 'emojis/common_smile.png'}
+  Actual:   {'happy': 'emojis/common_smile.png', 'surprise': 'emojis/common_smile.png', 'excited': 'emojis/common_smile.png'}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:32', 'expected_state': 'emotion_history = []'}, {'anchor': 'Face Reaction/app.py:85', 'expected_state': 'org = (40, 210)'}]
+
+[PASSED] missing_file_boundary_input: Return empty dictionary for nonexistent configuration file
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/nonexistent.json', 'exists': False}
+  Expected: {}
+  Actual:   {}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:32', 'expected_state': 'emotion_history = []'}, {'anchor': 'Face Reaction/app.py:85', 'expected_state': 'org = (40, 210)'}]
+
+[PASSED] observable_mutation_emotion_history: Verify load_custom_emojis does not mutate emotion_history anchor
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/ordinary.json'}
+  Expected: {'emotion_history': []}
+  Actual:   {'emotion_history': []}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:32', 'expected_state': 'emotion_history = []'}]
+
+[PASSED] observable_mutation_org: Verify load_custom_emojis does not mutate org coordinate anchor
+  Input: {'file': '/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmphgcyf0tz/ordinary.json'}
+  Expected: {'org': (40, 210)}
+  Actual:   {'org': (40, 210)}
+  Preconditions: [{'anchor': 'Face Reaction/app.py:85', 'expected_state': 'org = (40, 210)'}]
+
+Overall Result: SUCCESS
