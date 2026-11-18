@@ -1,8 +1,21 @@
 from cryptography.fernet import Fernet
-# Symmetric Key Encyrption Class
+
+# Symmetric Key Encryption Class
+
 
 # Password Manager Class that will create & load passwords from an encrypted file
 class PasswordManager:
+    """
+    Password Manager maintaining encrypted credentials.
+
+    Contract & Preconditions:
+    - Precondition 1: Password Manager/pwd_mgmr.py:1 establishes Fernet import
+    - Precondition 2: Password Manager/pwd_mgmr.py:5 establishes PasswordManager class
+    - Precondition 3: Password Manager/pwd_mgmr.py:9 establishes self.pwd_dict = {} anchor
+    - Precondition 4: Password Manager/pwd_mgmr.py:27 establishes add_password
+    - Precondition 5: Password Manager/pwd_mgmr.py:36 establishes get_password
+    """
+
     def __init__(self):
         self.key = None
         self.pwd_file = None
@@ -22,14 +35,17 @@ class PasswordManager:
         self.pwd_file = path
         if init_values is not None:
             for key, values in init_values.items():
-                self.add_password(self, key, values)
+                self.add_password(key, values)
 
     def load_pwd_file(self, path):
         self.pwd_file = path
         with open(path, 'r') as f:
             for line in f:
-                site, encrypted = line.split(":")
-                # Loads the site and the associated encrypted password. Password must be encoded before decyprtion and decoded before returning text
+                line = line.strip()
+                if not line or ":" not in line:
+                    continue
+                site, encrypted = line.split(":", 1)
+                # Loads the site and the associated encrypted password
                 self.pwd_dict[site] = Fernet(self.key).decrypt(encrypted.encode()).decode()
 
     def add_password(self, site, password):
@@ -43,11 +59,13 @@ class PasswordManager:
 
     def get_password(self, site):
         return self.pwd_dict[site]
-    
+
     def get_sites(self):
         print("List of Sites:")
         for a in self.pwd_dict.keys():
             print(a)
+        return list(self.pwd_dict.keys())
+
 
 def main():
     pm = PasswordManager()
@@ -65,7 +83,6 @@ def main():
     done = False
 
     while not done:
-
         choice = input("Enter your choice: ")
         choice = choice.lower()
         match choice:
@@ -79,7 +96,7 @@ def main():
                 path = input("Enter the path: ")
                 pm.create_pwd_file(path, init_values=None)
             case "4":
-                path = input ("Enter the path: ")
+                path = input("Enter the path: ")
                 pm.load_pwd_file(path)
             case "5":
                 site = input("Enter the site: ")
@@ -101,7 +118,7 @@ def main():
     (m) Menu
     (h) Help
     (q) Quit""")
-            case "h": 
+            case "h":
                 print("""Getting Started:
     1.  Select Option (1) Create a new key that will be used to encrypt your password file.
     2.  Select Option (3) Create a new password file that will be used to hold your encrypted passwords.
@@ -116,6 +133,7 @@ Retrieving or Adding Passords:
                 print("Bye!")
             case _:
                 print("Invalid Choice!")
+
 
 if __name__ == '__main__':
     main()
