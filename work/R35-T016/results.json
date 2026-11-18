@@ -1,0 +1,29 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0853/R35-T016",
+    "git_commit": "126454b1ba5f80808617a62360e735c3e868ff4b",
+    "pillow_version": "13.0.0"
+  },
+  "command": "python3 work/R35-T016/check.py",
+  "native_command": "/Library/Frameworks/Python.framework/Versions/3.15/bin/python3 Image to ASCII/test_ascii.py -v",
+  "test_count": 6,
+  "status": "PASS",
+  "smallest_input_size": [
+    1,
+    1
+  ],
+  "smallest_output_size": [
+    1,
+    1
+  ],
+  "ordinary_input_size": [
+    200,
+    100
+  ],
+  "ordinary_output_size": [
+    100,
+    50
+  ]
+}
