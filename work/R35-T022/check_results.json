@@ -1,0 +1,156 @@
+{
+  "runner_command": "python3 work/R35-T022/check.py",
+  "tool_versions": [
+    {
+      "command": "python3 --version",
+      "exit_code": 0,
+      "output": "Python 3.14.6"
+    },
+    {
+      "command": "pytest --version",
+      "exit_code": 0,
+      "output": "pytest 9.1.1"
+    }
+  ],
+  "test_command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m pytest -q work/R35-T022/notify_suite_test.py",
+  "checks": [
+    {
+      "name": "smallest_nonempty_inputs",
+      "inputs": {
+        "subject": "x",
+        "message": "x",
+        "recipient_email": "a@b.co",
+        "sender_email": "a@b.co",
+        "sender_password": "x",
+        "smtp_server": "localhost",
+        "smtp_port": 1
+      },
+      "expected": {
+        "return_value": null,
+        "smtp_constructor": [
+          "localhost",
+          1
+        ],
+        "tls_started": true,
+        "login_arguments": [
+          "a@b.co",
+          "x"
+        ],
+        "mail_arguments": [
+          "a@b.co",
+          "a@b.co"
+        ],
+        "subject_in_message": true,
+        "recipient_in_message": true,
+        "body_in_message": true,
+        "quit_called": true
+      },
+      "actual": {
+        "return_value": null,
+        "smtp_constructor": [
+          "localhost",
+          1
+        ],
+        "tls_started": true,
+        "login_arguments": [
+          "a@b.co",
+          "x"
+        ],
+        "mail_arguments": [
+          "a@b.co",
+          "a@b.co"
+        ],
+        "subject_in_message": true,
+        "recipient_in_message": true,
+        "body_in_message": true,
+        "quit_called": true
+      },
+      "passed": true
+    },
+    {
+      "name": "ordinary_inputs",
+      "inputs": {
+        "subject": "Build status",
+        "message": "Build completed",
+        "recipient_email": "recipient@example.com",
+        "sender_email": "sender@example.com",
+        "sender_password": "test-password",
+        "smtp_server": "smtp.example.com",
+        "smtp_port": 587
+      },
+      "expected": {
+        "return_value": null,
+        "smtp_constructor": [
+          "smtp.example.com",
+          587
+        ],
+        "tls_started": true,
+        "login_arguments": [
+          "sender@example.com",
+          "test-password"
+        ],
+        "mail_arguments": [
+          "sender@example.com",
+          "recipient@example.com"
+        ],
+        "subject_in_message": true,
+        "recipient_in_message": true,
+        "body_in_message": true,
+        "quit_called": true
+      },
+      "actual": {
+        "return_value": null,
+        "smtp_constructor": [
+          "smtp.example.com",
+          587
+        ],
+        "tls_started": true,
+        "login_arguments": [
+          "sender@example.com",
+          "test-password"
+        ],
+        "mail_arguments": [
+          "sender@example.com",
+          "recipient@example.com"
+        ],
+        "subject_in_message": true,
+        "recipient_in_message": true,
+        "body_in_message": true,
+        "quit_called": true
+      },
+      "passed": true
+    },
+    {
+      "name": "smtp_error_path",
+      "inputs": {
+        "subject": "Build status",
+        "message": "Build completed",
+        "recipient_email": "recipient@example.com",
+        "sender_email": "sender@example.com",
+        "sender_password": "test-password",
+        "smtp_server": "smtp.example.com",
+        "smtp_port": 587
+      },
+      "expected": {
+        "return_value": null,
+        "printed_error": [
+          "Email could not be sent: temporary SMTP failure"
+        ],
+        "quit_called": false
+      },
+      "actual": {
+        "return_value": null,
+        "printed_error": [
+          "Email could not be sent: temporary SMTP failure"
+        ],
+        "quit_called": false
+      },
+      "passed": true
+    }
+  ],
+  "test_result": {
+    "exit_code": 0,
+    "stdout": "...                                                                      [100%]\n3 passed in 0.02s\n",
+    "stderr": ""
+  }
+}
