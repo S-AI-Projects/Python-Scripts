@@ -1,0 +1,16 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0853/R35-T017",
+    "git_commit": "126454b1ba5f80808617a62360e735c3e868ff4b"
+  },
+  "command": "python3 work/R35-T017/check.py",
+  "native_command": "/Library/Frameworks/Python.framework/Versions/3.15/bin/python3 Website Cloner/test_website_cloner.py -v",
+  "test_count": 5,
+  "status": "PASS",
+  "smallest_input": "example.com",
+  "smallest_output": "/cloned_sites/example.com/index.html",
+  "ordinary_input": "https://www.python.org",
+  "ordinary_output": "/cloned_sites/www.python.org/index.html"
+}
