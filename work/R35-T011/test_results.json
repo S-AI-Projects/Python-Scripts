@@ -1,0 +1,178 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "python_version_tuple": [
+      3,
+      15,
+      2
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "git_branch": "R35-T011",
+    "git_commit": "a7a16cd680d45baeef4c67435ac8ec9334f591c6"
+  },
+  "actual_command": "/Library/Frameworks/Python.framework/Versions/3.15/bin/python3 -m unittest -v Face Reaction/tests/test_app.py",
+  "nonzero_test_count": 6,
+  "native_unittest": {
+    "exit_code": 0,
+    "output": "test_no_mutation_with_ordinary_input (Face Reaction.tests.test_app.TestLoadCustomEmojisObservableMutation.test_no_mutation_with_ordinary_input)\nVerify no observable mutation when invoking with ordinary input. ... ok\ntest_no_mutation_with_smallest_valid_input (Face Reaction.tests.test_app.TestLoadCustomEmojisObservableMutation.test_no_mutation_with_smallest_valid_input)\nVerify no observable mutation when invoking with smallest valid input. ... ok\ntest_missing_file_boundary_input (Face Reaction.tests.test_app.TestLoadCustomEmojisReturnValues.test_missing_file_boundary_input)\nMissing file boundary test: ... ok\ntest_ordinary_input (Face Reaction.tests.test_app.TestLoadCustomEmojisReturnValues.test_ordinary_input)\nOrdinary input test: ... ok\ntest_repeated_value_boundary_input (Face Reaction.tests.test_app.TestLoadCustomEmojisReturnValues.test_repeated_value_boundary_input)\nRepeated-value domain boundary test: ... ok\ntest_smallest_valid_input (Face Reaction.tests.test_app.TestLoadCustomEmojisReturnValues.test_smallest_valid_input)\nSmallest valid input test: ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.003s\n\nOK\n",
+    "passed": true
+  },
+  "direct_checks": [
+    {
+      "name": "smallest_valid_input",
+      "description": "Load smallest valid empty JSON object fixture",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:32",
+          "expected_state": "emotion_history = []"
+        },
+        {
+          "anchor": "Face Reaction/app.py:85",
+          "expected_state": "org = (40, 210)"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/smallest.json",
+        "content": "{}"
+      },
+      "expected": {},
+      "actual": {},
+      "passed": true
+    },
+    {
+      "name": "ordinary_input",
+      "description": "Load standard multi-emotion configuration mapping",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:32",
+          "expected_state": "emotion_history = []"
+        },
+        {
+          "anchor": "Face Reaction/app.py:85",
+          "expected_state": "org = (40, 210)"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/ordinary.json",
+        "content": {
+          "happy": "emojis/happy.png",
+          "sad": "emojis/sad.png",
+          "angry": "emojis/angry.png"
+        }
+      },
+      "expected": {
+        "happy": "emojis/happy.png",
+        "sad": "emojis/sad.png",
+        "angry": "emojis/angry.png"
+      },
+      "actual": {
+        "happy": "emojis/happy.png",
+        "sad": "emojis/sad.png",
+        "angry": "emojis/angry.png"
+      },
+      "passed": true
+    },
+    {
+      "name": "repeated_value_boundary_input",
+      "description": "Domain boundary with multiple keys mapping to repeated emoji value",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:32",
+          "expected_state": "emotion_history = []"
+        },
+        {
+          "anchor": "Face Reaction/app.py:85",
+          "expected_state": "org = (40, 210)"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/repeated.json",
+        "content": {
+          "happy": "emojis/common_smile.png",
+          "surprise": "emojis/common_smile.png",
+          "excited": "emojis/common_smile.png"
+        }
+      },
+      "expected": {
+        "happy": "emojis/common_smile.png",
+        "surprise": "emojis/common_smile.png",
+        "excited": "emojis/common_smile.png"
+      },
+      "actual": {
+        "happy": "emojis/common_smile.png",
+        "surprise": "emojis/common_smile.png",
+        "excited": "emojis/common_smile.png"
+      },
+      "passed": true
+    },
+    {
+      "name": "missing_file_boundary_input",
+      "description": "Return empty dictionary for nonexistent configuration file",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:32",
+          "expected_state": "emotion_history = []"
+        },
+        {
+          "anchor": "Face Reaction/app.py:85",
+          "expected_state": "org = (40, 210)"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/nonexistent.json",
+        "exists": false
+      },
+      "expected": {},
+      "actual": {},
+      "passed": true
+    },
+    {
+      "name": "observable_mutation_emotion_history",
+      "description": "Verify load_custom_emojis does not mutate emotion_history anchor",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:32",
+          "expected_state": "emotion_history = []"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/ordinary.json"
+      },
+      "expected": {
+        "emotion_history": []
+      },
+      "actual": {
+        "emotion_history": []
+      },
+      "passed": true
+    },
+    {
+      "name": "observable_mutation_org",
+      "description": "Verify load_custom_emojis does not mutate org coordinate anchor",
+      "preconditions": [
+        {
+          "anchor": "Face Reaction/app.py:85",
+          "expected_state": "org = (40, 210)"
+        }
+      ],
+      "input": {
+        "file": "/var/folders/12/ft6kzj5943v7xr9gwdpqcj640000gn/T/tmpb2p18wwr/ordinary.json"
+      },
+      "expected": {
+        "org": [
+          40,
+          210
+        ]
+      },
+      "actual": {
+        "org": [
+          40,
+          210
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "direct_error": null,
+  "overall_passed": true
+}
