@@ -1,0 +1,50 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.2 (v3.15.2:5e58eaad7c5, Oct 25 2026, 14:19:34) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0853/R35-T019",
+    "git_commit": "126454b1ba5f80808617a62360e735c3e868ff4b",
+    "opencv_version": "5.1.0",
+    "numpy_version": "2.5.5"
+  },
+  "command": "python3 work/R35-T019/check.py",
+  "native_command": "/Library/Frameworks/Python.framework/Versions/3.15/bin/python3 Image Capture/test_image_capture.py -v",
+  "test_count": 4,
+  "status": "PASS",
+  "scaling_table": [
+    {
+      "n_frames": 5,
+      "algorithm_resize_ops": 5,
+      "algo_duration_sec": 0.000908,
+      "total_duration_sec": 0.001044
+    },
+    {
+      "n_frames": 10,
+      "algorithm_resize_ops": 10,
+      "algo_duration_sec": 0.002195,
+      "total_duration_sec": 0.002401
+    },
+    {
+      "n_frames": 25,
+      "algorithm_resize_ops": 25,
+      "algo_duration_sec": 0.003427,
+      "total_duration_sec": 0.003985
+    },
+    {
+      "n_frames": 50,
+      "algorithm_resize_ops": 50,
+      "algo_duration_sec": 0.010241,
+      "total_duration_sec": 0.011211
+    },
+    {
+      "n_frames": 100,
+      "algorithm_resize_ops": 100,
+      "algo_duration_sec": 0.017818,
+      "total_duration_sec": 0.019789
+    }
+  ],
+  "smallest_input_frames": 1,
+  "smallest_output_ops": 1,
+  "ordinary_input_frames": 20,
+  "ordinary_output_ops": 20
+}
