@@ -1,4 +1,19 @@
 def pigeonhole_sort(arr):
+    """
+    Sort an array of integers in ascending order using Pigeonhole Sort.
+
+    Contract & Failure/Absent-Result Path:
+    - Input:
+        arr (list of int): Integer list to be sorted.
+    - Failure / Absent-Result Handling:
+        Line 17: Where the collection is empty (len(arr) == 0) or contains a single element,
+        the contract is total: it returns the array as-is without raising exceptions.
+    - In-place mutation:
+        arr is sorted in-place in ascending order, and returned.
+    """
+    if len(arr) <= 1:
+        return arr
+
     # Find the minimum and maximum values in the array
     min_val = min(arr)
     max_val = max(arr)
@@ -21,7 +36,15 @@ def pigeonhole_sort(arr):
             index += 1
             holes[i] -= 1
 
-# Example usage:
-input_array = [8, 3, 2, 7, 4, 6, 8]
-pigeonhole_sort(input_array)
-print("Sorted order is:", input_array)
+    return arr
+
+
+def main():
+    # Example usage:
+    input_array = [8, 3, 2, 7, 4, 6, 8]
+    pigeonhole_sort(input_array)
+    print("Sorted order is:", input_array)
+
+
+if __name__ == "__main__":
+    main()
