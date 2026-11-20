@@ -37,8 +37,9 @@ window, JPEG file, or other external I/O is used.
 
 Validation command: `python3 work/R35-T023/check.py` — exit 0; 21 tests passed
 (20 key sequences and one failed-frame case). Details and data:
-[check.py](./check.py), [results.txt](./results.txt), and
-[inputs_expected_actual.json](./inputs_expected_actual.json).
+[check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T023/work/R35-T023/check.py),
+[results.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T023/work/R35-T023/results.txt),
+and [inputs_expected_actual.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T023/work/R35-T023/inputs_expected_actual.json).
 
 <!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
 
