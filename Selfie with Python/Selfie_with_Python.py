@@ -23,5 +23,5 @@ while True:
         cv2.imwrite(img_name,frame)
         print("Selfie taken!")
         img+=1
-cam.release
+cam.release()
 cv2.destroyAllWindows()

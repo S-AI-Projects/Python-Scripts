@@ -1,0 +1,33 @@
+R35-T023 focused selfie checks
+
+Tool versions
+-------------
+Python: 3.14.6
+Pytest: pytest 9.1.1
+Git: git version 2.54.0 (Apple Git-157)
+OpenCV: mocked; no camera or OpenCV installation is required
+
+Observed module contract
+-------------------------
+Public inputs: no command-line or function arguments; the script waits 5 seconds, reads frames from camera index 0, and responds to Space (save) and Escape (exit).
+Result: no explicit Python return value; it prints status and writes Selfie_<n>.jpg files in the current working directory.
+Mutation and resources: the image counter is local to the run; saved JPEGs persist, and the camera/window are opened during execution. Before the fix, cam.release was referenced but not called; it is now called after the loop.
+Dependencies: OpenCV (cv2) for camera/window/image operations and the standard-library time module; tests mock both modules' external I/O.
+Test configuration: no repository-level pytest configuration was found; pytest was run against only the named test module.
+
+Pre-fix comparison
+-------------------
+All 21 focused cases failed only on camera release: expected 1 release call, observed 0. This included all 20 terminated key sequences and the failed-frame path.
+
+Focused command
+---------------
+Runner invocation: python3 work/R35-T023/check.py
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=short -p no:cacheprovider '/Users/riyaagrawal/Desktop/snai_project/Python-Scripts/Selfie with Python/tests/test_selfie_with_python.py'
+Result: exit 0; 21 test cases reported
+
+Test output
+-----------
+.....................                                                    [100%]
+21 passed in 0.01s
+
+Per-input expected and actual results are recorded in inputs_expected_actual.json (20 terminated key sequences and one failed-frame case).

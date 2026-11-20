@@ -1,0 +1,47 @@
+# PR Title
+R35-T023: Release webcam after selfie capture
+
+## Summary
+
+Call the camera's release method after the capture loop, and add mocked focused
+checks covering short keyboard inputs and failed-frame cleanup.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The script accepts no command-line or function arguments. At runtime it reads
+camera frames, saves the current frame on Space, and exits on Escape or a failed
+read. The previous `cam.release` expression only referenced the method, leaving
+the camera unreleased. The check suite imports only this script through
+`runpy.run_path`; OpenCV calls and the startup sleep are mocked, so no camera,
+window, JPEG file, or other external I/O is used.
+
+### The changes are as follows:
+- Call `cam.release()` after the capture loop.
+- Add 20 short, terminated key sequences and a failed-frame case compared to an independent expected-output oracle.
+- Add a focused pytest runner and save tool versions plus per-input expected/actual results in `work/R35-T023/`.
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+Validation command: `python3 work/R35-T023/check.py` — exit 0; 21 tests passed
+(20 key sequences and one failed-frame case). Details and data:
+[check.py](./check.py), [results.txt](./results.txt), and
+[inputs_expected_actual.json](./inputs_expected_actual.json).
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Thank You,
+
+Riya Agrawal

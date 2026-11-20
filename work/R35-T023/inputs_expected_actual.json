@@ -1,0 +1,493 @@
+[
+  {
+    "input_keys": [
+      27
+    ],
+    "expected": {
+      "saved_files": [],
+      "read_calls": 1,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [],
+      "read_calls": 1,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 3,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      32,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      32,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      0,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      0,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      32,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      32,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg",
+        "Selfie_2.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg",
+        "Selfie_2.jpg"
+      ],
+      "read_calls": 4,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      0,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      0,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      32,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      0,
+      32,
+      32,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg",
+        "Selfie_1.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      0,
+      32,
+      0,
+      0,
+      27
+    ],
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 5,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  },
+  {
+    "input_keys": [
+      32,
+      32
+    ],
+    "camera_read_fails_at": 1,
+    "expected": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    },
+    "actual": {
+      "saved_files": [
+        "Selfie_0.jpg"
+      ],
+      "read_calls": 2,
+      "release_calls": 1,
+      "destroy_calls": 1
+    }
+  }
+]
