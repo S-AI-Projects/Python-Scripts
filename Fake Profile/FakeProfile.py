@@ -10,12 +10,21 @@ def generate_fake_profiles(num_profiles: int) -> List[dict]:
     """
     Generate a list of fake profiles.
 
-    Args:
-        num_profiles (int): Number of profiles to generate.
-
-    Returns:
+    Supported Boundary Contract:
+    - Preconditions:
+        - num_profiles must be an integer >= 1 (established by line 77-78).
+        - Smallest supported valid input: num_profiles = 1.
+        - Source fixture / data anchor: profiles = [] (line 19 in original source).
+    - Boundary behavior:
+        - Valid Interior (num_profiles > 1): Returns list of num_profiles generated profile dictionaries.
+        - Valid Boundary (num_profiles == 1): Smallest valid input, returns list with exactly 1 profile.
+        - Explicitly Unsupported (num_profiles < 1): Raises ValueError matching contract at lines 77-78.
+    - Returns:
         List[dict]: A list of dictionaries where each represents a profile.
     """
+    if num_profiles < 1:
+        raise ValueError("Number of profiles must be greater than 0.")
+
     profiles = []
     for _ in range(num_profiles):
         profile = {
