@@ -1,0 +1,52 @@
+# PR Title
+R35-T024: Keep JSON values aligned with CSV headers
+
+## Summary
+
+Use the first employee record's header order when writing every CSV row, so
+records with the same keys in a different JSON key order remain aligned.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The script reads `data.json`, selects `emp_details` (source lines 7 and 9),
+iterates its employee objects (line 21), and uses the first object's keys for
+the CSV header (line 25). It previously wrote later objects' values in their
+own key order (line 30). The focused checks use literal minimal and ordinary
+fixtures plus 128 bounded valid cases with a fixed seed; file I/O is mocked.
+
+### The changes are as follows:
+- Write each employee's values by the header keys established by the first
+  employee.
+- Add 130 focused pytest cases, including 128 fixed-seed generated records
+  with common keys and varied insertion order.
+- Add `work/R35-T024/check.py` and record every input, expected CSV, actual
+  CSV, tool versions, and test output in `work/R35-T024/`.
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+Validation command: `python3 work/R35-T024/check.py` — exit 0; 130 tests
+passed. This invokes only the named module's focused tests with file I/O
+mocked. Detailed evidence:
+- [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T024/work/R35-T024/check.py)
+- [test_pyscript.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T024/JSON%20to%20CSV%201/tests/test_pyscript.py)
+- [results.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T024/work/R35-T024/results.txt)
+- [inputs_expected_actual.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T024/work/R35-T024/inputs_expected_actual.json)
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Thank You,
+
+Riya Agrawal

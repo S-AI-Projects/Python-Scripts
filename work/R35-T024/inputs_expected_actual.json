@@ -1,0 +1,1047 @@
+{
+  "fixed_seed": 35024,
+  "generated_case_count": 128,
+  "case_count": 130,
+  "cases": [
+    {
+      "name": "minimal",
+      "input_json": "{\"emp_details\":[{\"name\":\"Ada\"}]}",
+      "expected_csv": "name\r\nAda\r\n",
+      "actual_csv": "name\r\nAda\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "ordinary",
+      "input_json": "{\"emp_details\":[{\"name\":\"Ada\",\"team\":\"Research\"},{\"team\":\"Engineering\",\"name\":\"Lin\"}]}",
+      "expected_csv": "name,team\r\nAda,Research\r\nLin,Engineering\r\n",
+      "actual_csv": "name,team\r\nAda,Research\r\nLin,Engineering\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-000",
+      "input_json": "{\"emp_details\":[{\"team\":\"team1099\",\"office\":\"office7006\",\"employee\":\"emp7274\"},{\"employee\":\"emp3134\",\"office\":\"office9353\",\"team\":\"team4577\"}]}",
+      "expected_csv": "team,office,employee\r\nteam1099,office7006,emp7274\r\nteam4577,office9353,emp3134\r\n",
+      "actual_csv": "team,office,employee\r\nteam1099,office7006,emp7274\r\nteam4577,office9353,emp3134\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-001",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8797\",\"team\":\"team2167\",\"employee\":\"emp3202\"},{\"office\":\"office4359\",\"team\":\"team2850\",\"employee\":\"emp2852\"},{\"office\":\"office7854\",\"team\":\"team7944\",\"employee\":\"emp3471\"}]}",
+      "expected_csv": "office,team,employee\r\noffice8797,team2167,emp3202\r\noffice4359,team2850,emp2852\r\noffice7854,team7944,emp3471\r\n",
+      "actual_csv": "office,team,employee\r\noffice8797,team2167,emp3202\r\noffice4359,team2850,emp2852\r\noffice7854,team7944,emp3471\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-002",
+      "input_json": "{\"emp_details\":[{\"office\":\"office7077\",\"team\":\"team3108\",\"employee\":\"emp7442\"},{\"employee\":\"emp3431\",\"office\":\"office7683\",\"team\":\"team7426\"},{\"team\":\"team4105\",\"employee\":\"emp4329\",\"office\":\"office2320\"}]}",
+      "expected_csv": "office,team,employee\r\noffice7077,team3108,emp7442\r\noffice7683,team7426,emp3431\r\noffice2320,team4105,emp4329\r\n",
+      "actual_csv": "office,team,employee\r\noffice7077,team3108,emp7442\r\noffice7683,team7426,emp3431\r\noffice2320,team4105,emp4329\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-003",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8173\",\"team\":\"team3779\",\"employee\":\"emp7810\"},{\"office\":\"office2752\",\"team\":\"team9743\",\"employee\":\"emp6418\"}]}",
+      "expected_csv": "office,team,employee\r\noffice8173,team3779,emp7810\r\noffice2752,team9743,emp6418\r\n",
+      "actual_csv": "office,team,employee\r\noffice8173,team3779,emp7810\r\noffice2752,team9743,emp6418\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-004",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8205\",\"office\":\"office7219\",\"employee\":\"emp9384\"},{\"team\":\"team2360\",\"employee\":\"emp1963\",\"office\":\"office5883\"},{\"office\":\"office8102\",\"team\":\"team2904\",\"employee\":\"emp3051\"}]}",
+      "expected_csv": "team,office,employee\r\nteam8205,office7219,emp9384\r\nteam2360,office5883,emp1963\r\nteam2904,office8102,emp3051\r\n",
+      "actual_csv": "team,office,employee\r\nteam8205,office7219,emp9384\r\nteam2360,office5883,emp1963\r\nteam2904,office8102,emp3051\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-005",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9360\",\"team\":\"team426\",\"employee\":\"emp5886\"}]}",
+      "expected_csv": "office,team,employee\r\noffice9360,team426,emp5886\r\n",
+      "actual_csv": "office,team,employee\r\noffice9360,team426,emp5886\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-006",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp3704\",\"office\":\"office839\",\"team\":\"team3461\"},{\"employee\":\"emp8231\",\"team\":\"team7944\",\"office\":\"office113\"},{\"office\":\"office6994\",\"team\":\"team9310\",\"employee\":\"emp5220\"}]}",
+      "expected_csv": "employee,office,team\r\nemp3704,office839,team3461\r\nemp8231,office113,team7944\r\nemp5220,office6994,team9310\r\n",
+      "actual_csv": "employee,office,team\r\nemp3704,office839,team3461\r\nemp8231,office113,team7944\r\nemp5220,office6994,team9310\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-007",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp7828\",\"office\":\"office2296\",\"team\":\"team935\"},{\"employee\":\"emp4244\",\"team\":\"team1692\",\"office\":\"office3605\"},{\"team\":\"team9130\",\"office\":\"office4044\",\"employee\":\"emp10\"}]}",
+      "expected_csv": "employee,office,team\r\nemp7828,office2296,team935\r\nemp4244,office3605,team1692\r\nemp10,office4044,team9130\r\n",
+      "actual_csv": "employee,office,team\r\nemp7828,office2296,team935\r\nemp4244,office3605,team1692\r\nemp10,office4044,team9130\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-008",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8825\",\"employee\":\"emp231\",\"office\":\"office3915\"}]}",
+      "expected_csv": "team,employee,office\r\nteam8825,emp231,office3915\r\n",
+      "actual_csv": "team,employee,office\r\nteam8825,emp231,office3915\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-009",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8839\",\"office\":\"office2976\",\"employee\":\"emp161\"},{\"team\":\"team9631\",\"office\":\"office3776\",\"employee\":\"emp6206\"}]}",
+      "expected_csv": "team,office,employee\r\nteam8839,office2976,emp161\r\nteam9631,office3776,emp6206\r\n",
+      "actual_csv": "team,office,employee\r\nteam8839,office2976,emp161\r\nteam9631,office3776,emp6206\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-010",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8046\",\"employee\":\"emp6301\",\"team\":\"team9502\"},{\"team\":\"team4624\",\"employee\":\"emp5224\",\"office\":\"office4828\"}]}",
+      "expected_csv": "office,employee,team\r\noffice8046,emp6301,team9502\r\noffice4828,emp5224,team4624\r\n",
+      "actual_csv": "office,employee,team\r\noffice8046,emp6301,team9502\r\noffice4828,emp5224,team4624\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-011",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp3397\",\"office\":\"office2262\",\"team\":\"team1326\"}]}",
+      "expected_csv": "employee,office,team\r\nemp3397,office2262,team1326\r\n",
+      "actual_csv": "employee,office,team\r\nemp3397,office2262,team1326\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-012",
+      "input_json": "{\"emp_details\":[{\"office\":\"office4234\",\"team\":\"team5578\",\"employee\":\"emp140\"},{\"team\":\"team7784\",\"employee\":\"emp9064\",\"office\":\"office7476\"},{\"team\":\"team7300\",\"office\":\"office7278\",\"employee\":\"emp3\"}]}",
+      "expected_csv": "office,team,employee\r\noffice4234,team5578,emp140\r\noffice7476,team7784,emp9064\r\noffice7278,team7300,emp3\r\n",
+      "actual_csv": "office,team,employee\r\noffice4234,team5578,emp140\r\noffice7476,team7784,emp9064\r\noffice7278,team7300,emp3\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-013",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6003\",\"team\":\"team9153\",\"office\":\"office3856\"},{\"employee\":\"emp417\",\"office\":\"office2604\",\"team\":\"team9523\"},{\"office\":\"office8909\",\"employee\":\"emp7370\",\"team\":\"team6253\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6003,team9153,office3856\r\nemp417,team9523,office2604\r\nemp7370,team6253,office8909\r\n",
+      "actual_csv": "employee,team,office\r\nemp6003,team9153,office3856\r\nemp417,team9523,office2604\r\nemp7370,team6253,office8909\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-014",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp2000\",\"team\":\"team9450\",\"office\":\"office7544\"},{\"employee\":\"emp448\",\"office\":\"office105\",\"team\":\"team1412\"}]}",
+      "expected_csv": "employee,team,office\r\nemp2000,team9450,office7544\r\nemp448,team1412,office105\r\n",
+      "actual_csv": "employee,team,office\r\nemp2000,team9450,office7544\r\nemp448,team1412,office105\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-015",
+      "input_json": "{\"emp_details\":[{\"team\":\"team939\",\"employee\":\"emp6151\",\"office\":\"office3630\"},{\"office\":\"office9632\",\"employee\":\"emp5804\",\"team\":\"team3953\"},{\"team\":\"team3927\",\"office\":\"office3705\",\"employee\":\"emp1081\"}]}",
+      "expected_csv": "team,employee,office\r\nteam939,emp6151,office3630\r\nteam3953,emp5804,office9632\r\nteam3927,emp1081,office3705\r\n",
+      "actual_csv": "team,employee,office\r\nteam939,emp6151,office3630\r\nteam3953,emp5804,office9632\r\nteam3927,emp1081,office3705\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-016",
+      "input_json": "{\"emp_details\":[{\"team\":\"team4052\",\"office\":\"office5657\",\"employee\":\"emp8782\"}]}",
+      "expected_csv": "team,office,employee\r\nteam4052,office5657,emp8782\r\n",
+      "actual_csv": "team,office,employee\r\nteam4052,office5657,emp8782\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-017",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2344\",\"employee\":\"emp1203\",\"office\":\"office3234\"},{\"employee\":\"emp9488\",\"team\":\"team2101\",\"office\":\"office9560\"}]}",
+      "expected_csv": "team,employee,office\r\nteam2344,emp1203,office3234\r\nteam2101,emp9488,office9560\r\n",
+      "actual_csv": "team,employee,office\r\nteam2344,emp1203,office3234\r\nteam2101,emp9488,office9560\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-018",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp9852\",\"office\":\"office1767\",\"team\":\"team4464\"},{\"office\":\"office6962\",\"team\":\"team3406\",\"employee\":\"emp6974\"},{\"employee\":\"emp2212\",\"office\":\"office1691\",\"team\":\"team9262\"},{\"office\":\"office7586\",\"employee\":\"emp388\",\"team\":\"team2541\"}]}",
+      "expected_csv": "employee,office,team\r\nemp9852,office1767,team4464\r\nemp6974,office6962,team3406\r\nemp2212,office1691,team9262\r\nemp388,office7586,team2541\r\n",
+      "actual_csv": "employee,office,team\r\nemp9852,office1767,team4464\r\nemp6974,office6962,team3406\r\nemp2212,office1691,team9262\r\nemp388,office7586,team2541\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-019",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2432\",\"employee\":\"emp4461\",\"office\":\"office3759\"},{\"team\":\"team8883\",\"office\":\"office9432\",\"employee\":\"emp3881\"}]}",
+      "expected_csv": "team,employee,office\r\nteam2432,emp4461,office3759\r\nteam8883,emp3881,office9432\r\n",
+      "actual_csv": "team,employee,office\r\nteam2432,emp4461,office3759\r\nteam8883,emp3881,office9432\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-020",
+      "input_json": "{\"emp_details\":[{\"team\":\"team3950\",\"employee\":\"emp2718\",\"office\":\"office2864\"},{\"team\":\"team3419\",\"office\":\"office515\",\"employee\":\"emp7034\"},{\"employee\":\"emp657\",\"office\":\"office8518\",\"team\":\"team5788\"},{\"employee\":\"emp4199\",\"team\":\"team2222\",\"office\":\"office4498\"}]}",
+      "expected_csv": "team,employee,office\r\nteam3950,emp2718,office2864\r\nteam3419,emp7034,office515\r\nteam5788,emp657,office8518\r\nteam2222,emp4199,office4498\r\n",
+      "actual_csv": "team,employee,office\r\nteam3950,emp2718,office2864\r\nteam3419,emp7034,office515\r\nteam5788,emp657,office8518\r\nteam2222,emp4199,office4498\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-021",
+      "input_json": "{\"emp_details\":[{\"team\":\"team9477\",\"office\":\"office3673\",\"employee\":\"emp2761\"},{\"office\":\"office4667\",\"employee\":\"emp3379\",\"team\":\"team3648\"}]}",
+      "expected_csv": "team,office,employee\r\nteam9477,office3673,emp2761\r\nteam3648,office4667,emp3379\r\n",
+      "actual_csv": "team,office,employee\r\nteam9477,office3673,emp2761\r\nteam3648,office4667,emp3379\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-022",
+      "input_json": "{\"emp_details\":[{\"team\":\"team537\",\"office\":\"office7747\",\"employee\":\"emp9979\"},{\"employee\":\"emp351\",\"office\":\"office8601\",\"team\":\"team600\"},{\"employee\":\"emp4592\",\"team\":\"team9519\",\"office\":\"office4890\"},{\"employee\":\"emp5809\",\"office\":\"office6875\",\"team\":\"team8465\"}]}",
+      "expected_csv": "team,office,employee\r\nteam537,office7747,emp9979\r\nteam600,office8601,emp351\r\nteam9519,office4890,emp4592\r\nteam8465,office6875,emp5809\r\n",
+      "actual_csv": "team,office,employee\r\nteam537,office7747,emp9979\r\nteam600,office8601,emp351\r\nteam9519,office4890,emp4592\r\nteam8465,office6875,emp5809\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-023",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1924\",\"team\":\"team5717\",\"office\":\"office2173\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1924,team5717,office2173\r\n",
+      "actual_csv": "employee,team,office\r\nemp1924,team5717,office2173\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-024",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1556\",\"office\":\"office7912\",\"team\":\"team1177\"},{\"office\":\"office7179\",\"employee\":\"emp3474\",\"team\":\"team807\"}]}",
+      "expected_csv": "employee,office,team\r\nemp1556,office7912,team1177\r\nemp3474,office7179,team807\r\n",
+      "actual_csv": "employee,office,team\r\nemp1556,office7912,team1177\r\nemp3474,office7179,team807\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-025",
+      "input_json": "{\"emp_details\":[{\"office\":\"office1624\",\"team\":\"team1321\",\"employee\":\"emp6071\"}]}",
+      "expected_csv": "office,team,employee\r\noffice1624,team1321,emp6071\r\n",
+      "actual_csv": "office,team,employee\r\noffice1624,team1321,emp6071\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-026",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6972\",\"team\":\"team1246\",\"office\":\"office7493\"},{\"office\":\"office5635\",\"team\":\"team9565\",\"employee\":\"emp2\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6972,team1246,office7493\r\nemp2,team9565,office5635\r\n",
+      "actual_csv": "employee,team,office\r\nemp6972,team1246,office7493\r\nemp2,team9565,office5635\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-027",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp912\",\"team\":\"team7810\",\"office\":\"office6313\"}]}",
+      "expected_csv": "employee,team,office\r\nemp912,team7810,office6313\r\n",
+      "actual_csv": "employee,team,office\r\nemp912,team7810,office6313\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-028",
+      "input_json": "{\"emp_details\":[{\"team\":\"team1084\",\"office\":\"office2163\",\"employee\":\"emp2197\"},{\"employee\":\"emp7888\",\"office\":\"office5169\",\"team\":\"team5738\"}]}",
+      "expected_csv": "team,office,employee\r\nteam1084,office2163,emp2197\r\nteam5738,office5169,emp7888\r\n",
+      "actual_csv": "team,office,employee\r\nteam1084,office2163,emp2197\r\nteam5738,office5169,emp7888\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-029",
+      "input_json": "{\"emp_details\":[{\"office\":\"office1710\",\"team\":\"team7720\",\"employee\":\"emp5482\"}]}",
+      "expected_csv": "office,team,employee\r\noffice1710,team7720,emp5482\r\n",
+      "actual_csv": "office,team,employee\r\noffice1710,team7720,emp5482\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-030",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2573\",\"office\":\"office5616\",\"employee\":\"emp2683\"},{\"team\":\"team1378\",\"employee\":\"emp5113\",\"office\":\"office1649\"}]}",
+      "expected_csv": "team,office,employee\r\nteam2573,office5616,emp2683\r\nteam1378,office1649,emp5113\r\n",
+      "actual_csv": "team,office,employee\r\nteam2573,office5616,emp2683\r\nteam1378,office1649,emp5113\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-031",
+      "input_json": "{\"emp_details\":[{\"team\":\"team7745\",\"employee\":\"emp8496\",\"office\":\"office3448\"},{\"employee\":\"emp7478\",\"office\":\"office3295\",\"team\":\"team1348\"},{\"office\":\"office2955\",\"employee\":\"emp5849\",\"team\":\"team2852\"}]}",
+      "expected_csv": "team,employee,office\r\nteam7745,emp8496,office3448\r\nteam1348,emp7478,office3295\r\nteam2852,emp5849,office2955\r\n",
+      "actual_csv": "team,employee,office\r\nteam7745,emp8496,office3448\r\nteam1348,emp7478,office3295\r\nteam2852,emp5849,office2955\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-032",
+      "input_json": "{\"emp_details\":[{\"team\":\"team4506\",\"employee\":\"emp3698\",\"office\":\"office361\"},{\"team\":\"team5264\",\"office\":\"office4407\",\"employee\":\"emp817\"}]}",
+      "expected_csv": "team,employee,office\r\nteam4506,emp3698,office361\r\nteam5264,emp817,office4407\r\n",
+      "actual_csv": "team,employee,office\r\nteam4506,emp3698,office361\r\nteam5264,emp817,office4407\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-033",
+      "input_json": "{\"emp_details\":[{\"team\":\"team5821\",\"office\":\"office9390\",\"employee\":\"emp3968\"},{\"team\":\"team2653\",\"employee\":\"emp1595\",\"office\":\"office4260\"},{\"office\":\"office516\",\"team\":\"team1437\",\"employee\":\"emp695\"}]}",
+      "expected_csv": "team,office,employee\r\nteam5821,office9390,emp3968\r\nteam2653,office4260,emp1595\r\nteam1437,office516,emp695\r\n",
+      "actual_csv": "team,office,employee\r\nteam5821,office9390,emp3968\r\nteam2653,office4260,emp1595\r\nteam1437,office516,emp695\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-034",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9811\",\"employee\":\"emp1580\",\"team\":\"team7154\"},{\"employee\":\"emp2144\",\"team\":\"team1938\",\"office\":\"office6441\"},{\"employee\":\"emp1209\",\"team\":\"team2468\",\"office\":\"office7090\"},{\"office\":\"office9470\",\"team\":\"team8966\",\"employee\":\"emp4552\"}]}",
+      "expected_csv": "office,employee,team\r\noffice9811,emp1580,team7154\r\noffice6441,emp2144,team1938\r\noffice7090,emp1209,team2468\r\noffice9470,emp4552,team8966\r\n",
+      "actual_csv": "office,employee,team\r\noffice9811,emp1580,team7154\r\noffice6441,emp2144,team1938\r\noffice7090,emp1209,team2468\r\noffice9470,emp4552,team8966\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-035",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1908\",\"team\":\"team4063\",\"office\":\"office5826\"},{\"team\":\"team5583\",\"employee\":\"emp7960\",\"office\":\"office4323\"},{\"employee\":\"emp346\",\"office\":\"office2829\",\"team\":\"team9743\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1908,team4063,office5826\r\nemp7960,team5583,office4323\r\nemp346,team9743,office2829\r\n",
+      "actual_csv": "employee,team,office\r\nemp1908,team4063,office5826\r\nemp7960,team5583,office4323\r\nemp346,team9743,office2829\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-036",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1404\",\"team\":\"team9897\",\"office\":\"office3262\"},{\"team\":\"team2265\",\"employee\":\"emp4728\",\"office\":\"office5299\"},{\"team\":\"team1644\",\"employee\":\"emp7597\",\"office\":\"office9699\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1404,team9897,office3262\r\nemp4728,team2265,office5299\r\nemp7597,team1644,office9699\r\n",
+      "actual_csv": "employee,team,office\r\nemp1404,team9897,office3262\r\nemp4728,team2265,office5299\r\nemp7597,team1644,office9699\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-037",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp4869\",\"office\":\"office9069\",\"team\":\"team6354\"},{\"employee\":\"emp340\",\"team\":\"team7838\",\"office\":\"office6006\"}]}",
+      "expected_csv": "employee,office,team\r\nemp4869,office9069,team6354\r\nemp340,office6006,team7838\r\n",
+      "actual_csv": "employee,office,team\r\nemp4869,office9069,team6354\r\nemp340,office6006,team7838\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-038",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1271\",\"team\":\"team43\",\"office\":\"office3309\"},{\"office\":\"office9463\",\"employee\":\"emp1372\",\"team\":\"team6819\"},{\"team\":\"team4356\",\"office\":\"office5101\",\"employee\":\"emp3077\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1271,team43,office3309\r\nemp1372,team6819,office9463\r\nemp3077,team4356,office5101\r\n",
+      "actual_csv": "employee,team,office\r\nemp1271,team43,office3309\r\nemp1372,team6819,office9463\r\nemp3077,team4356,office5101\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-039",
+      "input_json": "{\"emp_details\":[{\"team\":\"team3466\",\"office\":\"office2165\",\"employee\":\"emp8718\"}]}",
+      "expected_csv": "team,office,employee\r\nteam3466,office2165,emp8718\r\n",
+      "actual_csv": "team,office,employee\r\nteam3466,office2165,emp8718\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-040",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9120\",\"employee\":\"emp4761\",\"team\":\"team4710\"},{\"team\":\"team7379\",\"employee\":\"emp1983\",\"office\":\"office9074\"}]}",
+      "expected_csv": "office,employee,team\r\noffice9120,emp4761,team4710\r\noffice9074,emp1983,team7379\r\n",
+      "actual_csv": "office,employee,team\r\noffice9120,emp4761,team4710\r\noffice9074,emp1983,team7379\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-041",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9343\",\"team\":\"team4925\",\"employee\":\"emp2513\"}]}",
+      "expected_csv": "office,team,employee\r\noffice9343,team4925,emp2513\r\n",
+      "actual_csv": "office,team,employee\r\noffice9343,team4925,emp2513\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-042",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9623\",\"employee\":\"emp1385\",\"team\":\"team6687\"},{\"office\":\"office709\",\"team\":\"team6547\",\"employee\":\"emp970\"}]}",
+      "expected_csv": "office,employee,team\r\noffice9623,emp1385,team6687\r\noffice709,emp970,team6547\r\n",
+      "actual_csv": "office,employee,team\r\noffice9623,emp1385,team6687\r\noffice709,emp970,team6547\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-043",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp625\",\"office\":\"office8251\",\"team\":\"team1710\"},{\"office\":\"office6980\",\"team\":\"team9881\",\"employee\":\"emp6145\"}]}",
+      "expected_csv": "employee,office,team\r\nemp625,office8251,team1710\r\nemp6145,office6980,team9881\r\n",
+      "actual_csv": "employee,office,team\r\nemp625,office8251,team1710\r\nemp6145,office6980,team9881\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-044",
+      "input_json": "{\"emp_details\":[{\"office\":\"office5521\",\"employee\":\"emp3682\",\"team\":\"team7523\"},{\"team\":\"team2161\",\"office\":\"office8427\",\"employee\":\"emp6319\"},{\"employee\":\"emp5980\",\"team\":\"team9498\",\"office\":\"office2595\"},{\"team\":\"team7621\",\"employee\":\"emp3221\",\"office\":\"office9654\"}]}",
+      "expected_csv": "office,employee,team\r\noffice5521,emp3682,team7523\r\noffice8427,emp6319,team2161\r\noffice2595,emp5980,team9498\r\noffice9654,emp3221,team7621\r\n",
+      "actual_csv": "office,employee,team\r\noffice5521,emp3682,team7523\r\noffice8427,emp6319,team2161\r\noffice2595,emp5980,team9498\r\noffice9654,emp3221,team7621\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-045",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp938\",\"office\":\"office1886\",\"team\":\"team5461\"}]}",
+      "expected_csv": "employee,office,team\r\nemp938,office1886,team5461\r\n",
+      "actual_csv": "employee,office,team\r\nemp938,office1886,team5461\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-046",
+      "input_json": "{\"emp_details\":[{\"office\":\"office5378\",\"employee\":\"emp225\",\"team\":\"team8257\"}]}",
+      "expected_csv": "office,employee,team\r\noffice5378,emp225,team8257\r\n",
+      "actual_csv": "office,employee,team\r\noffice5378,emp225,team8257\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-047",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9047\",\"employee\":\"emp5149\",\"team\":\"team9412\"},{\"team\":\"team3388\",\"employee\":\"emp7406\",\"office\":\"office9548\"},{\"employee\":\"emp8276\",\"office\":\"office4969\",\"team\":\"team6018\"},{\"office\":\"office9392\",\"team\":\"team7084\",\"employee\":\"emp5201\"}]}",
+      "expected_csv": "office,employee,team\r\noffice9047,emp5149,team9412\r\noffice9548,emp7406,team3388\r\noffice4969,emp8276,team6018\r\noffice9392,emp5201,team7084\r\n",
+      "actual_csv": "office,employee,team\r\noffice9047,emp5149,team9412\r\noffice9548,emp7406,team3388\r\noffice4969,emp8276,team6018\r\noffice9392,emp5201,team7084\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-048",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8279\",\"employee\":\"emp2289\",\"office\":\"office6001\"},{\"office\":\"office7711\",\"team\":\"team813\",\"employee\":\"emp7644\"}]}",
+      "expected_csv": "team,employee,office\r\nteam8279,emp2289,office6001\r\nteam813,emp7644,office7711\r\n",
+      "actual_csv": "team,employee,office\r\nteam8279,emp2289,office6001\r\nteam813,emp7644,office7711\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-049",
+      "input_json": "{\"emp_details\":[{\"office\":\"office4401\",\"employee\":\"emp8974\",\"team\":\"team5302\"},{\"team\":\"team7549\",\"office\":\"office5220\",\"employee\":\"emp7603\"},{\"employee\":\"emp5171\",\"team\":\"team2820\",\"office\":\"office3684\"},{\"office\":\"office484\",\"employee\":\"emp4009\",\"team\":\"team5157\"}]}",
+      "expected_csv": "office,employee,team\r\noffice4401,emp8974,team5302\r\noffice5220,emp7603,team7549\r\noffice3684,emp5171,team2820\r\noffice484,emp4009,team5157\r\n",
+      "actual_csv": "office,employee,team\r\noffice4401,emp8974,team5302\r\noffice5220,emp7603,team7549\r\noffice3684,emp5171,team2820\r\noffice484,emp4009,team5157\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-050",
+      "input_json": "{\"emp_details\":[{\"team\":\"team4047\",\"office\":\"office7111\",\"employee\":\"emp8262\"},{\"office\":\"office3557\",\"employee\":\"emp8812\",\"team\":\"team4367\"}]}",
+      "expected_csv": "team,office,employee\r\nteam4047,office7111,emp8262\r\nteam4367,office3557,emp8812\r\n",
+      "actual_csv": "team,office,employee\r\nteam4047,office7111,emp8262\r\nteam4367,office3557,emp8812\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-051",
+      "input_json": "{\"emp_details\":[{\"office\":\"office3934\",\"team\":\"team1530\",\"employee\":\"emp1595\"},{\"team\":\"team5170\",\"employee\":\"emp8818\",\"office\":\"office2991\"}]}",
+      "expected_csv": "office,team,employee\r\noffice3934,team1530,emp1595\r\noffice2991,team5170,emp8818\r\n",
+      "actual_csv": "office,team,employee\r\noffice3934,team1530,emp1595\r\noffice2991,team5170,emp8818\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-052",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6816\",\"team\":\"team3745\",\"office\":\"office4126\"},{\"team\":\"team7616\",\"employee\":\"emp8433\",\"office\":\"office253\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6816,team3745,office4126\r\nemp8433,team7616,office253\r\n",
+      "actual_csv": "employee,team,office\r\nemp6816,team3745,office4126\r\nemp8433,team7616,office253\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-053",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp898\",\"team\":\"team4929\",\"office\":\"office2210\"},{\"employee\":\"emp3750\",\"team\":\"team4014\",\"office\":\"office152\"},{\"employee\":\"emp9230\",\"team\":\"team3901\",\"office\":\"office6022\"},{\"employee\":\"emp5090\",\"office\":\"office357\",\"team\":\"team6278\"}]}",
+      "expected_csv": "employee,team,office\r\nemp898,team4929,office2210\r\nemp3750,team4014,office152\r\nemp9230,team3901,office6022\r\nemp5090,team6278,office357\r\n",
+      "actual_csv": "employee,team,office\r\nemp898,team4929,office2210\r\nemp3750,team4014,office152\r\nemp9230,team3901,office6022\r\nemp5090,team6278,office357\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-054",
+      "input_json": "{\"emp_details\":[{\"office\":\"office6090\",\"team\":\"team3938\",\"employee\":\"emp1863\"},{\"team\":\"team8332\",\"employee\":\"emp8806\",\"office\":\"office6547\"},{\"team\":\"team6021\",\"employee\":\"emp2121\",\"office\":\"office7263\"}]}",
+      "expected_csv": "office,team,employee\r\noffice6090,team3938,emp1863\r\noffice6547,team8332,emp8806\r\noffice7263,team6021,emp2121\r\n",
+      "actual_csv": "office,team,employee\r\noffice6090,team3938,emp1863\r\noffice6547,team8332,emp8806\r\noffice7263,team6021,emp2121\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-055",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2089\",\"employee\":\"emp6507\",\"office\":\"office5918\"},{\"office\":\"office2597\",\"team\":\"team5493\",\"employee\":\"emp8479\"},{\"team\":\"team8885\",\"employee\":\"emp5407\",\"office\":\"office9333\"}]}",
+      "expected_csv": "team,employee,office\r\nteam2089,emp6507,office5918\r\nteam5493,emp8479,office2597\r\nteam8885,emp5407,office9333\r\n",
+      "actual_csv": "team,employee,office\r\nteam2089,emp6507,office5918\r\nteam5493,emp8479,office2597\r\nteam8885,emp5407,office9333\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-056",
+      "input_json": "{\"emp_details\":[{\"team\":\"team9353\",\"employee\":\"emp3502\",\"office\":\"office164\"},{\"office\":\"office987\",\"employee\":\"emp6569\",\"team\":\"team3513\"},{\"employee\":\"emp3233\",\"office\":\"office2656\",\"team\":\"team4618\"},{\"team\":\"team9848\",\"employee\":\"emp1268\",\"office\":\"office7723\"}]}",
+      "expected_csv": "team,employee,office\r\nteam9353,emp3502,office164\r\nteam3513,emp6569,office987\r\nteam4618,emp3233,office2656\r\nteam9848,emp1268,office7723\r\n",
+      "actual_csv": "team,employee,office\r\nteam9353,emp3502,office164\r\nteam3513,emp6569,office987\r\nteam4618,emp3233,office2656\r\nteam9848,emp1268,office7723\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-057",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8466\",\"employee\":\"emp6079\",\"team\":\"team8093\"}]}",
+      "expected_csv": "office,employee,team\r\noffice8466,emp6079,team8093\r\n",
+      "actual_csv": "office,employee,team\r\noffice8466,emp6079,team8093\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-058",
+      "input_json": "{\"emp_details\":[{\"office\":\"office6828\",\"employee\":\"emp462\",\"team\":\"team2931\"},{\"team\":\"team6962\",\"office\":\"office7939\",\"employee\":\"emp3503\"},{\"employee\":\"emp3826\",\"team\":\"team3513\",\"office\":\"office6198\"},{\"employee\":\"emp84\",\"office\":\"office3443\",\"team\":\"team9287\"}]}",
+      "expected_csv": "office,employee,team\r\noffice6828,emp462,team2931\r\noffice7939,emp3503,team6962\r\noffice6198,emp3826,team3513\r\noffice3443,emp84,team9287\r\n",
+      "actual_csv": "office,employee,team\r\noffice6828,emp462,team2931\r\noffice7939,emp3503,team6962\r\noffice6198,emp3826,team3513\r\noffice3443,emp84,team9287\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-059",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp5914\",\"team\":\"team3145\",\"office\":\"office8283\"},{\"employee\":\"emp6049\",\"office\":\"office2589\",\"team\":\"team165\"}]}",
+      "expected_csv": "employee,team,office\r\nemp5914,team3145,office8283\r\nemp6049,team165,office2589\r\n",
+      "actual_csv": "employee,team,office\r\nemp5914,team3145,office8283\r\nemp6049,team165,office2589\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-060",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6834\",\"team\":\"team2304\",\"office\":\"office8155\"},{\"office\":\"office845\",\"employee\":\"emp4295\",\"team\":\"team2549\"},{\"employee\":\"emp1086\",\"team\":\"team3486\",\"office\":\"office1185\"},{\"office\":\"office7959\",\"employee\":\"emp6131\",\"team\":\"team8702\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6834,team2304,office8155\r\nemp4295,team2549,office845\r\nemp1086,team3486,office1185\r\nemp6131,team8702,office7959\r\n",
+      "actual_csv": "employee,team,office\r\nemp6834,team2304,office8155\r\nemp4295,team2549,office845\r\nemp1086,team3486,office1185\r\nemp6131,team8702,office7959\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-061",
+      "input_json": "{\"emp_details\":[{\"office\":\"office694\",\"team\":\"team3172\",\"employee\":\"emp14\"},{\"team\":\"team7375\",\"office\":\"office9832\",\"employee\":\"emp2845\"},{\"employee\":\"emp2533\",\"office\":\"office1790\",\"team\":\"team5317\"}]}",
+      "expected_csv": "office,team,employee\r\noffice694,team3172,emp14\r\noffice9832,team7375,emp2845\r\noffice1790,team5317,emp2533\r\n",
+      "actual_csv": "office,team,employee\r\noffice694,team3172,emp14\r\noffice9832,team7375,emp2845\r\noffice1790,team5317,emp2533\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-062",
+      "input_json": "{\"emp_details\":[{\"office\":\"office3398\",\"team\":\"team6193\",\"employee\":\"emp8165\"},{\"team\":\"team2330\",\"employee\":\"emp2591\",\"office\":\"office7248\"}]}",
+      "expected_csv": "office,team,employee\r\noffice3398,team6193,emp8165\r\noffice7248,team2330,emp2591\r\n",
+      "actual_csv": "office,team,employee\r\noffice3398,team6193,emp8165\r\noffice7248,team2330,emp2591\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-063",
+      "input_json": "{\"emp_details\":[{\"team\":\"team5428\",\"employee\":\"emp8211\",\"office\":\"office6689\"},{\"team\":\"team2322\",\"office\":\"office9864\",\"employee\":\"emp9577\"}]}",
+      "expected_csv": "team,employee,office\r\nteam5428,emp8211,office6689\r\nteam2322,emp9577,office9864\r\n",
+      "actual_csv": "team,employee,office\r\nteam5428,emp8211,office6689\r\nteam2322,emp9577,office9864\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-064",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6317\",\"team\":\"team5752\",\"office\":\"office1519\"},{\"office\":\"office436\",\"team\":\"team3313\",\"employee\":\"emp15\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6317,team5752,office1519\r\nemp15,team3313,office436\r\n",
+      "actual_csv": "employee,team,office\r\nemp6317,team5752,office1519\r\nemp15,team3313,office436\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-065",
+      "input_json": "{\"emp_details\":[{\"team\":\"team6927\",\"office\":\"office1983\",\"employee\":\"emp3037\"},{\"team\":\"team587\",\"office\":\"office7608\",\"employee\":\"emp7454\"},{\"employee\":\"emp7596\",\"team\":\"team2889\",\"office\":\"office997\"}]}",
+      "expected_csv": "team,office,employee\r\nteam6927,office1983,emp3037\r\nteam587,office7608,emp7454\r\nteam2889,office997,emp7596\r\n",
+      "actual_csv": "team,office,employee\r\nteam6927,office1983,emp3037\r\nteam587,office7608,emp7454\r\nteam2889,office997,emp7596\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-066",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8840\",\"employee\":\"emp6183\",\"team\":\"team705\"},{\"team\":\"team7547\",\"office\":\"office6849\",\"employee\":\"emp4297\"}]}",
+      "expected_csv": "office,employee,team\r\noffice8840,emp6183,team705\r\noffice6849,emp4297,team7547\r\n",
+      "actual_csv": "office,employee,team\r\noffice8840,emp6183,team705\r\noffice6849,emp4297,team7547\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-067",
+      "input_json": "{\"emp_details\":[{\"team\":\"team9838\",\"office\":\"office1422\",\"employee\":\"emp7161\"},{\"office\":\"office5049\",\"team\":\"team5512\",\"employee\":\"emp2787\"},{\"team\":\"team4634\",\"employee\":\"emp6618\",\"office\":\"office8724\"}]}",
+      "expected_csv": "team,office,employee\r\nteam9838,office1422,emp7161\r\nteam5512,office5049,emp2787\r\nteam4634,office8724,emp6618\r\n",
+      "actual_csv": "team,office,employee\r\nteam9838,office1422,emp7161\r\nteam5512,office5049,emp2787\r\nteam4634,office8724,emp6618\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-068",
+      "input_json": "{\"emp_details\":[{\"team\":\"team213\",\"office\":\"office4008\",\"employee\":\"emp4900\"},{\"employee\":\"emp7577\",\"team\":\"team6456\",\"office\":\"office6671\"},{\"team\":\"team4899\",\"employee\":\"emp5676\",\"office\":\"office7612\"}]}",
+      "expected_csv": "team,office,employee\r\nteam213,office4008,emp4900\r\nteam6456,office6671,emp7577\r\nteam4899,office7612,emp5676\r\n",
+      "actual_csv": "team,office,employee\r\nteam213,office4008,emp4900\r\nteam6456,office6671,emp7577\r\nteam4899,office7612,emp5676\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-069",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp9470\",\"team\":\"team4837\",\"office\":\"office4162\"},{\"team\":\"team3927\",\"office\":\"office5810\",\"employee\":\"emp9770\"},{\"team\":\"team6508\",\"office\":\"office5278\",\"employee\":\"emp3696\"},{\"office\":\"office8410\",\"team\":\"team6023\",\"employee\":\"emp532\"}]}",
+      "expected_csv": "employee,team,office\r\nemp9470,team4837,office4162\r\nemp9770,team3927,office5810\r\nemp3696,team6508,office5278\r\nemp532,team6023,office8410\r\n",
+      "actual_csv": "employee,team,office\r\nemp9470,team4837,office4162\r\nemp9770,team3927,office5810\r\nemp3696,team6508,office5278\r\nemp532,team6023,office8410\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-070",
+      "input_json": "{\"emp_details\":[{\"team\":\"team4299\",\"office\":\"office5880\",\"employee\":\"emp7986\"},{\"employee\":\"emp8997\",\"office\":\"office5573\",\"team\":\"team5482\"},{\"team\":\"team2\",\"office\":\"office462\",\"employee\":\"emp756\"}]}",
+      "expected_csv": "team,office,employee\r\nteam4299,office5880,emp7986\r\nteam5482,office5573,emp8997\r\nteam2,office462,emp756\r\n",
+      "actual_csv": "team,office,employee\r\nteam4299,office5880,emp7986\r\nteam5482,office5573,emp8997\r\nteam2,office462,emp756\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-071",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp309\",\"office\":\"office8468\",\"team\":\"team2864\"},{\"employee\":\"emp9630\",\"team\":\"team2795\",\"office\":\"office1715\"},{\"team\":\"team8469\",\"office\":\"office4770\",\"employee\":\"emp1054\"},{\"office\":\"office6554\",\"team\":\"team7351\",\"employee\":\"emp8076\"}]}",
+      "expected_csv": "employee,office,team\r\nemp309,office8468,team2864\r\nemp9630,office1715,team2795\r\nemp1054,office4770,team8469\r\nemp8076,office6554,team7351\r\n",
+      "actual_csv": "employee,office,team\r\nemp309,office8468,team2864\r\nemp9630,office1715,team2795\r\nemp1054,office4770,team8469\r\nemp8076,office6554,team7351\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-072",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp3563\",\"team\":\"team1719\",\"office\":\"office7890\"}]}",
+      "expected_csv": "employee,team,office\r\nemp3563,team1719,office7890\r\n",
+      "actual_csv": "employee,team,office\r\nemp3563,team1719,office7890\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-073",
+      "input_json": "{\"emp_details\":[{\"team\":\"team6371\",\"employee\":\"emp3076\",\"office\":\"office7549\"},{\"team\":\"team6513\",\"employee\":\"emp5532\",\"office\":\"office5081\"},{\"office\":\"office2473\",\"team\":\"team9938\",\"employee\":\"emp9527\"}]}",
+      "expected_csv": "team,employee,office\r\nteam6371,emp3076,office7549\r\nteam6513,emp5532,office5081\r\nteam9938,emp9527,office2473\r\n",
+      "actual_csv": "team,employee,office\r\nteam6371,emp3076,office7549\r\nteam6513,emp5532,office5081\r\nteam9938,emp9527,office2473\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-074",
+      "input_json": "{\"emp_details\":[{\"team\":\"team7349\",\"employee\":\"emp9233\",\"office\":\"office9110\"}]}",
+      "expected_csv": "team,employee,office\r\nteam7349,emp9233,office9110\r\n",
+      "actual_csv": "team,employee,office\r\nteam7349,emp9233,office9110\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-075",
+      "input_json": "{\"emp_details\":[{\"team\":\"team6415\",\"office\":\"office46\",\"employee\":\"emp2292\"},{\"office\":\"office585\",\"employee\":\"emp3840\",\"team\":\"team354\"},{\"office\":\"office2994\",\"employee\":\"emp8742\",\"team\":\"team8729\"},{\"employee\":\"emp5460\",\"team\":\"team600\",\"office\":\"office3216\"}]}",
+      "expected_csv": "team,office,employee\r\nteam6415,office46,emp2292\r\nteam354,office585,emp3840\r\nteam8729,office2994,emp8742\r\nteam600,office3216,emp5460\r\n",
+      "actual_csv": "team,office,employee\r\nteam6415,office46,emp2292\r\nteam354,office585,emp3840\r\nteam8729,office2994,emp8742\r\nteam600,office3216,emp5460\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-076",
+      "input_json": "{\"emp_details\":[{\"team\":\"team382\",\"employee\":\"emp9105\",\"office\":\"office5412\"}]}",
+      "expected_csv": "team,employee,office\r\nteam382,emp9105,office5412\r\n",
+      "actual_csv": "team,employee,office\r\nteam382,emp9105,office5412\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-077",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp610\",\"team\":\"team9255\",\"office\":\"office7385\"},{\"team\":\"team8403\",\"employee\":\"emp4805\",\"office\":\"office8046\"},{\"employee\":\"emp3836\",\"office\":\"office6289\",\"team\":\"team9483\"}]}",
+      "expected_csv": "employee,team,office\r\nemp610,team9255,office7385\r\nemp4805,team8403,office8046\r\nemp3836,team9483,office6289\r\n",
+      "actual_csv": "employee,team,office\r\nemp610,team9255,office7385\r\nemp4805,team8403,office8046\r\nemp3836,team9483,office6289\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-078",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp4823\",\"team\":\"team421\",\"office\":\"office9444\"},{\"team\":\"team8742\",\"office\":\"office5633\",\"employee\":\"emp4762\"}]}",
+      "expected_csv": "employee,team,office\r\nemp4823,team421,office9444\r\nemp4762,team8742,office5633\r\n",
+      "actual_csv": "employee,team,office\r\nemp4823,team421,office9444\r\nemp4762,team8742,office5633\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-079",
+      "input_json": "{\"emp_details\":[{\"office\":\"office6654\",\"employee\":\"emp6233\",\"team\":\"team5122\"},{\"team\":\"team2933\",\"office\":\"office1238\",\"employee\":\"emp3198\"}]}",
+      "expected_csv": "office,employee,team\r\noffice6654,emp6233,team5122\r\noffice1238,emp3198,team2933\r\n",
+      "actual_csv": "office,employee,team\r\noffice6654,emp6233,team5122\r\noffice1238,emp3198,team2933\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-080",
+      "input_json": "{\"emp_details\":[{\"office\":\"office849\",\"employee\":\"emp5180\",\"team\":\"team7749\"},{\"team\":\"team2166\",\"office\":\"office6448\",\"employee\":\"emp6944\"},{\"office\":\"office501\",\"team\":\"team8569\",\"employee\":\"emp3328\"}]}",
+      "expected_csv": "office,employee,team\r\noffice849,emp5180,team7749\r\noffice6448,emp6944,team2166\r\noffice501,emp3328,team8569\r\n",
+      "actual_csv": "office,employee,team\r\noffice849,emp5180,team7749\r\noffice6448,emp6944,team2166\r\noffice501,emp3328,team8569\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-081",
+      "input_json": "{\"emp_details\":[{\"team\":\"team1185\",\"office\":\"office1081\",\"employee\":\"emp8519\"},{\"office\":\"office7256\",\"employee\":\"emp1996\",\"team\":\"team4587\"}]}",
+      "expected_csv": "team,office,employee\r\nteam1185,office1081,emp8519\r\nteam4587,office7256,emp1996\r\n",
+      "actual_csv": "team,office,employee\r\nteam1185,office1081,emp8519\r\nteam4587,office7256,emp1996\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-082",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8241\",\"office\":\"office224\",\"employee\":\"emp5545\"},{\"team\":\"team6641\",\"office\":\"office1615\",\"employee\":\"emp1724\"}]}",
+      "expected_csv": "team,office,employee\r\nteam8241,office224,emp5545\r\nteam6641,office1615,emp1724\r\n",
+      "actual_csv": "team,office,employee\r\nteam8241,office224,emp5545\r\nteam6641,office1615,emp1724\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-083",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp8671\",\"office\":\"office3435\",\"team\":\"team3742\"},{\"team\":\"team6375\",\"employee\":\"emp2162\",\"office\":\"office9101\"}]}",
+      "expected_csv": "employee,office,team\r\nemp8671,office3435,team3742\r\nemp2162,office9101,team6375\r\n",
+      "actual_csv": "employee,office,team\r\nemp8671,office3435,team3742\r\nemp2162,office9101,team6375\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-084",
+      "input_json": "{\"emp_details\":[{\"team\":\"team3702\",\"office\":\"office5656\",\"employee\":\"emp4550\"},{\"team\":\"team7142\",\"office\":\"office7167\",\"employee\":\"emp7588\"},{\"employee\":\"emp7989\",\"team\":\"team3707\",\"office\":\"office3941\"}]}",
+      "expected_csv": "team,office,employee\r\nteam3702,office5656,emp4550\r\nteam7142,office7167,emp7588\r\nteam3707,office3941,emp7989\r\n",
+      "actual_csv": "team,office,employee\r\nteam3702,office5656,emp4550\r\nteam7142,office7167,emp7588\r\nteam3707,office3941,emp7989\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-085",
+      "input_json": "{\"emp_details\":[{\"team\":\"team5604\",\"employee\":\"emp288\",\"office\":\"office1215\"},{\"employee\":\"emp1594\",\"team\":\"team7763\",\"office\":\"office9910\"},{\"employee\":\"emp1535\",\"office\":\"office8586\",\"team\":\"team6371\"}]}",
+      "expected_csv": "team,employee,office\r\nteam5604,emp288,office1215\r\nteam7763,emp1594,office9910\r\nteam6371,emp1535,office8586\r\n",
+      "actual_csv": "team,employee,office\r\nteam5604,emp288,office1215\r\nteam7763,emp1594,office9910\r\nteam6371,emp1535,office8586\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-086",
+      "input_json": "{\"emp_details\":[{\"office\":\"office1880\",\"team\":\"team1661\",\"employee\":\"emp182\"},{\"team\":\"team3803\",\"office\":\"office936\",\"employee\":\"emp9003\"}]}",
+      "expected_csv": "office,team,employee\r\noffice1880,team1661,emp182\r\noffice936,team3803,emp9003\r\n",
+      "actual_csv": "office,team,employee\r\noffice1880,team1661,emp182\r\noffice936,team3803,emp9003\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-087",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2356\",\"office\":\"office2759\",\"employee\":\"emp8022\"}]}",
+      "expected_csv": "team,office,employee\r\nteam2356,office2759,emp8022\r\n",
+      "actual_csv": "team,office,employee\r\nteam2356,office2759,emp8022\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-088",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp8618\",\"team\":\"team2197\",\"office\":\"office5971\"},{\"employee\":\"emp3370\",\"team\":\"team3563\",\"office\":\"office2600\"}]}",
+      "expected_csv": "employee,team,office\r\nemp8618,team2197,office5971\r\nemp3370,team3563,office2600\r\n",
+      "actual_csv": "employee,team,office\r\nemp8618,team2197,office5971\r\nemp3370,team3563,office2600\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-089",
+      "input_json": "{\"emp_details\":[{\"team\":\"team6430\",\"office\":\"office5876\",\"employee\":\"emp1061\"},{\"office\":\"office2931\",\"team\":\"team4227\",\"employee\":\"emp2101\"}]}",
+      "expected_csv": "team,office,employee\r\nteam6430,office5876,emp1061\r\nteam4227,office2931,emp2101\r\n",
+      "actual_csv": "team,office,employee\r\nteam6430,office5876,emp1061\r\nteam4227,office2931,emp2101\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-090",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp47\",\"office\":\"office5730\",\"team\":\"team7357\"}]}",
+      "expected_csv": "employee,office,team\r\nemp47,office5730,team7357\r\n",
+      "actual_csv": "employee,office,team\r\nemp47,office5730,team7357\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-091",
+      "input_json": "{\"emp_details\":[{\"office\":\"office5011\",\"employee\":\"emp6419\",\"team\":\"team2499\"}]}",
+      "expected_csv": "office,employee,team\r\noffice5011,emp6419,team2499\r\n",
+      "actual_csv": "office,employee,team\r\noffice5011,emp6419,team2499\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-092",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8219\",\"employee\":\"emp6331\",\"office\":\"office9164\"},{\"team\":\"team9918\",\"office\":\"office8369\",\"employee\":\"emp3033\"},{\"team\":\"team2541\",\"office\":\"office5826\",\"employee\":\"emp1947\"}]}",
+      "expected_csv": "team,employee,office\r\nteam8219,emp6331,office9164\r\nteam9918,emp3033,office8369\r\nteam2541,emp1947,office5826\r\n",
+      "actual_csv": "team,employee,office\r\nteam8219,emp6331,office9164\r\nteam9918,emp3033,office8369\r\nteam2541,emp1947,office5826\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-093",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1663\",\"team\":\"team4476\",\"office\":\"office3111\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1663,team4476,office3111\r\n",
+      "actual_csv": "employee,team,office\r\nemp1663,team4476,office3111\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-094",
+      "input_json": "{\"emp_details\":[{\"office\":\"office2527\",\"employee\":\"emp6893\",\"team\":\"team2105\"},{\"office\":\"office323\",\"employee\":\"emp6983\",\"team\":\"team7089\"},{\"employee\":\"emp5800\",\"team\":\"team6416\",\"office\":\"office7400\"}]}",
+      "expected_csv": "office,employee,team\r\noffice2527,emp6893,team2105\r\noffice323,emp6983,team7089\r\noffice7400,emp5800,team6416\r\n",
+      "actual_csv": "office,employee,team\r\noffice2527,emp6893,team2105\r\noffice323,emp6983,team7089\r\noffice7400,emp5800,team6416\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-095",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2228\",\"employee\":\"emp6259\",\"office\":\"office8236\"},{\"office\":\"office6106\",\"employee\":\"emp5017\",\"team\":\"team5636\"},{\"employee\":\"emp2071\",\"office\":\"office4288\",\"team\":\"team9919\"}]}",
+      "expected_csv": "team,employee,office\r\nteam2228,emp6259,office8236\r\nteam5636,emp5017,office6106\r\nteam9919,emp2071,office4288\r\n",
+      "actual_csv": "team,employee,office\r\nteam2228,emp6259,office8236\r\nteam5636,emp5017,office6106\r\nteam9919,emp2071,office4288\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-096",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8369\",\"team\":\"team9132\",\"employee\":\"emp4262\"},{\"office\":\"office5187\",\"employee\":\"emp3704\",\"team\":\"team1254\"}]}",
+      "expected_csv": "office,team,employee\r\noffice8369,team9132,emp4262\r\noffice5187,team1254,emp3704\r\n",
+      "actual_csv": "office,team,employee\r\noffice8369,team9132,emp4262\r\noffice5187,team1254,emp3704\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-097",
+      "input_json": "{\"emp_details\":[{\"office\":\"office1648\",\"team\":\"team1141\",\"employee\":\"emp6198\"},{\"team\":\"team148\",\"office\":\"office5868\",\"employee\":\"emp5153\"},{\"team\":\"team2508\",\"office\":\"office3144\",\"employee\":\"emp8905\"},{\"office\":\"office456\",\"team\":\"team4085\",\"employee\":\"emp982\"}]}",
+      "expected_csv": "office,team,employee\r\noffice1648,team1141,emp6198\r\noffice5868,team148,emp5153\r\noffice3144,team2508,emp8905\r\noffice456,team4085,emp982\r\n",
+      "actual_csv": "office,team,employee\r\noffice1648,team1141,emp6198\r\noffice5868,team148,emp5153\r\noffice3144,team2508,emp8905\r\noffice456,team4085,emp982\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-098",
+      "input_json": "{\"emp_details\":[{\"office\":\"office2625\",\"team\":\"team170\",\"employee\":\"emp8737\"},{\"office\":\"office3980\",\"team\":\"team389\",\"employee\":\"emp5233\"}]}",
+      "expected_csv": "office,team,employee\r\noffice2625,team170,emp8737\r\noffice3980,team389,emp5233\r\n",
+      "actual_csv": "office,team,employee\r\noffice2625,team170,emp8737\r\noffice3980,team389,emp5233\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-099",
+      "input_json": "{\"emp_details\":[{\"office\":\"office843\",\"employee\":\"emp5386\",\"team\":\"team4436\"},{\"employee\":\"emp4305\",\"team\":\"team4010\",\"office\":\"office4386\"}]}",
+      "expected_csv": "office,employee,team\r\noffice843,emp5386,team4436\r\noffice4386,emp4305,team4010\r\n",
+      "actual_csv": "office,employee,team\r\noffice843,emp5386,team4436\r\noffice4386,emp4305,team4010\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-100",
+      "input_json": "{\"emp_details\":[{\"team\":\"team5756\",\"employee\":\"emp5340\",\"office\":\"office600\"},{\"office\":\"office5472\",\"employee\":\"emp8851\",\"team\":\"team1073\"}]}",
+      "expected_csv": "team,employee,office\r\nteam5756,emp5340,office600\r\nteam1073,emp8851,office5472\r\n",
+      "actual_csv": "team,employee,office\r\nteam5756,emp5340,office600\r\nteam1073,emp8851,office5472\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-101",
+      "input_json": "{\"emp_details\":[{\"team\":\"team1134\",\"employee\":\"emp163\",\"office\":\"office8296\"},{\"employee\":\"emp5070\",\"office\":\"office221\",\"team\":\"team361\"},{\"employee\":\"emp5494\",\"office\":\"office1363\",\"team\":\"team3653\"}]}",
+      "expected_csv": "team,employee,office\r\nteam1134,emp163,office8296\r\nteam361,emp5070,office221\r\nteam3653,emp5494,office1363\r\n",
+      "actual_csv": "team,employee,office\r\nteam1134,emp163,office8296\r\nteam361,emp5070,office221\r\nteam3653,emp5494,office1363\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-102",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp41\",\"office\":\"office9173\",\"team\":\"team50\"}]}",
+      "expected_csv": "employee,office,team\r\nemp41,office9173,team50\r\n",
+      "actual_csv": "employee,office,team\r\nemp41,office9173,team50\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-103",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp8327\",\"team\":\"team5088\",\"office\":\"office9570\"},{\"office\":\"office5498\",\"team\":\"team741\",\"employee\":\"emp4349\"}]}",
+      "expected_csv": "employee,team,office\r\nemp8327,team5088,office9570\r\nemp4349,team741,office5498\r\n",
+      "actual_csv": "employee,team,office\r\nemp8327,team5088,office9570\r\nemp4349,team741,office5498\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-104",
+      "input_json": "{\"emp_details\":[{\"office\":\"office3023\",\"employee\":\"emp8250\",\"team\":\"team1496\"},{\"office\":\"office460\",\"employee\":\"emp5049\",\"team\":\"team2693\"}]}",
+      "expected_csv": "office,employee,team\r\noffice3023,emp8250,team1496\r\noffice460,emp5049,team2693\r\n",
+      "actual_csv": "office,employee,team\r\noffice3023,emp8250,team1496\r\noffice460,emp5049,team2693\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-105",
+      "input_json": "{\"emp_details\":[{\"team\":\"team7465\",\"office\":\"office5640\",\"employee\":\"emp8908\"},{\"office\":\"office2495\",\"employee\":\"emp3281\",\"team\":\"team8133\"},{\"employee\":\"emp835\",\"office\":\"office2200\",\"team\":\"team6637\"},{\"office\":\"office8671\",\"team\":\"team8091\",\"employee\":\"emp6908\"}]}",
+      "expected_csv": "team,office,employee\r\nteam7465,office5640,emp8908\r\nteam8133,office2495,emp3281\r\nteam6637,office2200,emp835\r\nteam8091,office8671,emp6908\r\n",
+      "actual_csv": "team,office,employee\r\nteam7465,office5640,emp8908\r\nteam8133,office2495,emp3281\r\nteam6637,office2200,emp835\r\nteam8091,office8671,emp6908\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-106",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1966\",\"team\":\"team4622\",\"office\":\"office2384\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1966,team4622,office2384\r\n",
+      "actual_csv": "employee,team,office\r\nemp1966,team4622,office2384\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-107",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp9894\",\"team\":\"team3239\",\"office\":\"office6283\"},{\"employee\":\"emp7165\",\"team\":\"team648\",\"office\":\"office7220\"},{\"employee\":\"emp6438\",\"team\":\"team3942\",\"office\":\"office3050\"}]}",
+      "expected_csv": "employee,team,office\r\nemp9894,team3239,office6283\r\nemp7165,team648,office7220\r\nemp6438,team3942,office3050\r\n",
+      "actual_csv": "employee,team,office\r\nemp9894,team3239,office6283\r\nemp7165,team648,office7220\r\nemp6438,team3942,office3050\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-108",
+      "input_json": "{\"emp_details\":[{\"team\":\"team2116\",\"employee\":\"emp4009\",\"office\":\"office2018\"}]}",
+      "expected_csv": "team,employee,office\r\nteam2116,emp4009,office2018\r\n",
+      "actual_csv": "team,employee,office\r\nteam2116,emp4009,office2018\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-109",
+      "input_json": "{\"emp_details\":[{\"office\":\"office1555\",\"employee\":\"emp9907\",\"team\":\"team3138\"},{\"team\":\"team8538\",\"office\":\"office5872\",\"employee\":\"emp2026\"},{\"team\":\"team6137\",\"employee\":\"emp5266\",\"office\":\"office2458\"}]}",
+      "expected_csv": "office,employee,team\r\noffice1555,emp9907,team3138\r\noffice5872,emp2026,team8538\r\noffice2458,emp5266,team6137\r\n",
+      "actual_csv": "office,employee,team\r\noffice1555,emp9907,team3138\r\noffice5872,emp2026,team8538\r\noffice2458,emp5266,team6137\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-110",
+      "input_json": "{\"emp_details\":[{\"team\":\"team5123\",\"employee\":\"emp6578\",\"office\":\"office5423\"},{\"team\":\"team2829\",\"office\":\"office2983\",\"employee\":\"emp6869\"},{\"employee\":\"emp7732\",\"office\":\"office3259\",\"team\":\"team8134\"}]}",
+      "expected_csv": "team,employee,office\r\nteam5123,emp6578,office5423\r\nteam2829,emp6869,office2983\r\nteam8134,emp7732,office3259\r\n",
+      "actual_csv": "team,employee,office\r\nteam5123,emp6578,office5423\r\nteam2829,emp6869,office2983\r\nteam8134,emp7732,office3259\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-111",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp6032\",\"team\":\"team8933\",\"office\":\"office2801\"},{\"employee\":\"emp2887\",\"team\":\"team4584\",\"office\":\"office4807\"},{\"employee\":\"emp4375\",\"team\":\"team6949\",\"office\":\"office7621\"}]}",
+      "expected_csv": "employee,team,office\r\nemp6032,team8933,office2801\r\nemp2887,team4584,office4807\r\nemp4375,team6949,office7621\r\n",
+      "actual_csv": "employee,team,office\r\nemp6032,team8933,office2801\r\nemp2887,team4584,office4807\r\nemp4375,team6949,office7621\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-112",
+      "input_json": "{\"emp_details\":[{\"office\":\"office4705\",\"employee\":\"emp3769\",\"team\":\"team4928\"}]}",
+      "expected_csv": "office,employee,team\r\noffice4705,emp3769,team4928\r\n",
+      "actual_csv": "office,employee,team\r\noffice4705,emp3769,team4928\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-113",
+      "input_json": "{\"emp_details\":[{\"office\":\"office605\",\"team\":\"team7368\",\"employee\":\"emp1201\"}]}",
+      "expected_csv": "office,team,employee\r\noffice605,team7368,emp1201\r\n",
+      "actual_csv": "office,team,employee\r\noffice605,team7368,emp1201\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-114",
+      "input_json": "{\"emp_details\":[{\"team\":\"team8918\",\"office\":\"office1952\",\"employee\":\"emp4602\"},{\"office\":\"office4639\",\"employee\":\"emp4008\",\"team\":\"team1148\"}]}",
+      "expected_csv": "team,office,employee\r\nteam8918,office1952,emp4602\r\nteam1148,office4639,emp4008\r\n",
+      "actual_csv": "team,office,employee\r\nteam8918,office1952,emp4602\r\nteam1148,office4639,emp4008\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-115",
+      "input_json": "{\"emp_details\":[{\"team\":\"team1136\",\"office\":\"office5673\",\"employee\":\"emp2295\"},{\"office\":\"office8137\",\"team\":\"team4422\",\"employee\":\"emp7245\"}]}",
+      "expected_csv": "team,office,employee\r\nteam1136,office5673,emp2295\r\nteam4422,office8137,emp7245\r\n",
+      "actual_csv": "team,office,employee\r\nteam1136,office5673,emp2295\r\nteam4422,office8137,emp7245\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-116",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp3277\",\"office\":\"office9512\",\"team\":\"team9288\"},{\"employee\":\"emp5152\",\"office\":\"office131\",\"team\":\"team9697\"},{\"team\":\"team4084\",\"employee\":\"emp4159\",\"office\":\"office5527\"},{\"office\":\"office9623\",\"employee\":\"emp1597\",\"team\":\"team5042\"}]}",
+      "expected_csv": "employee,office,team\r\nemp3277,office9512,team9288\r\nemp5152,office131,team9697\r\nemp4159,office5527,team4084\r\nemp1597,office9623,team5042\r\n",
+      "actual_csv": "employee,office,team\r\nemp3277,office9512,team9288\r\nemp5152,office131,team9697\r\nemp4159,office5527,team4084\r\nemp1597,office9623,team5042\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-117",
+      "input_json": "{\"emp_details\":[{\"team\":\"team664\",\"employee\":\"emp7522\",\"office\":\"office8730\"},{\"employee\":\"emp9306\",\"team\":\"team2686\",\"office\":\"office5851\"},{\"employee\":\"emp1233\",\"office\":\"office8626\",\"team\":\"team3005\"}]}",
+      "expected_csv": "team,employee,office\r\nteam664,emp7522,office8730\r\nteam2686,emp9306,office5851\r\nteam3005,emp1233,office8626\r\n",
+      "actual_csv": "team,employee,office\r\nteam664,emp7522,office8730\r\nteam2686,emp9306,office5851\r\nteam3005,emp1233,office8626\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-118",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp8753\",\"office\":\"office1723\",\"team\":\"team2913\"}]}",
+      "expected_csv": "employee,office,team\r\nemp8753,office1723,team2913\r\n",
+      "actual_csv": "employee,office,team\r\nemp8753,office1723,team2913\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-119",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp4369\",\"team\":\"team3113\",\"office\":\"office7204\"},{\"team\":\"team8339\",\"employee\":\"emp738\",\"office\":\"office8965\"},{\"office\":\"office2886\",\"team\":\"team3598\",\"employee\":\"emp1405\"},{\"employee\":\"emp583\",\"office\":\"office5254\",\"team\":\"team781\"}]}",
+      "expected_csv": "employee,team,office\r\nemp4369,team3113,office7204\r\nemp738,team8339,office8965\r\nemp1405,team3598,office2886\r\nemp583,team781,office5254\r\n",
+      "actual_csv": "employee,team,office\r\nemp4369,team3113,office7204\r\nemp738,team8339,office8965\r\nemp1405,team3598,office2886\r\nemp583,team781,office5254\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-120",
+      "input_json": "{\"emp_details\":[{\"office\":\"office3748\",\"employee\":\"emp6992\",\"team\":\"team7852\"},{\"office\":\"office2542\",\"employee\":\"emp8093\",\"team\":\"team7577\"}]}",
+      "expected_csv": "office,employee,team\r\noffice3748,emp6992,team7852\r\noffice2542,emp8093,team7577\r\n",
+      "actual_csv": "office,employee,team\r\noffice3748,emp6992,team7852\r\noffice2542,emp8093,team7577\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-121",
+      "input_json": "{\"emp_details\":[{\"employee\":\"emp1691\",\"team\":\"team509\",\"office\":\"office381\"},{\"team\":\"team2412\",\"office\":\"office7314\",\"employee\":\"emp7585\"},{\"employee\":\"emp7016\",\"office\":\"office7816\",\"team\":\"team8658\"}]}",
+      "expected_csv": "employee,team,office\r\nemp1691,team509,office381\r\nemp7585,team2412,office7314\r\nemp7016,team8658,office7816\r\n",
+      "actual_csv": "employee,team,office\r\nemp1691,team509,office381\r\nemp7585,team2412,office7314\r\nemp7016,team8658,office7816\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-122",
+      "input_json": "{\"emp_details\":[{\"office\":\"office7640\",\"team\":\"team4481\",\"employee\":\"emp1887\"},{\"office\":\"office297\",\"team\":\"team9283\",\"employee\":\"emp6322\"},{\"office\":\"office2044\",\"employee\":\"emp9788\",\"team\":\"team304\"},{\"office\":\"office2668\",\"team\":\"team9719\",\"employee\":\"emp3134\"}]}",
+      "expected_csv": "office,team,employee\r\noffice7640,team4481,emp1887\r\noffice297,team9283,emp6322\r\noffice2044,team304,emp9788\r\noffice2668,team9719,emp3134\r\n",
+      "actual_csv": "office,team,employee\r\noffice7640,team4481,emp1887\r\noffice297,team9283,emp6322\r\noffice2044,team304,emp9788\r\noffice2668,team9719,emp3134\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-123",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9973\",\"employee\":\"emp1952\",\"team\":\"team2568\"},{\"team\":\"team7029\",\"office\":\"office6558\",\"employee\":\"emp506\"}]}",
+      "expected_csv": "office,employee,team\r\noffice9973,emp1952,team2568\r\noffice6558,emp506,team7029\r\n",
+      "actual_csv": "office,employee,team\r\noffice9973,emp1952,team2568\r\noffice6558,emp506,team7029\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-124",
+      "input_json": "{\"emp_details\":[{\"team\":\"team6485\",\"employee\":\"emp3933\",\"office\":\"office8281\"},{\"office\":\"office7735\",\"employee\":\"emp8009\",\"team\":\"team1764\"}]}",
+      "expected_csv": "team,employee,office\r\nteam6485,emp3933,office8281\r\nteam1764,emp8009,office7735\r\n",
+      "actual_csv": "team,employee,office\r\nteam6485,emp3933,office8281\r\nteam1764,emp8009,office7735\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-125",
+      "input_json": "{\"emp_details\":[{\"office\":\"office8441\",\"employee\":\"emp6962\",\"team\":\"team8257\"}]}",
+      "expected_csv": "office,employee,team\r\noffice8441,emp6962,team8257\r\n",
+      "actual_csv": "office,employee,team\r\noffice8441,emp6962,team8257\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-126",
+      "input_json": "{\"emp_details\":[{\"team\":\"team9327\",\"employee\":\"emp8599\",\"office\":\"office8708\"},{\"office\":\"office4111\",\"team\":\"team3290\",\"employee\":\"emp7735\"},{\"team\":\"team1917\",\"office\":\"office4616\",\"employee\":\"emp7471\"},{\"employee\":\"emp4840\",\"office\":\"office4380\",\"team\":\"team1775\"}]}",
+      "expected_csv": "team,employee,office\r\nteam9327,emp8599,office8708\r\nteam3290,emp7735,office4111\r\nteam1917,emp7471,office4616\r\nteam1775,emp4840,office4380\r\n",
+      "actual_csv": "team,employee,office\r\nteam9327,emp8599,office8708\r\nteam3290,emp7735,office4111\r\nteam1917,emp7471,office4616\r\nteam1775,emp4840,office4380\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    },
+    {
+      "name": "seed-35024-127",
+      "input_json": "{\"emp_details\":[{\"office\":\"office9985\",\"team\":\"team3882\",\"employee\":\"emp4356\"}]}",
+      "expected_csv": "office,team,employee\r\noffice9985,team3882,emp4356\r\n",
+      "actual_csv": "office,team,employee\r\noffice9985,team3882,emp4356\r\n",
+      "passed": true,
+      "precondition_source": "JSON to CSV 1/code/pyscript.py:7 loads JSON; :9 selects emp_details; :21 iterates records; :25 and :30 use each record's keys and values"
+    }
+  ]
+}
