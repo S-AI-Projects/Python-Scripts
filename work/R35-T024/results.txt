@@ -1,0 +1,48 @@
+R35-T024 JSON-to-CSV regression checks
+
+Pre-change contract (observed before implementation edits)
+----------------------------------------------------------
+Source: JSON to CSV 1/code/pyscript.py
+Public inputs: no arguments or prompts; on execution it reads data.json from
+the current working directory and expects a JSON object with an emp_details
+array of employee objects (lines 6-9). The script iterates records and uses
+the first object's keys for headers (lines 21-26).
+Result: no explicit return value; it writes CSV text to data_file.csv.
+Mutation: opening data_file.csv in write mode truncates/replaces it; input data
+is read-only. The output stream is closed after writing (lines 12, 32).
+Dependencies: Python standard-library json and csv modules; file reads and
+writes are the only external I/O.
+Test configuration: no pytest.ini, pyproject.toml, tox.ini, setup.cfg, or
+conftest.py exists at the repository root or in the tracked tree. Focused
+tests invoke only this script and mock both file opens.
+
+Pre-change test-first evidence
+------------------------------
+Focused command:
+python3 -m pytest -q --tb=short -p no:cacheprovider 'JSON to CSV 1/tests/test_pyscript.py'
+
+Result before implementation edit: 91 failed, 39 passed (130 total).
+The ordinary two-record fixture and generated cases show that values are
+written in each object's insertion order (source line 30) rather than under
+the first record's header order (source line 25). Minimal one-record input
+passes. All tests are bounded valid objects with a common key set; their key
+order may differ.
+
+Literal fixtures and generated case inputs, independently expected CSV
+outputs, and post-change actual outputs are recorded in
+inputs_expected_actual.json.
+
+Post-change validation
+-----------------------
+Runner command: python3 work/R35-T024/check.py
+Focused test command: /Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m pytest -q --tb=short -p no:cacheprovider '/Users/riyaagrawal/Desktop/snai_project/Python-Scripts/JSON to CSV 1/tests/test_pyscript.py'
+Result: exit 0; 130 test cases reported
+Tool versions: Python 3.14.6; pytest 9.1.1; git version 2.54.0 (Apple Git-157)
+I/O: data.json and data_file.csv are mocked by the tests.
+Case results: 130 cases, including 128 fixed-seed generated valid cases; inputs and expected/actual CSV are in inputs_expected_actual.json.
+Independent case mismatches: 0
+Test output
+-----------
+........................................................................ [ 55%]
+..........................................................               [100%]
+130 passed in 0.06s

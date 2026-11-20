@@ -27,6 +27,6 @@ for emp in employee_data:
         count += 1
  
     # Writing data of CSV file
-    csv_writer.writerow(emp.values())
+    csv_writer.writerow(emp[field] for field in header)
  
 data_file.close()

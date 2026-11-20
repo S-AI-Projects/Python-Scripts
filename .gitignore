@@ -2,6 +2,8 @@
 # This helps in testing the code while in development environment
 # These files will not be pushed in github
 test*
+!JSON to CSV 1/tests/
+!JSON to CSV 1/tests/**
 
 # VSCode
 .vscode/*
