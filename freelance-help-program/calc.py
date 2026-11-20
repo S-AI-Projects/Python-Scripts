@@ -1,46 +1,71 @@
-import openpyxl
-from datetime import datetime
-from tkinter import *
-from tkinter import filedialog, messagebox
-from openpyxl.utils import get_column_letter
-from openpyxl import Workbook
+try:
+    import openpyxl
+    from openpyxl.utils import get_column_letter
+    from openpyxl import Workbook
+except ImportError:
+    openpyxl = None
+    get_column_letter = None
+    Workbook = None
+
+from datetime import datetime, time
+try:
+    from tkinter import *
+    from tkinter import filedialog, messagebox
+except ImportError:
+    pass
 
 
 class CalculateApp:
+    """
+    Application for calculating freelance working hours and payments from Excel sheets.
 
-    def __init__(self, root):
+    Dependency & Repeatability Contract:
+    - Dependencies:
+        - Excel workbook reading & writing (openpyxl).
+        - GUI presentation (tkinter, messagebox).
+        - Date/time manipulation (datetime).
+    - Dependency Seams:
+        - `root`: Optional Tkinter parent. Defaults to None to allow headless instantiation and testing.
+        - `show_dialog`: Boolean flag on `calculate_payment` (defaults to True). Setting to False suppresses GUI popups.
+        - `workbook`: Optional openpyxl Workbook object passed to `calculate_payment`. Defaults to None (loaded from `file_path`).
+    - Repeatability Guarantee:
+        - `calculate_payment` is stateless across invocations; identical input workbooks yield identical total payments regardless of prior calculations.
+    """
+
+    def __init__(self, root=None):
         self.root = root
-        self.file_entry = StringVar()
-        head_label = Label(root, text="Let's calculate the payment and hours",
-                           padx=15,
-                           pady=15,
-                           font="SegoeUI 14",
-                           bg="palegreen1",
-                           fg="red")
-        head_label.grid(row=1,
-                        column=1,
-                        pady=10,
-                        padx=5,
-                        columnspan=3)
+        if root is not None:
+            self.file_entry = StringVar()
+            head_label = Label(root, text="Let's calculate the payment and hours",
+                               padx=15,
+                               pady=15,
+                               font="SegoeUI 14",
+                               bg="palegreen1",
+                               fg="red")
+            head_label.grid(row=1,
+                            column=1,
+                            pady=10,
+                            padx=5,
+                            columnspan=3)
 
-        file_label = Label(root, text="XL File Path:", font="SegoeUI 12", bg="PaleGreen1")
-        file_label.grid(row=2, column=1, pady=10, padx=5)
+            file_label = Label(root, text="XL File Path:", font="SegoeUI 12", bg="PaleGreen1")
+            file_label.grid(row=2, column=1, pady=10, padx=5)
 
-        self.file_entry = Entry(root, width=30)
-        self.file_entry.grid(row=2, column=2, pady=10, padx=5)
+            self.file_entry = Entry(root, width=30)
+            self.file_entry.grid(row=2, column=2, pady=10, padx=5)
 
-        browse_button = Button(root, text="Browse", font="SegoeUI 12", bg="PaleGreen1", command=self.browse)
-        browse_button.grid(row=2, column=3, pady=10, padx=5)
+            browse_button = Button(root, text="Browse", font="SegoeUI 12", bg="PaleGreen1", command=self.browse)
+            browse_button.grid(row=2, column=3, pady=10, padx=5)
 
-        pay_label = Label(root, text="Pay per Hour:", font="SegoeUI 12", bg="PaleGreen1")
-        pay_label.grid(row=3, column=1, pady=10, padx=5)
+            pay_label = Label(root, text="Pay per Hour:", font="SegoeUI 12", bg="PaleGreen1")
+            pay_label.grid(row=3, column=1, pady=10, padx=5)
 
-        self.pay_entry = Entry(root, width=30)
-        self.pay_entry.grid(row=3, column=2, pady=10, padx=5)
+            self.pay_entry = Entry(root, width=30)
+            self.pay_entry.grid(row=3, column=2, pady=10, padx=5)
 
-        calculate_button = Button(root, text="Calculate", font="SegoeUI 12", bg="PaleGreen1",
-                                  command=self.calculate_button_clicked)
-        calculate_button.grid(row=4, column=1, pady=10, padx=5, columnspan=3)
+            calculate_button = Button(root, text="Calculate", font="SegoeUI 12", bg="PaleGreen1",
+                                      command=self.calculate_button_clicked)
+            calculate_button.grid(row=4, column=1, pady=10, padx=5, columnspan=3)
 
     def browse(self):
         # Presenting the user with a pop-up for directory selection
@@ -53,10 +78,10 @@ class CalculateApp:
             self.file_entry.delete(0, END)
             self.file_entry.insert(0, "Invalid file format")
 
-    def calculate_payment(self, file_path, pay_per_hour):
+    def calculate_payment(self, file_path, pay_per_hour, show_dialog=True, workbook=None):
         try:
             # Implement your logic to calculate the payment based on the hours in the xl file
-            wb = openpyxl.load_workbook(file_path)
+            wb = workbook if workbook is not None else openpyxl.load_workbook(file_path)
             sheet = wb.active
             total_price = 0
             for row in range(2, sheet.max_row + 1):
@@ -77,12 +102,17 @@ class CalculateApp:
             total_price_cell.value = total_price
             total_price_cell.number_format = '0.00'  # Set the number format to display as a double in shekels
             # Save the updated Excel file
-            modified_file_path = f"modified_{file_path}"
-            wb.save(modified_file_path)
+            if file_path:
+                modified_file_path = f"modified_{file_path}"
+                wb.save(modified_file_path)
 
-            messagebox.showinfo("Calculation Complete", f"Total Payment: {total_price:.2f} Shekels")
+            if show_dialog:
+                messagebox.showinfo("Calculation Complete", f"Total Payment: {total_price:.2f} Shekels")
+            return total_price
         except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {str(e)}")
+            if show_dialog:
+                messagebox.showerror("Error", f"An error occurred: {str(e)}")
+            raise
 
     def calculate_button_clicked(self):
         file_path = self.file_entry.get()
