@@ -1,0 +1,48 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0629/R35-T003",
+    "git_commit": "e2ed28782a9a5f27a78d5d0817dbcd71d5a4a5f7"
+  },
+  "command": "python3 work/R35-T003/check.py",
+  "native_command": "python3 -m unittest discover -s '/Users/nittesh/githubtask/Python-Scripts/Automate Emails Daily' -p 'test_*.py' -v",
+  "test_count": 5,
+  "oracle_cross_checks_count": 21,
+  "status": "PASS",
+  "anchors_verified": [
+    "def send_email near line 8",
+    "receiver_emails anchor",
+    "attachments anchor",
+    "smtplib.SMTP",
+    "formataddr"
+  ],
+  "cross_check_summary": {
+    "smallest_input": {
+      "matched": true,
+      "expected_return": null,
+      "actual_return": null,
+      "dispatches": [
+        [
+          "user@gmail.com",
+          "receiver1-email@gmail.com"
+        ]
+      ]
+    },
+    "ordinary_input": {
+      "matched": true,
+      "expected_return": null,
+      "actual_return": null,
+      "dispatches": [
+        [
+          "your-email@gmail.com",
+          "receiver1-email@gmail.com"
+        ],
+        [
+          "your-email@gmail.com",
+          "receiver2-email@gmail.com"
+        ]
+      ]
+    }
+  }
+}

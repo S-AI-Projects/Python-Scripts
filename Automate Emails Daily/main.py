@@ -7,13 +7,34 @@ from mimetypes import guess_type
 
 def send_email(sender_email: str,
                sender_name: str,
-               password:str,
+               password: str,
                receiver_emails: list,
                email_body: str,
                email_subject: str = "No subject",
                is_html: bool = False,
                attachments: list = None) -> None:
-    
+    """
+    Send an email via SMTP (port 587, STARTTLS) to a list of recipients.
+
+    Contract & Cross-Check Specification:
+    - Preconditions:
+        sender_email: valid email string.
+        receiver_emails: non-empty list of recipient email strings.
+        email_body: string (plain text or HTML markup).
+        is_html: bool indicating HTML alternative subtype when True.
+        attachments: optional list of readable file path strings.
+    - Returns:
+        None.
+    - Side effects & observable mutations:
+        Connects to smtp.gmail.com:587 with STARTTLS encryption.
+        Dispatches email to each recipient in receiver_emails sequentially.
+        Transmits attachments if valid paths are provided.
+    - Representative Oracle Result:
+        For sender="your-email@gmail.com", sender_name="your name",
+        receiver_emails=["receiver1-email@gmail.com"], subject="Good morning":
+        Oracle verifies From is 'your name <your-email@gmail.com>', BCC is 'your-email@gmail.com',
+        and sendmail is invoked exactly once for the recipient.
+    """
     msg = EmailMessage()
     msg["Subject"] = email_subject
     msg["From"] = formataddr((f"{sender_name}", f"{sender_email}"))
@@ -49,6 +70,7 @@ def send_email(sender_email: str,
     # Adding ssl layer of security
     ssl_context = ssl.create_default_context()
 
+    my_server = None
     try:
         # Creating smtp server
         print("Connecting to Server...")
@@ -72,9 +94,10 @@ def send_email(sender_email: str,
     except Exception as e:
         print(f"ERROR: {e}")
     finally:
-        my_server.quit()
+        if my_server is not None:
+            my_server.quit()
 
-# Example usage
+# Example usage and source fixture data anchors
 sender_email = "your-email@gmail.com"
 sender_name = "your name"
 password = os.environ.get("EMAIL_PASSWORD")
@@ -87,5 +110,6 @@ email_body = """
 receiver_emails = ["receiver1-email@gmail.com", "receiver2-email@gmail.com"]
 attachments = ["path/to/attachment1.pdf", "path/to/attachment2.jpg"]
 
-# Sending the email as HTML with attachments
-send_email(sender_email, sender_name, password, receiver_emails, email_body, email_subject, is_html=True, attachments=attachments)
+if __name__ == "__main__":
+    # Sending the email as HTML with attachments
+    send_email(sender_email, sender_name, password, receiver_emails, email_body, email_subject, is_html=True, attachments=attachments)
