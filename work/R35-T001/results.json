@@ -1,0 +1,77 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0629/R35-T001",
+    "git_commit": "6307f9504375710d3b2bf8090b1e18533a5da865",
+    "requests_version": "2.34.2",
+    "beautifulsoup4_version": "4.15.0"
+  },
+  "command": "python3 work/R35-T001/check.py",
+  "native_command": "python3 -m unittest discover -s '/Users/nittesh/githubtask/Python-Scripts/Web Scraper' -p 'test_*.py' -v",
+  "test_count": 8,
+  "status": "PASS",
+  "anchors_verified": [
+    "line 5: URL = \"https://www.python.org/blogs/\"",
+    "line 8: requests.get",
+    "line 11: BeautifulSoup html.parser",
+    "line 14: h2 blog-title",
+    "line 22: open blog_titles.txt"
+  ],
+  "inputs": {
+    "smallest_input": "<h2 class=\"blog-title\">A</h2>",
+    "ordinary_input": "<!DOCTYPE html>\n<html>\n<head><title>Python Blogs</title></head>\n<body>\n  <div class=\"blog-posts\">\n    <h2 class=\"blog-title\">Python 3.12 Released</h2>\n    <p>Details about Python 3.12 release.</p>\n    <h2 class=\"blog-title\">PSF Grants Overview</h2>\n    <p>Details about PSF grants.</p>\n  </div>\n</body>\n</html>",
+    "boundary_input": "<html><body>\n  <h2 class=\"blog-title\">Duplicate Title</h2>\n  <h2 class=\"blog-title\">  Duplicate Title  </h2>\n  <h2 class=\"blog-title\"></h2>\n</body></html>"
+  },
+  "results": {
+    "smallest": {
+      "returned_value": {
+        "expected": [
+          "A"
+        ],
+        "actual": [
+          "A"
+        ],
+        "match": true
+      },
+      "file_mutation": {
+        "expected": "A\n",
+        "actual": "A\n",
+        "match": true
+      }
+    },
+    "ordinary": {
+      "returned_value": {
+        "expected": [
+          "Python 3.12 Released",
+          "PSF Grants Overview"
+        ],
+        "actual": [
+          "Python 3.12 Released",
+          "PSF Grants Overview"
+        ],
+        "match": true
+      },
+      "file_mutation": {
+        "expected": "Python 3.12 Released\nPSF Grants Overview\n",
+        "actual": "Python 3.12 Released\nPSF Grants Overview\n",
+        "match": true
+      }
+    },
+    "boundary": {
+      "returned_value": {
+        "expected": [
+          "Duplicate Title",
+          "Duplicate Title",
+          ""
+        ],
+        "actual": [
+          "Duplicate Title",
+          "Duplicate Title",
+          ""
+        ],
+        "match": true
+      }
+    }
+  }
+}
