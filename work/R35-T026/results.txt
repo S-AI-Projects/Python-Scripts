@@ -1,0 +1,15 @@
+QR with Logo focused verification
+==================================
+Runner command: python3 work/R35-T026/check.py
+Focused test command: /Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -m pytest -q --tb=short -p no:cacheprovider --rootdir /Users/riyaagrawal/Desktop/snai_project/Python-Scripts /Users/riyaagrawal/Desktop/snai_project/Python-Scripts/work/R35-T026/test_qr.py
+Test configuration: no repository-level pytest configuration exists; pytest defaults are used and collection is restricted to test_qr.py.
+Test result: exit 0; 2 tests reported.
+Inputs/expected/actual evidence: present at inputs_expected_actual.json.
+Evidence mismatch: False
+External I/O: qrcode behavior and Pillow file/image operations are mocked; the test does not read or write images or use the network.
+Tool versions: Python 3.14.6; pytest 9.1.1; git version 2.54.0 (Apple Git-157); macOS-27.2.1-arm64-arm-64bit-Mach-O
+
+Focused pytest output
+----------------------
+..                                                                       [100%]
+2 passed in 0.01s

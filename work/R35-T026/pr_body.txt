@@ -1,0 +1,56 @@
+# PR Title
+R35-T026: Extract QR logo sizing into a focused helper
+
+## Summary
+
+Extract the contiguous logo-resizing responsibility into `resize_logo` while
+preserving the existing resize algorithm and script behavior.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The script still reads the same local logo, encodes the same URL, creates the
+same QR code, centers and pastes the resized logo, saves the same output file,
+and prints the same message. The extracted helper takes the loaded logo image
+and returns the result of the same Pillow `resize` call. No external image or
+network access is used by the focused tests.
+
+### The changes are as follows:
+- Extract the fixed-width aspect-ratio calculation and Pillow resize into
+  `resize_logo(logo_img)`.
+- Add a pre-change characterization check for the script's image/QR call
+  order, centered paste, output path, and printed result.
+- Verify the helper's dimensions and image return type; mock qrcode and Pillow
+  file/image operations.
+- Save the baseline contract, test fixtures and expected/actual results, test
+  output, and tool versions in `work/R35-T026/`.
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+Validation command: `python3 work/R35-T026/check.py` — exit 0; 2 tests passed.
+The runner invokes only `work/R35-T026/test_qr.py` with pytest defaults because
+the repository has no root pytest configuration. All file/image operations
+and QR generation are mocked. See:
+- [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T026/work/R35-T026/check.py)
+- [test_qr.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T026/work/R35-T026/test_qr.py)
+- [baseline.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T026/work/R35-T026/baseline.txt)
+- [inputs_expected_actual.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T026/work/R35-T026/inputs_expected_actual.json)
+- [results.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T026/work/R35-T026/results.txt)
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Thank You,
+
+Riya Agrawal

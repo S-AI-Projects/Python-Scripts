@@ -1,0 +1,36 @@
+QR with Logo contract before changes
+===================================
+
+Source reviewed: QR with Logo/qr.py and QR with Logo/README.md.
+
+Public inputs:
+- There is no function or command-line interface.
+- The script uses the local relative path `github-logo.png` as the logo and
+  encodes the hard-coded URL `https://github.com/shashank-amireddy`.
+- `basewidth` is fixed at 100 pixels.
+
+Result:
+- The script generates a QR code with error correction level H, centers a
+  resized logo on it, saves `qr_with_logo.png` in the current working
+  directory, and prints `QR code generated!`.
+- There is no returned value from a public callable.
+
+Mutation behavior:
+- The qrcode object is populated by `add_data` and `make`.
+- Pillow opens the logo, converts it to RGBA, and creates a resized image.
+  The QR image is converted to RGBA and receives the logo via `paste`.
+- The source logo is not explicitly overwritten. The only output-file write is
+  `qr_with_logo.png`; the path is relative to the process working directory.
+
+Observable dependencies:
+- `qrcode` creates the QR code and provides the H error-correction constant.
+- Pillow (`PIL.Image`) reads/converts/resizes/pastes/saves images.
+- The local `github-logo.png` file is a required runtime input.
+- The code contains a commented-out requests-based remote-logo example, but it
+  is inactive. There is no active network dependency or remote input.
+- No other local Python module is imported by this script.
+
+Test configuration discovered before changes:
+- The repository has no root pytest/pyproject/tox/setup configuration.
+- pytest is installed in the current environment; focused tests can use its
+  default configuration while collecting only the named test file.
