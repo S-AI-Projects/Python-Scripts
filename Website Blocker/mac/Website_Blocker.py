@@ -1,61 +1,48 @@
- Run this script as root
-
-import time
 from datetime import datetime as dt
 
-# change hosts path according to your OS
-hosts_path = &quot
-/etc/hosts & quot
-# localhost's IP
-redirect = &quot
-127.0.0.1 & quot
 
-# websites That you want to block
-website_list =
-[ & quot
- www.facebook.com & quot, & quot
- facebook.com&quot
- ,
- & quot
- dub119.mail.live.com&quot
-  , & quot
- www.dub119.mail.live.com&quot
-  ,
- & quot
- www.gmail.com&quot
-  , & quot
- gmail.com&quot
- ]
+# Run as root to modify the system hosts file.
+hosts_path = "/etc/hosts"
+redirect = "127.0.0.1"
+website_list = [
+    "www.facebook.com",
+    "facebook.com",
+    "dub119.mail.live.com",
+    "www.dub119.mail.live.com",
+    "www.gmail.com",
+    "gmail.com",
+]
 
-while True:
 
-    # time of your work
-    if dt(dt.now().year, dt.now().month, dt.now().day, 8)
-    &lt
-    dt.now() & lt
-    dt(dt.now().year, dt.now().month, dt.now().day, 16):
-        print( & quot
-              Working hours... & quot
-              )
-        with open(hosts_path, 'r+') as file:
-            content = file.read()
-            for website in website_list:
-                if website in content:
-                    pass
-                else:
-                    # mapping hostnames to your localhost IP address
-                    file.write(redirect + &quot
-                               & quot
-                               + website + &quot
-                               \n & quot
-                               )
-    else:
-        with open(hosts_path, 'r+') as file:
-            content = file.readlines()
-            file.seek(0)
-            for line in content:
-                if not any(website in line for website in website_list):
-                    file.write(line)
+def remove_blocked_websites(lines):
+    return [
+        line
+        for line in lines
+        if not any(website in line for website in website_list)
+    ]
 
-            # removing hostnmes from host file
-            file.truncate()
+
+def main():
+    while True:
+        now = dt.now()
+        work_start = dt(now.year, now.month, now.day, 8)
+        work_end = dt(now.year, now.month, now.day, 16)
+
+        if work_start < now < work_end:
+            print("Working hours...")
+            with open(hosts_path, "r+") as hosts_file:
+                content = hosts_file.read()
+                for website in website_list:
+                    if website not in content:
+                        hosts_file.write(f"{redirect} {website}\n")
+        else:
+            with open(hosts_path, "r+") as hosts_file:
+                content = hosts_file.readlines()
+                hosts_file.seek(0)
+                for line in remove_blocked_websites(content):
+                    hosts_file.write(line)
+                hosts_file.truncate()
+
+
+if __name__ == "__main__":
+    main()

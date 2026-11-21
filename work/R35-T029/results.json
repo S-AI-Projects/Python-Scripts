@@ -1,0 +1,631 @@
+{
+  "command": "python3 work/R35-T029/check.py",
+  "source_contract_before_changes": {
+    "module": "Website Blocker/mac/Website_Blocker.py",
+    "public_inputs": "No callable public API; script uses current time, the configured website list, and /etc/hosts contents",
+    "result": "Runs indefinitely; prints during work hours and otherwise returns implicitly after rewriting the hosts file",
+    "mutation_behavior": "Appends missing redirect entries during work hours; outside work hours removes matching host lines and truncates the file",
+    "external_dependencies": "Python datetime, built-in file I/O on /etc/hosts, stdout, and root privileges; no third-party package",
+    "pre_change_status": "The source did not compile: an unexpected indentation on line 1, with additional HTML-escaped Python tokens"
+  },
+  "implemented_helper": {
+    "public_input": "a sequence of host-file lines",
+    "result": "new list containing lines without any configured website",
+    "mutation_behavior": "does not mutate the input sequence",
+    "external_io": "none"
+  },
+  "input_size_definition": "number of host-file lines",
+  "measurement_method": "Count actual substring membership checks; the six-domain list is fixed, so operation counts avoid timer overhead",
+  "workload": {
+    "sizes": [
+      100,
+      1000,
+      5000
+    ],
+    "repetitions_per_size": 5,
+    "base_seed": 29035,
+    "blocked_line_rate": 0.2,
+    "input_reconstruction": "Each fresh fixture is reproducible from its recorded seed and the generator in check.py",
+    "output_validation": "Expected line lists are checked after each helper invocation; the recorded digest and line count must match"
+  },
+  "test_configuration": "Python standard-library unittest; the repository has no root pytest/pyproject test configuration",
+  "tool_versions": {
+    "python": "3.14.6",
+    "git": "git version 2.54.0 (Apple Git-157)",
+    "test_runner": "unittest (Python standard library)"
+  },
+  "tests_run": 2,
+  "nonzero_test_count": true,
+  "successful": true,
+  "failures": [],
+  "errors": [],
+  "benchmark": [
+    {
+      "input_size_lines": 100,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "input": {
+            "line_count": 100,
+            "seed": 30035,
+            "sha256": "503e540e937a4b088e7e2506b164104fc3c6ce0b02341cbd672854b47d4a5b05",
+            "blocked_line_count": 20
+          },
+          "expected": {
+            "line_count": 80,
+            "sha256": "33f7f2f6bf19faa8ed55c3e7724914424f673f05dc022c6415f69f7a678e4f5e"
+          },
+          "actual": {
+            "line_count": 80,
+            "sha256": "33f7f2f6bf19faa8ed55c3e7724914424f673f05dc022c6415f69f7a678e4f5e"
+          },
+          "substring_checks": 537
+        },
+        {
+          "repetition": 2,
+          "input": {
+            "line_count": 100,
+            "seed": 30036,
+            "sha256": "f5a83748ea065bb2025b7e9945740fa6987c120e84c2b7353144b87cd6716854",
+            "blocked_line_count": 19
+          },
+          "expected": {
+            "line_count": 81,
+            "sha256": "6fc97c763804e06e3bffca6677cb3b5ede30f724191cf9b388fd75929883ded4"
+          },
+          "actual": {
+            "line_count": 81,
+            "sha256": "6fc97c763804e06e3bffca6677cb3b5ede30f724191cf9b388fd75929883ded4"
+          },
+          "substring_checks": 541
+        },
+        {
+          "repetition": 3,
+          "input": {
+            "line_count": 100,
+            "seed": 30037,
+            "sha256": "7cd2c68a956ad2da46d1eef68fc2c6b977cdc6a43d2cba0034e797b8416fc0e0",
+            "blocked_line_count": 7
+          },
+          "expected": {
+            "line_count": 93,
+            "sha256": "7eef584ed79f992aeb77e9000d00eb0ed3f2999f1d66fd92d6bff0bd9ae2a68f"
+          },
+          "actual": {
+            "line_count": 93,
+            "sha256": "7eef584ed79f992aeb77e9000d00eb0ed3f2999f1d66fd92d6bff0bd9ae2a68f"
+          },
+          "substring_checks": 584
+        },
+        {
+          "repetition": 4,
+          "input": {
+            "line_count": 100,
+            "seed": 30038,
+            "sha256": "fbf625461da45d75745d3fc4a13dda23d9db6a27c43f992e26ba9f37af49ee70",
+            "blocked_line_count": 18
+          },
+          "expected": {
+            "line_count": 82,
+            "sha256": "9bbec7b4381a71700caccbcf4a23849463358d3acebc80e86ca665aad0fe4823"
+          },
+          "actual": {
+            "line_count": 82,
+            "sha256": "9bbec7b4381a71700caccbcf4a23849463358d3acebc80e86ca665aad0fe4823"
+          },
+          "substring_checks": 558
+        },
+        {
+          "repetition": 5,
+          "input": {
+            "line_count": 100,
+            "seed": 30039,
+            "sha256": "5c8af21acefb91f6b79ffd643b7c11a503fd679465244aeeb033186118ba0851",
+            "blocked_line_count": 22
+          },
+          "expected": {
+            "line_count": 78,
+            "sha256": "2726dc5c95d0f46929d315f5687d158f805183f19ea2aace4d83aa8b27ea9a7a"
+          },
+          "actual": {
+            "line_count": 78,
+            "sha256": "2726dc5c95d0f46929d315f5687d158f805183f19ea2aace4d83aa8b27ea9a7a"
+          },
+          "substring_checks": 540
+        }
+      ],
+      "substring_checks": {
+        "median": 541,
+        "range_min": 537,
+        "range_max": 584
+      }
+    },
+    {
+      "input_size_lines": 1000,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "input": {
+            "line_count": 1000,
+            "seed": 39035,
+            "sha256": "7a763129cd829ef56b9a6fd4a70caf39925b0768e5e901399bf85df8b8ca83c0",
+            "blocked_line_count": 221
+          },
+          "expected": {
+            "line_count": 779,
+            "sha256": "efb9283819bf9af5dccda0a88fc0da632c810feec8488bc29953b630c05db52c"
+          },
+          "actual": {
+            "line_count": 779,
+            "sha256": "efb9283819bf9af5dccda0a88fc0da632c810feec8488bc29953b630c05db52c"
+          },
+          "substring_checks": 5438
+        },
+        {
+          "repetition": 2,
+          "input": {
+            "line_count": 1000,
+            "seed": 39036,
+            "sha256": "b1cb2c686bfeeb560bffc629738301b3eb48d1c895396a8b92e397f0a8194e82",
+            "blocked_line_count": 197
+          },
+          "expected": {
+            "line_count": 803,
+            "sha256": "f97c70ce7e62a15c9a1746f6e1ec482f832478eac32890a0107694ca1bc64b25"
+          },
+          "actual": {
+            "line_count": 803,
+            "sha256": "f97c70ce7e62a15c9a1746f6e1ec482f832478eac32890a0107694ca1bc64b25"
+          },
+          "substring_checks": 5479
+        },
+        {
+          "repetition": 3,
+          "input": {
+            "line_count": 1000,
+            "seed": 39037,
+            "sha256": "3326ccb65c1ed67ffc2649efc2d1f3aa77011d200ccfdc37722003c581368bcf",
+            "blocked_line_count": 199
+          },
+          "expected": {
+            "line_count": 801,
+            "sha256": "28f563e99e226e316db499851e1d0c541d71eedf459207c04866a1d7fe2313fb"
+          },
+          "actual": {
+            "line_count": 801,
+            "sha256": "28f563e99e226e316db499851e1d0c541d71eedf459207c04866a1d7fe2313fb"
+          },
+          "substring_checks": 5447
+        },
+        {
+          "repetition": 4,
+          "input": {
+            "line_count": 1000,
+            "seed": 39038,
+            "sha256": "2ee4ab33318fa91d1032b9de626a5a27b625fb2402171496946644aebccb4dc7",
+            "blocked_line_count": 189
+          },
+          "expected": {
+            "line_count": 811,
+            "sha256": "912893e33f7c2e14cbfdaceb19d56bdd00d4b27381c5283939c3f37ce869dc5c"
+          },
+          "actual": {
+            "line_count": 811,
+            "sha256": "912893e33f7c2e14cbfdaceb19d56bdd00d4b27381c5283939c3f37ce869dc5c"
+          },
+          "substring_checks": 5497
+        },
+        {
+          "repetition": 5,
+          "input": {
+            "line_count": 1000,
+            "seed": 39039,
+            "sha256": "b772c3417c6e9a9979377ec09a9e4ec6a01db37008f52a65056339b58890b68d",
+            "blocked_line_count": 176
+          },
+          "expected": {
+            "line_count": 824,
+            "sha256": "6308d66ba49471f2d6e1b1e1fd509d1d43e27e67d2bac00998280aae9d33b435"
+          },
+          "actual": {
+            "line_count": 824,
+            "sha256": "6308d66ba49471f2d6e1b1e1fd509d1d43e27e67d2bac00998280aae9d33b435"
+          },
+          "substring_checks": 5527
+        }
+      ],
+      "substring_checks": {
+        "median": 5479,
+        "range_min": 5438,
+        "range_max": 5527
+      }
+    },
+    {
+      "input_size_lines": 5000,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "input": {
+            "line_count": 5000,
+            "seed": 79035,
+            "sha256": "4ccd70c3abb563956e67496831ae7867566968c4db82dba3f01c30d260d2a018",
+            "blocked_line_count": 928
+          },
+          "expected": {
+            "line_count": 4072,
+            "sha256": "dcfbe5ac90a3e8b6728498b9b6269f71dc534f67d33ab1dd156af43df782d1e3"
+          },
+          "actual": {
+            "line_count": 4072,
+            "sha256": "dcfbe5ac90a3e8b6728498b9b6269f71dc534f67d33ab1dd156af43df782d1e3"
+          },
+          "substring_checks": 27467
+        },
+        {
+          "repetition": 2,
+          "input": {
+            "line_count": 5000,
+            "seed": 79036,
+            "sha256": "adddbe5e6ccb532fe34749699dc5ed72a202610c7609d19cab98f46bc1aadf13",
+            "blocked_line_count": 998
+          },
+          "expected": {
+            "line_count": 4002,
+            "sha256": "5a24cd03451d5354d07b08036880730d5ae55fd10a676386b6382de52c6c456f"
+          },
+          "actual": {
+            "line_count": 4002,
+            "sha256": "5a24cd03451d5354d07b08036880730d5ae55fd10a676386b6382de52c6c456f"
+          },
+          "substring_checks": 27309
+        },
+        {
+          "repetition": 3,
+          "input": {
+            "line_count": 5000,
+            "seed": 79037,
+            "sha256": "00a22f1dd651f87083c533caca3f5b825d2ce8d12b7efb1fd5b8573b23438c76",
+            "blocked_line_count": 997
+          },
+          "expected": {
+            "line_count": 4003,
+            "sha256": "855be2639107b3b3056ee31eb063d2ec3cc5514da8693d94e7bdded8817abb53"
+          },
+          "actual": {
+            "line_count": 4003,
+            "sha256": "855be2639107b3b3056ee31eb063d2ec3cc5514da8693d94e7bdded8817abb53"
+          },
+          "substring_checks": 27344
+        },
+        {
+          "repetition": 4,
+          "input": {
+            "line_count": 5000,
+            "seed": 79038,
+            "sha256": "3ea0decb0cf2f1a7348eef3f101758727f2e218432de9ace32a9645aec1e13f0",
+            "blocked_line_count": 939
+          },
+          "expected": {
+            "line_count": 4061,
+            "sha256": "8be2a6ffa092b2600a66db498339610123f0b6d2a3f15e5f29baa8f95de6ce30"
+          },
+          "actual": {
+            "line_count": 4061,
+            "sha256": "8be2a6ffa092b2600a66db498339610123f0b6d2a3f15e5f29baa8f95de6ce30"
+          },
+          "substring_checks": 27476
+        },
+        {
+          "repetition": 5,
+          "input": {
+            "line_count": 5000,
+            "seed": 79039,
+            "sha256": "07cdc3d1e8856d7d060577936057c9bd90baa34d49a3f689e80d9493f30ec184",
+            "blocked_line_count": 991
+          },
+          "expected": {
+            "line_count": 4009,
+            "sha256": "c6c25508301ab6028a8098d66ab0088cabec0c4b326e8aa751d1d950a70de30e"
+          },
+          "actual": {
+            "line_count": 4009,
+            "sha256": "c6c25508301ab6028a8098d66ab0088cabec0c4b326e8aa751d1d950a70de30e"
+          },
+          "substring_checks": 27378
+        }
+      ],
+      "substring_checks": {
+        "median": 27378,
+        "range_min": 27309,
+        "range_max": 27476
+      }
+    }
+  ],
+  "repetitions": [
+    {
+      "size": 100,
+      "repetition": 1,
+      "input": {
+        "line_count": 100,
+        "seed": 30035,
+        "sha256": "503e540e937a4b088e7e2506b164104fc3c6ce0b02341cbd672854b47d4a5b05",
+        "blocked_line_count": 20
+      },
+      "expected": {
+        "line_count": 80,
+        "sha256": "33f7f2f6bf19faa8ed55c3e7724914424f673f05dc022c6415f69f7a678e4f5e"
+      },
+      "actual": {
+        "line_count": 80,
+        "sha256": "33f7f2f6bf19faa8ed55c3e7724914424f673f05dc022c6415f69f7a678e4f5e"
+      },
+      "substring_checks": 537
+    },
+    {
+      "size": 100,
+      "repetition": 2,
+      "input": {
+        "line_count": 100,
+        "seed": 30036,
+        "sha256": "f5a83748ea065bb2025b7e9945740fa6987c120e84c2b7353144b87cd6716854",
+        "blocked_line_count": 19
+      },
+      "expected": {
+        "line_count": 81,
+        "sha256": "6fc97c763804e06e3bffca6677cb3b5ede30f724191cf9b388fd75929883ded4"
+      },
+      "actual": {
+        "line_count": 81,
+        "sha256": "6fc97c763804e06e3bffca6677cb3b5ede30f724191cf9b388fd75929883ded4"
+      },
+      "substring_checks": 541
+    },
+    {
+      "size": 100,
+      "repetition": 3,
+      "input": {
+        "line_count": 100,
+        "seed": 30037,
+        "sha256": "7cd2c68a956ad2da46d1eef68fc2c6b977cdc6a43d2cba0034e797b8416fc0e0",
+        "blocked_line_count": 7
+      },
+      "expected": {
+        "line_count": 93,
+        "sha256": "7eef584ed79f992aeb77e9000d00eb0ed3f2999f1d66fd92d6bff0bd9ae2a68f"
+      },
+      "actual": {
+        "line_count": 93,
+        "sha256": "7eef584ed79f992aeb77e9000d00eb0ed3f2999f1d66fd92d6bff0bd9ae2a68f"
+      },
+      "substring_checks": 584
+    },
+    {
+      "size": 100,
+      "repetition": 4,
+      "input": {
+        "line_count": 100,
+        "seed": 30038,
+        "sha256": "fbf625461da45d75745d3fc4a13dda23d9db6a27c43f992e26ba9f37af49ee70",
+        "blocked_line_count": 18
+      },
+      "expected": {
+        "line_count": 82,
+        "sha256": "9bbec7b4381a71700caccbcf4a23849463358d3acebc80e86ca665aad0fe4823"
+      },
+      "actual": {
+        "line_count": 82,
+        "sha256": "9bbec7b4381a71700caccbcf4a23849463358d3acebc80e86ca665aad0fe4823"
+      },
+      "substring_checks": 558
+    },
+    {
+      "size": 100,
+      "repetition": 5,
+      "input": {
+        "line_count": 100,
+        "seed": 30039,
+        "sha256": "5c8af21acefb91f6b79ffd643b7c11a503fd679465244aeeb033186118ba0851",
+        "blocked_line_count": 22
+      },
+      "expected": {
+        "line_count": 78,
+        "sha256": "2726dc5c95d0f46929d315f5687d158f805183f19ea2aace4d83aa8b27ea9a7a"
+      },
+      "actual": {
+        "line_count": 78,
+        "sha256": "2726dc5c95d0f46929d315f5687d158f805183f19ea2aace4d83aa8b27ea9a7a"
+      },
+      "substring_checks": 540
+    },
+    {
+      "size": 1000,
+      "repetition": 1,
+      "input": {
+        "line_count": 1000,
+        "seed": 39035,
+        "sha256": "7a763129cd829ef56b9a6fd4a70caf39925b0768e5e901399bf85df8b8ca83c0",
+        "blocked_line_count": 221
+      },
+      "expected": {
+        "line_count": 779,
+        "sha256": "efb9283819bf9af5dccda0a88fc0da632c810feec8488bc29953b630c05db52c"
+      },
+      "actual": {
+        "line_count": 779,
+        "sha256": "efb9283819bf9af5dccda0a88fc0da632c810feec8488bc29953b630c05db52c"
+      },
+      "substring_checks": 5438
+    },
+    {
+      "size": 1000,
+      "repetition": 2,
+      "input": {
+        "line_count": 1000,
+        "seed": 39036,
+        "sha256": "b1cb2c686bfeeb560bffc629738301b3eb48d1c895396a8b92e397f0a8194e82",
+        "blocked_line_count": 197
+      },
+      "expected": {
+        "line_count": 803,
+        "sha256": "f97c70ce7e62a15c9a1746f6e1ec482f832478eac32890a0107694ca1bc64b25"
+      },
+      "actual": {
+        "line_count": 803,
+        "sha256": "f97c70ce7e62a15c9a1746f6e1ec482f832478eac32890a0107694ca1bc64b25"
+      },
+      "substring_checks": 5479
+    },
+    {
+      "size": 1000,
+      "repetition": 3,
+      "input": {
+        "line_count": 1000,
+        "seed": 39037,
+        "sha256": "3326ccb65c1ed67ffc2649efc2d1f3aa77011d200ccfdc37722003c581368bcf",
+        "blocked_line_count": 199
+      },
+      "expected": {
+        "line_count": 801,
+        "sha256": "28f563e99e226e316db499851e1d0c541d71eedf459207c04866a1d7fe2313fb"
+      },
+      "actual": {
+        "line_count": 801,
+        "sha256": "28f563e99e226e316db499851e1d0c541d71eedf459207c04866a1d7fe2313fb"
+      },
+      "substring_checks": 5447
+    },
+    {
+      "size": 1000,
+      "repetition": 4,
+      "input": {
+        "line_count": 1000,
+        "seed": 39038,
+        "sha256": "2ee4ab33318fa91d1032b9de626a5a27b625fb2402171496946644aebccb4dc7",
+        "blocked_line_count": 189
+      },
+      "expected": {
+        "line_count": 811,
+        "sha256": "912893e33f7c2e14cbfdaceb19d56bdd00d4b27381c5283939c3f37ce869dc5c"
+      },
+      "actual": {
+        "line_count": 811,
+        "sha256": "912893e33f7c2e14cbfdaceb19d56bdd00d4b27381c5283939c3f37ce869dc5c"
+      },
+      "substring_checks": 5497
+    },
+    {
+      "size": 1000,
+      "repetition": 5,
+      "input": {
+        "line_count": 1000,
+        "seed": 39039,
+        "sha256": "b772c3417c6e9a9979377ec09a9e4ec6a01db37008f52a65056339b58890b68d",
+        "blocked_line_count": 176
+      },
+      "expected": {
+        "line_count": 824,
+        "sha256": "6308d66ba49471f2d6e1b1e1fd509d1d43e27e67d2bac00998280aae9d33b435"
+      },
+      "actual": {
+        "line_count": 824,
+        "sha256": "6308d66ba49471f2d6e1b1e1fd509d1d43e27e67d2bac00998280aae9d33b435"
+      },
+      "substring_checks": 5527
+    },
+    {
+      "size": 5000,
+      "repetition": 1,
+      "input": {
+        "line_count": 5000,
+        "seed": 79035,
+        "sha256": "4ccd70c3abb563956e67496831ae7867566968c4db82dba3f01c30d260d2a018",
+        "blocked_line_count": 928
+      },
+      "expected": {
+        "line_count": 4072,
+        "sha256": "dcfbe5ac90a3e8b6728498b9b6269f71dc534f67d33ab1dd156af43df782d1e3"
+      },
+      "actual": {
+        "line_count": 4072,
+        "sha256": "dcfbe5ac90a3e8b6728498b9b6269f71dc534f67d33ab1dd156af43df782d1e3"
+      },
+      "substring_checks": 27467
+    },
+    {
+      "size": 5000,
+      "repetition": 2,
+      "input": {
+        "line_count": 5000,
+        "seed": 79036,
+        "sha256": "adddbe5e6ccb532fe34749699dc5ed72a202610c7609d19cab98f46bc1aadf13",
+        "blocked_line_count": 998
+      },
+      "expected": {
+        "line_count": 4002,
+        "sha256": "5a24cd03451d5354d07b08036880730d5ae55fd10a676386b6382de52c6c456f"
+      },
+      "actual": {
+        "line_count": 4002,
+        "sha256": "5a24cd03451d5354d07b08036880730d5ae55fd10a676386b6382de52c6c456f"
+      },
+      "substring_checks": 27309
+    },
+    {
+      "size": 5000,
+      "repetition": 3,
+      "input": {
+        "line_count": 5000,
+        "seed": 79037,
+        "sha256": "00a22f1dd651f87083c533caca3f5b825d2ce8d12b7efb1fd5b8573b23438c76",
+        "blocked_line_count": 997
+      },
+      "expected": {
+        "line_count": 4003,
+        "sha256": "855be2639107b3b3056ee31eb063d2ec3cc5514da8693d94e7bdded8817abb53"
+      },
+      "actual": {
+        "line_count": 4003,
+        "sha256": "855be2639107b3b3056ee31eb063d2ec3cc5514da8693d94e7bdded8817abb53"
+      },
+      "substring_checks": 27344
+    },
+    {
+      "size": 5000,
+      "repetition": 4,
+      "input": {
+        "line_count": 5000,
+        "seed": 79038,
+        "sha256": "3ea0decb0cf2f1a7348eef3f101758727f2e218432de9ace32a9645aec1e13f0",
+        "blocked_line_count": 939
+      },
+      "expected": {
+        "line_count": 4061,
+        "sha256": "8be2a6ffa092b2600a66db498339610123f0b6d2a3f15e5f29baa8f95de6ce30"
+      },
+      "actual": {
+        "line_count": 4061,
+        "sha256": "8be2a6ffa092b2600a66db498339610123f0b6d2a3f15e5f29baa8f95de6ce30"
+      },
+      "substring_checks": 27476
+    },
+    {
+      "size": 5000,
+      "repetition": 5,
+      "input": {
+        "line_count": 5000,
+        "seed": 79039,
+        "sha256": "07cdc3d1e8856d7d060577936057c9bd90baa34d49a3f689e80d9493f30ec184",
+        "blocked_line_count": 991
+      },
+      "expected": {
+        "line_count": 4009,
+        "sha256": "c6c25508301ab6028a8098d66ab0088cabec0c4b326e8aa751d1d950a70de30e"
+      },
+      "actual": {
+        "line_count": 4009,
+        "sha256": "c6c25508301ab6028a8098d66ab0088cabec0c4b326e8aa751d1d950a70de30e"
+      },
+      "substring_checks": 27378
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# PR Title
+R35-T029: Benchmark macOS Website Blocker filtering
+
+## Summary
+
+Repair the macOS Website Blocker module so it imports safely, and add focused checks plus reproducible operation-count measurements for its host-line filtering.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The original file contained HTML-escaped tokens and did not compile. Its infinite loop also ran at import time, preventing focused tests. The corrected script keeps the host-file behavior behind `main()` and extracts a pure line-filter helper. Checks only import the named module and mock file I/O.
+<!-- Description of your changes in detail in a better understandable way-->
+
+### The changes are as follows:
+- Repair the Python syntax and guard the host-file loop so importing the module does not access `/etc/hosts`.
+- Verify that the filtering helper removes matching lines and preserves its input.
+- Measure substring checks for 100, 1,000, and 5,000 host lines, using fixed seeds, fresh inputs, and five repetitions per size. Median and range: 100 lines — 541 (537–584); 1,000 — 5,479 (5,438–5,527); 5,000 — 27,378 (27,309–27,476).
+- Runner: [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T029/work/R35-T029/check.py). Inputs, expected/actual results, measurements, and tool versions: [results.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T029/work/R35-T029/results.json).
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Validation:
+- `python3 work/R35-T029/check.py` — passed; 2 tests run, 0 failures.
+- `python3 -m py_compile 'Website Blocker/mac/Website_Blocker.py' work/R35-T029/check.py` — passed.
+
+The repository has no root pytest/pyproject test configuration; the focused runner uses the standard-library unittest framework. No real host-file I/O was performed.
+
+Thank You,
+
+Riya Agrawal
