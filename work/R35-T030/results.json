@@ -1,0 +1,139 @@
+{
+  "command": "python3 work/R35-T030/check.py",
+  "source_contract_before_changes": {
+    "module": "Subnetting Calculator/subnetting_calculator.py",
+    "public_inputs": "ip_address and subnet_mask strings",
+    "result": "a dictionary containing normalized network, broadcast, address-range, and host-count information",
+    "mutation_behavior": "calculate_network_info does not mutate either input; it returns a newly created dictionary",
+    "external_dependencies": "standard-library ipaddress only; the CLI main uses input() and print(), but the calculator function does not perform I/O"
+  },
+  "mutation_test": {
+    "temporary_copy": true,
+    "comparison_changed": "usable_hosts > 0 to usable_hosts >= 0",
+    "initial_input": {
+      "ip_address": "192.0.2.0",
+      "subnet_mask": "31"
+    },
+    "reduced_input": {
+      "ip_address": "0.0.0.0",
+      "subnet_mask": "32"
+    },
+    "reduction": "The reduced /32 network contains one address, the minimum possible IPv4 network size, and still distinguishes the mutant.",
+    "independent_expected_basis": "IPv4 prefix arithmetic gives a /32 one total address; that address is both the network and broadcast address, leaving zero usable hosts and no usable-host range."
+  },
+  "test_configuration": "Python standard-library unittest; the repository has no root pytest/pyproject test configuration",
+  "tool_versions": {
+    "python": "3.14.6",
+    "git": "git version 2.54.0 (Apple Git-157)",
+    "test_runner": "unittest (Python standard library)"
+  },
+  "tests_run": 2,
+  "nonzero_test_count": true,
+  "successful": true,
+  "failures": [],
+  "errors": [],
+  "checks": [
+    {
+      "check": "__main__.SubnettingCalculatorChecks.test_calculates_a_30_network_without_mutating_inputs",
+      "input": {
+        "ip_address": "192.0.2.130",
+        "subnet_mask": "255.255.255.252"
+      },
+      "expected": {
+        "IP Address": "192.0.2.130",
+        "Subnet Mask": "255.255.255.252",
+        "Network Address": "192.0.2.128",
+        "Broadcast Address": "192.0.2.131",
+        "Range of IP addresses": "192.0.2.128 - 192.0.2.131",
+        "Usable Host IP Range": "192.0.2.129 - 192.0.2.130",
+        "Total Hosts": 4,
+        "Usable Hosts": 2
+      },
+      "actual": {
+        "IP Address": "192.0.2.130",
+        "Subnet Mask": "255.255.255.252",
+        "Network Address": "192.0.2.128",
+        "Broadcast Address": "192.0.2.131",
+        "Range of IP addresses": "192.0.2.128 - 192.0.2.131",
+        "Usable Host IP Range": "192.0.2.129 - 192.0.2.130",
+        "Total Hosts": 4,
+        "Usable Hosts": 2
+      },
+      "inputs_after_call": [
+        "192.0.2.130",
+        "255.255.255.252"
+      ]
+    },
+    {
+      "check": "__main__.SubnettingCalculatorChecks.test_temporary_boundary_mutant_is_detected_and_reduced",
+      "mutation": {
+        "original_condition": "usable_hosts > 0",
+        "mutant_condition": "usable_hosts >= 0",
+        "temporary_copy_only": true
+      },
+      "initial_valid_input": {
+        "ip_address": "192.0.2.0",
+        "subnet_mask": "31"
+      },
+      "initial_results": {
+        "original": {
+          "IP Address": "192.0.2.0",
+          "Subnet Mask": "31",
+          "Network Address": "192.0.2.0",
+          "Broadcast Address": "192.0.2.1",
+          "Range of IP addresses": "192.0.2.0 - 192.0.2.1",
+          "Usable Host IP Range": "N/A",
+          "Total Hosts": 2,
+          "Usable Hosts": 0
+        },
+        "mutant": {
+          "IP Address": "192.0.2.0",
+          "Subnet Mask": "31",
+          "Network Address": "192.0.2.0",
+          "Broadcast Address": "192.0.2.1",
+          "Range of IP addresses": "192.0.2.0 - 192.0.2.1",
+          "Usable Host IP Range": "None - None",
+          "Total Hosts": 2,
+          "Usable Hosts": 0
+        }
+      },
+      "reduced_valid_input": {
+        "ip_address": "0.0.0.0",
+        "subnet_mask": "32",
+        "reduction_reason": "A /32 is a valid one-address network, the smallest IPv4 network size; the mutant still changes the result."
+      },
+      "independently_expected_reduced_result": {
+        "IP Address": "0.0.0.0",
+        "Subnet Mask": "32",
+        "Network Address": "0.0.0.0",
+        "Broadcast Address": "0.0.0.0",
+        "Range of IP addresses": "0.0.0.0 - 0.0.0.0",
+        "Usable Host IP Range": "N/A",
+        "Total Hosts": 1,
+        "Usable Hosts": 0
+      },
+      "reduced_results": {
+        "original": {
+          "IP Address": "0.0.0.0",
+          "Subnet Mask": "32",
+          "Network Address": "0.0.0.0",
+          "Broadcast Address": "0.0.0.0",
+          "Range of IP addresses": "0.0.0.0 - 0.0.0.0",
+          "Usable Host IP Range": "N/A",
+          "Total Hosts": 1,
+          "Usable Hosts": 0
+        },
+        "mutant": {
+          "IP Address": "0.0.0.0",
+          "Subnet Mask": "32",
+          "Network Address": "0.0.0.0",
+          "Broadcast Address": "0.0.0.0",
+          "Range of IP addresses": "0.0.0.0 - 0.0.0.0",
+          "Usable Host IP Range": "None - None",
+          "Total Hosts": 1,
+          "Usable Hosts": 0
+        }
+      }
+    }
+  ]
+}
