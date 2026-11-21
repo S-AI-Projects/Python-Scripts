@@ -1,0 +1,134 @@
+{
+  "inputs": {
+    "logo_path": "github-logo.png",
+    "logo_size": [
+      20,
+      10
+    ],
+    "target_url": "https://github.com/shashank-amireddy",
+    "qr_image_size": [
+      200,
+      200
+    ]
+  },
+  "expected": {
+    "events": [
+      [
+        "open",
+        "github-logo.png"
+      ],
+      [
+        "convert",
+        "logo",
+        "RGBA"
+      ],
+      [
+        "resize",
+        "logo:RGBA",
+        [
+          100,
+          50
+        ],
+        "LANCZOS"
+      ],
+      [
+        "qr.init",
+        "H"
+      ],
+      [
+        "qr.add_data",
+        "https://github.com/shashank-amireddy"
+      ],
+      [
+        "qr.make"
+      ],
+      [
+        "qr.make_image",
+        "black",
+        "white"
+      ],
+      [
+        "convert",
+        "qr",
+        "RGBA"
+      ],
+      [
+        "paste",
+        "qr:RGBA",
+        "logo:RGBA:resized",
+        [
+          50,
+          75
+        ],
+        "logo:RGBA:resized",
+        true
+      ],
+      [
+        "save",
+        "qr:RGBA",
+        "qr_with_logo.png"
+      ]
+    ],
+    "stdout": "QR code generated!\n"
+  },
+  "actual": {
+    "events": [
+      [
+        "open",
+        "github-logo.png"
+      ],
+      [
+        "convert",
+        "logo",
+        "RGBA"
+      ],
+      [
+        "resize",
+        "logo:RGBA",
+        [
+          100,
+          50
+        ],
+        "LANCZOS"
+      ],
+      [
+        "qr.init",
+        "H"
+      ],
+      [
+        "qr.add_data",
+        "https://github.com/shashank-amireddy"
+      ],
+      [
+        "qr.make"
+      ],
+      [
+        "qr.make_image",
+        "black",
+        "white"
+      ],
+      [
+        "convert",
+        "qr",
+        "RGBA"
+      ],
+      [
+        "paste",
+        "qr:RGBA",
+        "logo:RGBA:resized",
+        [
+          50,
+          75
+        ],
+        "logo:RGBA:resized",
+        true
+      ],
+      [
+        "save",
+        "qr:RGBA",
+        "qr_with_logo.png"
+      ]
+    ],
+    "stdout": "QR code generated!\n"
+  }
+}

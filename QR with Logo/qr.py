@@ -2,6 +2,13 @@ import qrcode
 from PIL import Image
 
 
+def resize_logo(logo_img):
+    basewidth = 100
+    wpercent = basewidth / float(logo_img.size[0])
+    hsize = int(float(logo_img.size[1]) * float(wpercent))
+    return logo_img.resize((basewidth, hsize), Image.LANCZOS)
+
+
 #import requests
 
 # Load the logo image
@@ -24,10 +31,7 @@ url = 'https://github.com/shashank-amireddy'
 logo_img = logo_img.convert("RGBA")
 
 # Resize the logo to fit within the QR code
-basewidth = 100
-wpercent = basewidth / float(logo_img.size[0])
-hsize = int(float(logo_img.size[1]) * float(wpercent))
-logo_img = logo_img.resize((basewidth, hsize), Image.LANCZOS)
+logo_img = resize_logo(logo_img)
 
 # Generate QR code
 QRcode = qrcode.QRCode(
