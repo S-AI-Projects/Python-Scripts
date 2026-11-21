@@ -10,24 +10,18 @@ The Pomodoro Timer is a productivity tool designed to help you manage your time 
 - **macOS/Linux:** Uses terminal beep commands for notifications.
 
 ## Running the script
-1. **Clone the Repository or Download the Script:**
-- clone the repository:
+
+From the `Pomodoro Timer` directory, run the script for your platform:
+
+```text
+# Windows
+python "Pomodoro Timer Windows.py"
+
+# macOS/Linux
+python3 "Pomodoro Timer MacOS Linux.py"
 ```
-git clone https://github.com/max-lopzzz/Python-Scripts/tree/master/Pomodoro%20Timer
-```
-- Or download the script directly from the repository page.
-2. **Navigate to the Script Location:** Open your terminal (Command Prompt on Windows, Terminal on macOS/Linux) and navigate to the folder containing the script:
-```
-cd path/to/your/script
-```
-3. **Run the Script:** Execute the script using Python:
-```
-python pomodoro_timer.py
-```
-or, if `python` points to Python 2.x on your system:
-```
-python3 pomodoro_timer.py
-```
-### Customizing Durations
-- Once the script runs, it may prompt you to enter custom durations for both work and break intervals.
-- Simply follow the prompts to customize your session lengths.
+
+The Windows script prompts for work duration, break duration, and cycle count.
+Its public function is `pomodoro_timer_windows(work_duration=25,
+break_duration=5, cycles=4)`; durations are in minutes. It returns `None`,
+prints progress, waits between intervals, and uses Windows `winsound` alerts.

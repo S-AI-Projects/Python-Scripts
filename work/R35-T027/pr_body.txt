@@ -1,0 +1,39 @@
+# PR Title
+R35-T027: Add focused Windows Pomodoro timer checks
+
+## Summary
+
+Document the Windows timer's actual public contract, correct the README run examples, and add mocked focused tests plus a failure-propagating runner.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The checks cover the default four cycles, two custom work/break cycles with an exact intermediate-state trace, and zero cycles. They verify output, return value, and the order and arguments of every sleep and sound call. The `winsound` dependency and `time.sleep` are mocked, so the test does not perform real external I/O or wait.
+
+### The changes are as follows:
+- Document `pomodoro_timer_windows` inputs, result, mutation behavior, and dependencies.
+- Update README examples to use the real Windows and macOS/Linux script filenames and public Windows function name.
+- Add mocked `unittest` cases and `work/R35-T027/check.py`; see [the check runner](https://github.com/riya1503235/Python-Scripts/blob/R35-T027/work/R35-T027/check.py), [the tests](https://github.com/riya1503235/Python-Scripts/blob/R35-T027/Pomodoro%20Timer/tests/test_windows_timer.py), and [the recorded inputs and results](https://github.com/riya1503235/Python-Scripts/blob/R35-T027/work/R35-T027/results.txt).
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+Validation: `python3 work/R35-T027/check.py` — 3 tests run, all passed.
+Compilation: `python3 -m py_compile 'Pomodoro Timer/Pomodoro Timer Windows.py' 'Pomodoro Timer/tests/test_windows_timer.py' work/R35-T027/check.py` — passed.
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Thank You,
+
+Riya Agrawal
