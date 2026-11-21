@@ -1,0 +1,173 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0629/R35-T002",
+    "git_commit": "f13a82ea5b9e4e2b84eb776d5e98400cb28a5821"
+  },
+  "command": "python3 work/R35-T002/check.py",
+  "native_command": "python3 -m unittest discover -s '/Users/nittesh/githubtask/Python-Scripts/Pizza Order' -p 'test_*.py' -v",
+  "test_count": 9,
+  "status": "PASS",
+  "anchors_verified": [
+    "line 33: pizza_lst = []",
+    "line 34: pizza_lst_current = []",
+    "line 37: list_order_yes",
+    "line 38: list_order_no",
+    "line 39: TOPPINGS",
+    "size domain: ['S', 'M', 'L', 'XL']"
+  ],
+  "boundary_table": {
+    "smallest_empty_order": {
+      "input": [
+        "No"
+      ],
+      "expected": [],
+      "actual": [],
+      "status": "PASS"
+    },
+    "smallest_valid_pizza": {
+      "input": [
+        "Yes",
+        "S",
+        "X",
+        "No"
+      ],
+      "expected": [
+        [
+          "S",
+          []
+        ]
+      ],
+      "actual": [
+        [
+          "S",
+          []
+        ]
+      ],
+      "status": "PASS"
+    },
+    "ordinary_input": {
+      "input": [
+        "Yes",
+        "M",
+        "PEPPERONI",
+        "OLIVE",
+        "X",
+        "No"
+      ],
+      "expected": [
+        [
+          "M",
+          [
+            "PEPPERONI",
+            "OLIVE"
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          "M",
+          [
+            "PEPPERONI",
+            "OLIVE"
+          ]
+        ]
+      ],
+      "status": "PASS"
+    },
+    "topping_boundary_3": {
+      "input": [
+        "Yes",
+        "S",
+        "ONION",
+        "TOMATO",
+        "MUSHROOM",
+        "X",
+        "No"
+      ],
+      "expected": [
+        [
+          "S",
+          [
+            "ONION",
+            "TOMATO",
+            "MUSHROOM"
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          "S",
+          [
+            "ONION",
+            "TOMATO",
+            "MUSHROOM"
+          ]
+        ]
+      ],
+      "status": "PASS"
+    },
+    "topping_boundary_4": {
+      "input": [
+        "Yes",
+        "S",
+        "ONION",
+        "TOMATO",
+        "MUSHROOM",
+        "OLIVE",
+        "X",
+        "No"
+      ],
+      "expected": [
+        [
+          "S",
+          [
+            "ONION",
+            "TOMATO",
+            "MUSHROOM",
+            "OLIVE"
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          "S",
+          [
+            "ONION",
+            "TOMATO",
+            "MUSHROOM",
+            "OLIVE"
+          ]
+        ]
+      ],
+      "status": "PASS"
+    },
+    "size_boundary_XL": {
+      "input": [
+        "Yes",
+        "XL",
+        "BACON",
+        "X",
+        "No"
+      ],
+      "expected": [
+        [
+          "XL",
+          [
+            "BACON"
+          ]
+        ]
+      ],
+      "actual": [
+        [
+          "XL",
+          [
+            "BACON"
+          ]
+        ]
+      ],
+      "status": "PASS"
+    }
+  }
+}
