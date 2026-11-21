@@ -1,6 +1,18 @@
 # Pomodoro Timer for Windows
+"""Windows Pomodoro timer.
+
+Public API: pomodoro_timer_windows(work_duration=25, break_duration=5, cycles=4).
+Durations are in minutes; cycles is the number of work/break repetitions. The
+function returns None, does not mutate caller-owned data, and prints progress
+while sleeping and sounding an alert at each interval boundary. The script
+entry point reads its three arguments from the console.
+
+Dependencies: the standard-library time module and Windows-only winsound.
+"""
+
 import time
 import winsound
+
 
 def pomodoro_timer_windows(work_duration=25, break_duration=5, cycles=4):
     for cycle in range(cycles):

@@ -1,0 +1,94 @@
+R35-T027 focused Pomodoro Timer check record
+
+Pre-change public contract
+--------------------------
+Module: Pomodoro Timer/Pomodoro Timer Windows.py
+Public function: pomodoro_timer_windows(work_duration=25, break_duration=5,
+cycles=4)
+Inputs: work and break durations in minutes; cycle count passed to range().
+Result: None (no explicit return value).
+Mutation: no caller-owned or persistent data is mutated. It prints status,
+waits, and sounds alerts as side effects. The script entry point separately
+reads the three values from console input.
+External dependencies: standard-library time.sleep and Windows-only
+winsound.Beep; console output via print. winsound was mocked for this macOS
+test run.
+
+Test configuration and versions
+-------------------------------
+No root pytest.ini, pyproject.toml, tox.ini, setup.cfg, or conftest.py is
+present. The repository's existing Python test suite uses unittest, so the
+focused check uses standard-library unittest discovery for only the named
+Pomodoro test module.
+
+Python: 3.14.6
+Platform: macOS-27.2.1-arm64-arm-64bit-Mach-O
+Git: 2.54.0 (Apple Git-157)
+Test framework: unittest (Python standard library)
+
+Hand calculation and traced execution
+-------------------------------------
+Inputs: work_duration=2, break_duration=1, cycles=2.
+
+Hand-calculated states, in order:
+Cycle 1 work: sleep 2 * 60 = 120 seconds; beep (1000 Hz, 1000 ms).
+Cycle 1 break: sleep 1 * 60 = 60 seconds; beep (1000 Hz, 1000 ms).
+Cycle 2 work: sleep 120 seconds; beep (1000 Hz, 1000 ms).
+Cycle 2 break: sleep 60 seconds; beep (1000 Hz, 1000 ms).
+Then print the all-cycles-completed message. The return value is None.
+
+One pre-change traced execution with time.sleep and winsound.Beep mocked:
+Events:
+[('sleep', 120), ('beep', 1000, 1000), ('sleep', 60), ('beep', 1000, 1000),
+ ('sleep', 120), ('beep', 1000, 1000), ('sleep', 60), ('beep', 1000, 1000)]
+Output:
+['Cycle 1/2: Start working for 2 minutes.', "Time's up! Take a break.",
+ 'Break time! Relax for 1 minutes.', 'Break is over! Back to work.',
+ 'Cycle 2/2: Start working for 2 minutes.', "Time's up! Take a break.",
+ 'Break time! Relax for 1 minutes.', 'Break is over! Back to work.',
+ 'All cycles completed! Great job!']
+Result: None.
+The traced intermediate states exactly matched the hand calculation.
+
+Focused inputs, expected versus actual
+--------------------------------------
+1. Two custom cycles
+Input: work_duration=2, break_duration=1, cycles=2.
+Expected: sleep/beep event order and output exactly as in the trace above;
+return None.
+Actual: identical events, output, and return.
+
+2. Defaults
+Input: no arguments.
+Expected: 4 cycles; each cycle sleeps 1500 seconds then beeps, sleeps 300
+seconds then beeps; all cycle messages use 25 work minutes and 5 break
+minutes; return None.
+Actual: four cycles with the expected event order, durations, messages, and
+return.
+
+3. Zero cycles
+Input: work_duration=2, break_duration=1, cycles=0.
+Expected: no sleep or beep calls, only "All cycles completed! Great job!",
+return None.
+Actual: identical.
+
+External I/O: the tests import only the named Windows timer module. The
+Windows-only winsound dependency and time.sleep are mocked; console output is
+captured. The tests call the function directly, so the interactive entry point
+and real waiting or sound are not invoked.
+
+Validation
+----------
+Command:
+python3 work/R35-T027/check.py
+
+Focused command run by the runner:
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -m unittest discover -s '/Users/riyaagrawal/Desktop/snai_project/Python-Scripts/Pomodoro Timer/tests' -p test_windows_timer.py -v
+
+Result: 3 tests run, 3 passed, 0 failures. The runner printed
+"Focused tests run: 3" and returned status 0. It returns non-zero for assertion
+failures, test process errors, or zero discovered tests.
+
+Compilation check:
+python3 -m py_compile 'Pomodoro Timer/Pomodoro Timer Windows.py' 'Pomodoro Timer/tests/test_windows_timer.py' work/R35-T027/check.py
+Result: passed.
