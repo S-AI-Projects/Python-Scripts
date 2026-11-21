@@ -1,0 +1,39 @@
+# PR Title
+R35-T030: Add subnet calculator mutation checks
+
+## Summary
+
+Add focused checks for `calculate_network_info` and prove they detect a temporary boundary-condition mutant.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The calculator accepts an IP address and subnet mask, returns a new result dictionary, and does not mutate its inputs. It uses only the standard-library `ipaddress` module. The CLI's `input()` and `print()` are mocked while importing the named module.
+<!-- Description of your changes in detail in a better understandable way-->
+
+### The changes are as follows:
+- Verify an ordinary `/30` network result and unchanged caller inputs.
+- In a temporary copy, mutate the usable-host boundary from `usable_hosts > 0` to `usable_hosts >= 0`. The valid `/31` input differs; reducing it to the smallest valid IPv4 network, `0.0.0.0/32`, still distinguishes the mutant. The independently expected host range is `N/A`; the mutant returns `None - None`.
+- Runner: [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T030/work/R35-T030/check.py). Inputs, expected/actual results, mutation details, and tool versions: [results.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T030/work/R35-T030/results.json).
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Command: `python3 work/R35-T030/check.py` — passed; 2 tests run, 0 failures. The project has no root pytest/pyproject test configuration; the runner uses Python's standard-library unittest framework. The mutant exists only in a temporary directory.
+
+Thank You,
+
+Riya Agrawal
