@@ -1,0 +1,39 @@
+# PR Title
+R35-T028: Add focused TinyURL failure checks
+
+## Summary
+
+Adds a focused regression runner for `shorten_url_with_tinyurl` without changing the production module.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The function accepts one `long_url` string, calls `requests.get`, returns `response.text` for HTTP 200, and returns `None` otherwise. Its string input is not mutated. The module also makes a top-level request on import, so the runner mocks that request as well as each test call.
+<!-- Description of your changes in detail in a better understandable way-->
+
+### The changes are as follows:
+- Add unittest checks for the smallest non-200 input (`""`), the `None` fallback, unchanged caller input, a successful call after failure, and the HTTP 200 response text.
+- Record inputs, expected and actual outputs, tool versions, and the test count in [results.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T028/work/R35-T028/results.json).
+- The focused runner is [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T028/work/R35-T028/check.py).
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Command: `python3 work/R35-T028/check.py` — passed; 2 tests run, 0 failures. The project has no root pytest/pyproject test configuration; the runner uses Python's standard-library unittest and imports only `URL Shortener/urlshortener.py` from the repository, with external I/O mocked.
+
+Thank You,
+
+Riya Agrawal

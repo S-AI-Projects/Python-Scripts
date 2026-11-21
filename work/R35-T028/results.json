@@ -1,0 +1,81 @@
+{
+  "command": "python3 work/R35-T028/check.py",
+  "source_contract": {
+    "module": "URL Shortener/urlshortener.py",
+    "public_input": "long_url (one string argument)",
+    "successful_result": "response.text when response.status_code == 200",
+    "non_200_result": "None",
+    "caller_input_mutation": "none; the string argument is not modified",
+    "external_dependency": "requests.get; the module-level demo calls it on import, and the public function calls it once per invocation",
+    "import_time_io": "the module-level request is mocked during import",
+    "smallest_non_200_input": {
+      "long_url": "",
+      "mocked_status_code": 503,
+      "expected_result": null
+    }
+  },
+  "test_configuration": "Python standard-library unittest; the repository has no root pytest/pyproject test configuration",
+  "tool_versions": {
+    "python": "3.14.6",
+    "git": "git version 2.54.0 (Apple Git-157)",
+    "test_runner": "unittest (Python standard library)",
+    "requests_installed": false
+  },
+  "tests_run": 2,
+  "nonzero_test_count": true,
+  "successful": true,
+  "failures": [],
+  "errors": [],
+  "cases": [
+    {
+      "test": "__main__.TinyUrlShortenerTests.test_200_returns_response_text",
+      "input": {
+        "long_url": "https://example.com/",
+        "status_code": 200,
+        "response_text": "https://tinyurl.com/example"
+      },
+      "expected": {
+        "result": "https://tinyurl.com/example",
+        "input_after_call": "https://example.com/",
+        "requests_get_calls": [
+          "http://tinyurl.com/api-create.php?url=https://example.com/"
+        ]
+      },
+      "actual": {
+        "result": "https://tinyurl.com/example",
+        "input_after_call": "https://example.com/",
+        "requests_get_calls": [
+          "http://tinyurl.com/api-create.php?url=https://example.com/"
+        ]
+      }
+    },
+    {
+      "test": "__main__.TinyUrlShortenerTests.test_non_200_returns_none_and_next_call_succeeds",
+      "input": {
+        "long_url": "",
+        "failure_status_code": 503,
+        "success_status_code": 200
+      },
+      "expected": {
+        "failure_result": null,
+        "input_after_failure": "",
+        "input_identity_preserved": true,
+        "success_result": "https://tinyurl.com/after-failure",
+        "requests_get_calls": [
+          "http://tinyurl.com/api-create.php?url=",
+          "http://tinyurl.com/api-create.php?url="
+        ]
+      },
+      "actual": {
+        "failure_result": null,
+        "input_after_failure": "",
+        "input_identity_preserved": true,
+        "success_result": "https://tinyurl.com/after-failure",
+        "requests_get_calls": [
+          "http://tinyurl.com/api-create.php?url=",
+          "http://tinyurl.com/api-create.php?url="
+        ]
+      }
+    }
+  ]
+}
