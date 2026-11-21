@@ -1,0 +1,39 @@
+{
+  "tool_versions": {
+    "python_version": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "git_branch": "student/e26b07f0629/R35-T004",
+    "git_commit": "ddbea664048d54f96946450f138c5550f401383e",
+    "nltk_version": "3.10.4",
+    "vaderSentiment_version": "3.3.2"
+  },
+  "command": "python3 work/R35-T004/check.py",
+  "native_command": "python3 -m unittest discover -s '/Users/nittesh/githubtask/Python-Scripts/Profanity Checker' -p 'test_*.py' -v",
+  "test_count": 5,
+  "property_cases_verified": 100,
+  "status": "PASS",
+  "anchors_verified": [
+    "SentimentIntensityAnalyzer",
+    "word_tokenize",
+    "WordNetLemmatizer",
+    "stopwords.words('english')",
+    "Purgomalum API endpoint"
+  ],
+  "invariants_verified": [
+    "Score Boundedness: -1.0 <= compound <= 1.0",
+    "Label Partition Completeness: 5 disjoint classes",
+    "Preprocessing Idempotency: f(f(x)) == f(x)",
+    "Token Reduction: len(filtered) <= len(original)",
+    "Input Immutability: pure string operations"
+  ],
+  "smallest_input": {
+    "text": "Good",
+    "compound": 0.4404,
+    "label": "Positive"
+  },
+  "ordinary_input": {
+    "text": "I love programming in Python. It is wonderful and clean.",
+    "compound": 0.891,
+    "label": "Very Positive"
+  }
+}
