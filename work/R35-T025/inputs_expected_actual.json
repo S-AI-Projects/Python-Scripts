@@ -1,0 +1,35 @@
+{
+  "external_io": "mocked: requests.get, PIL.Image.open, Transformers model",
+  "cases": [
+    {
+      "scenario": "fresh-run-1",
+      "input_url": "https://images.example/fixture-a.png",
+      "expected": "recognized:https://images.example/fixture-a.png",
+      "actual": "recognized:https://images.example/fixture-a.png"
+    },
+    {
+      "scenario": "fresh-run-2",
+      "input_url": "https://images.example/fixture-a.png",
+      "expected": "recognized:https://images.example/fixture-a.png",
+      "actual": "recognized:https://images.example/fixture-a.png"
+    },
+    {
+      "scenario": "sequence-before-other-input",
+      "input_url": "https://images.example/fixture-a.png",
+      "expected": "recognized:https://images.example/fixture-a.png",
+      "actual": "recognized:https://images.example/fixture-a.png"
+    },
+    {
+      "scenario": "other-valid-input",
+      "input_url": "https://images.example/fixture-b.png",
+      "expected": "recognized:https://images.example/fixture-b.png",
+      "actual": "recognized:https://images.example/fixture-b.png"
+    },
+    {
+      "scenario": "sequence-after-other-input",
+      "input_url": "https://images.example/fixture-a.png",
+      "expected": "recognized:https://images.example/fixture-a.png",
+      "actual": "recognized:https://images.example/fixture-a.png"
+    }
+  ]
+}

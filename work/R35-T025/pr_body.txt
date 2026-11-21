@@ -1,0 +1,56 @@
+# PR Title
+R35-T025: Isolate Text Recognition inference and add repeatability checks
+
+## Summary
+
+Expose Text Recognition as `recognize_text(image_url)`, return the decoded text,
+and keep each image/processor/model invocation local to that call.
+<!--give a short summary of your changes you made in the repository -->
+
+## Description
+
+The notebook previously used a fixed URL and assigned image/model intermediates
+in shared notebook state. The new helper takes the image URL explicitly and
+returns the first decoded transcription; the notebook now uses this helper.
+The README documents its input, result, state behavior, and runtime
+dependencies. Focused tests mock HTTP, image decoding, and Transformers so they
+do not download a real image or model.
+
+### The changes are as follows:
+- Add `Text Recognition/text_recognition.py` with the reusable inference
+  function and default image URL.
+- Update the notebook and README to use and document the function.
+- Add repeatability, input/result, and error-propagation checks, including the
+  same fixture twice in fresh state and again after another valid input.
+- Save the pre-change contract, fixtures and expected/actual results, test
+  output, and tool versions in `work/R35-T025/`.
+
+<!-- You can add all your changes here -->
+
+## Checks
+
+### in the repository
+
+- [x] Made no changes that degrades the functioning of the repository
+- [x] Gave each commit a better title (unlike updated README.md)
+
+### in the PR
+- [x] Followed the format of the pull_request_template
+- [x] Made the Pull Request in a small level (for the creator's wellfare)
+- [x] Tested the changes you made
+
+Validation command: `python3 work/R35-T025/check.py` — exit 0; 3 tests passed.
+The runner invokes only `work/R35-T025/test_text_recognition.py` with pytest
+defaults because the repository has no root pytest configuration. All external
+image/model I/O is mocked. See:
+- [check.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T025/work/R35-T025/check.py)
+- [test_text_recognition.py](https://github.com/riya1503235/Python-Scripts/blob/R35-T025/work/R35-T025/test_text_recognition.py)
+- [baseline.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T025/work/R35-T025/baseline.txt)
+- [inputs_expected_actual.json](https://github.com/riya1503235/Python-Scripts/blob/R35-T025/work/R35-T025/inputs_expected_actual.json)
+- [results.txt](https://github.com/riya1503235/Python-Scripts/blob/R35-T025/work/R35-T025/results.txt)
+
+<!-- Dont worry even if your PR doesn't satisfy every checks make sure it atleast does any two(including the first one) -->
+
+Thank You,
+
+Riya Agrawal

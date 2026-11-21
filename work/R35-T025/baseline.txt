@@ -1,0 +1,55 @@
+Text Recognition contract before changes
+========================================
+
+Source reviewed: Text Recognition/README.md and
+Text Recognition/Text_recognition.ipynb.
+
+README:
+- Line 1 names the item "Image Text Recognition ML Model".
+- It tells users to install transformers and says to load an image link into
+  `url`.
+
+Public inputs:
+- There is no callable function or command-line interface.
+- The final notebook cell hard-codes an image URL in the global `url` variable:
+  https://fki.tic.heia-fr.ch/static/img/a01-122-02-00.jpg
+- The model identifier is also fixed:
+  microsoft/trocr-large-handwritten
+
+Result:
+- The final notebook cell decodes the first generated sequence and prints the
+  resulting text to stdout. The checked-in notebook output for the URL above is
+  "indus tre".
+
+Mutation behavior:
+- Notebook execution assigns `pipe` in the preceding cell and assigns
+  `url`, `image`, `processor`, `model`, `pixel_values`, `generated_ids`, and
+  `generated_text` in the final cell in the notebook's shared global namespace.
+- The code does not explicitly modify the downloaded image or write result
+  files. `from_pretrained` may read or populate the Transformers/Hugging Face
+  local model cache. There is no isolation or repeatability contract in the
+  original notebook.
+
+Observable dependencies:
+- `transformers.pipeline`, `TrOCRProcessor`, and `VisionEncoderDecoderModel`;
+  both notebook cells use the `microsoft/trocr-large-handwritten` checkpoint.
+- `requests.get` fetches the fixed image URL over the network.
+- `PIL.Image.open` reads the response stream and converts the image to RGB.
+- The model/processor inference API uses tensor support supplied by PyTorch
+  through Transformers; PyTorch is not imported directly in the notebook.
+- Jupyter/IPython is needed for the `!pip install transformers` cell.
+- The checked-in notebook's saved installation output also shows the
+  Transformers dependency stack at that run, including filelock,
+  huggingface-hub, numpy, packaging, PyYAML, regex, tokenizers, safetensors,
+  tqdm, fsspec, typing-extensions, urllib3, certifi, charset-normalizer, and
+  idna. These are package-manager dependencies rather than imports made
+  directly by the notebook.
+- No other local Python module, project test configuration, CLI input, or local
+  fixture dependency is used by this item. No dependency-free inference path
+  exists.
+
+Test configuration discovered before changes:
+- The repository has no root pytest/pyproject/tox/setup configuration.
+- pytest is installed in the current environment. Root-wide collection is not
+  a valid focused check here: it attempts unrelated Currency Script tests and
+  fails collection because `requests` is absent from this environment.
