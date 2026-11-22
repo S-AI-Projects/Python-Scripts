@@ -1,15 +1,48 @@
+"""Screenshot to Text — extracts text from images using OCR (pytesseract).
+
+Complexity note
+---------------
+``extract_text_from_image(img)``
+    Input-size variable: ``n = img.width * img.height`` (total pixels).
+    The function's own Python code (try/except + return) is O(1) in ``n``.
+    All measurable work is delegated to ``pytesseract.image_to_string``,
+    whose OCR engine is empirically observed to scale at least linearly in
+    pixel count — this is an observation, not a worst-case proof.
+    Distinguish algorithm operations (OCR pixel scan) from process startup
+    (tesseract binary launch, model load) which is a constant per-call overhead.
+"""
+
 import pytesseract
 from PIL import Image, ImageGrab
 import tkinter as tk
 from tkinter import filedialog, messagebox, Text, Scrollbar
 
-def extract_text_from_image(img):  #Extracts Text from Image using Pytesseract
+
+def extract_text_from_image(img):
+    """Extract text from a PIL Image using pytesseract OCR.
+
+    Contract
+    --------
+    extract_text_from_image
+        Source line (precondition anchor): ``def extract_text_from_image(img):``  # line 6
+        Smallest valid input : ``img = Image.new("RGB", (1, 1))``  → ``""`` or ``"\\n"``
+        Ordinary input       : ``img = Image.new("RGB", (100, 100))`` → ``""`` or text string
+        Result               : str (extracted text) on success; ``None`` on any exception
+        Dependencies         : pytesseract.image_to_string (external OCR binary — mock in tests)
+        Mutation behaviour   : no input state mutated; no persistent state
+
+    Complexity observation (input-size n = img.width * img.height pixels):
+        Python wrapper: O(1) — try/except + return only.
+        Delegated OCR work: empirically O(n) in pixel count (observed, not proven).
+        Process startup overhead (tesseract binary + model load) is constant per call.
+    """
     try:
-        text = pytesseract.image_to_string(img)
+        text = pytesseract.image_to_string(img)   # precondition anchor: line 6
         return text
     except Exception as e:
         print(e)
         return None
+
 
 def select_image_file():  # Upload a Image file
     img_path = filedialog.askopenfilename(title="Select Screenshot", filetypes=[("Image Files", "*.png *.jpg *.jpeg *.bmp")])
@@ -43,7 +76,7 @@ def display_extracted_text(img):  # Displaying extracted text from pytesseract
         messagebox.showwarning("Error", "No text could be extracted or an error occurred.")
 
 def main():
-    global text_display  
+    global text_display
 
     root = tk.Tk()
     root.title("Text Extractor with Python")
