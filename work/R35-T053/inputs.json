@@ -1,0 +1,777 @@
+{
+  "module": "Expense Tracker/expense.py",
+  "named_module": "expense",
+  "function_under_audit": "list_all_expenses",
+  "line_number": 9,
+  "contract_analysis": {
+    "public_inputs": {
+      "direct_parameters": [
+        "conn (sqlite3.Connection, optional, default=None -> falls back to global connector)",
+        "tree (ttk.Treeview, optional, default=None -> falls back to global table)"
+      ],
+      "implicit_globals": [
+        "connector (sqlite3.Connection instance with ExpenseTracker table)",
+        "table (ttk.Treeview instance for rendering table rows)"
+      ]
+    },
+    "result": {
+      "return_type": "list of tuples",
+      "content": "All fetched expense rows from ExpenseTracker table. (Original returned None; now returns data list for verification without breaking callers)"
+    },
+    "mutation_behavior": {
+      "tree_mutation": "Calls tree.delete(*tree.get_children()) to purge prior display rows, then calls tree.insert('', END, values=values) for each DB row.",
+      "database_mutation": "None (pure SELECT query; no commit or data modification)."
+    },
+    "external_dependencies": [
+      "sqlite3 (SQLite database connection with ExpenseTracker schema)",
+      "tkinter / tkinter.ttk.Treeview widget and Tk END constant",
+      "top-level GUI mainloop and window creation (now encapsulated under __name__ == '__main__')"
+    ]
+  },
+  "oracle_specification": {
+    "description": "Independent oracle predicting final table state given DB records and initial table state.",
+    "rule": "Table must be cleared of any pre-existing rows and populated with exactly the rows present in the database.",
+    "order_handling": "SQL SELECT without ORDER BY explicitly leaves row ordering unspecified by relational theory. Comparison ignores row ordering by sorting multiset of rows by primary key ID and Date."
+  },
+  "enumerated_inputs_count": 22,
+  "enumerated_inputs": [
+    {
+      "id": "input_01_empty_db_empty_table",
+      "description": "Empty database with an empty initial table",
+      "db_rows": [],
+      "initial_table": []
+    },
+    {
+      "id": "input_02_empty_db_stale_table",
+      "description": "Empty database with stale existing rows in the table to verify deletion",
+      "db_rows": [],
+      "initial_table": [
+        [
+          999,
+          "2026-01-01",
+          "Old Vendor",
+          "Stale Entry",
+          10.0,
+          "Cash"
+        ]
+      ]
+    },
+    {
+      "id": "input_03_single_typical_record",
+      "description": "Single typical expense record",
+      "db_rows": [
+        [
+          1,
+          "2026-11-01",
+          "Supermarket",
+          "Groceries",
+          45.5,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_04_zero_amount_expense",
+      "description": "Expense with zero amount (free item or coupon)",
+      "db_rows": [
+        [
+          2,
+          "2026-11-02",
+          "Community Center",
+          "Free Workshop",
+          0.0,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_05_float_precision_cents",
+      "description": "Expense with floating point precision cents",
+      "db_rows": [
+        [
+          3,
+          "2026-11-03",
+          "Bakery",
+          "Muffin and coffee",
+          7.89,
+          "Credit Card"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_06_large_transaction_amount",
+      "description": "Expense with large monetary value",
+      "db_rows": [
+        [
+          4,
+          "2026-11-04",
+          "Automotive Dealer",
+          "Car Downpayment",
+          15000.0,
+          "Cheque"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_07_micro_expense",
+      "description": "Micro-expense under 1.0 unit",
+      "db_rows": [
+        [
+          5,
+          "2026-11-05",
+          "Newsstand",
+          "Single Gum",
+          0.25,
+          "Debit Card"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_08_negative_amount_refund",
+      "description": "Negative amount representing return refund or credit",
+      "db_rows": [
+        [
+          6,
+          "2026-11-06",
+          "Retailer",
+          "Item Return Refund",
+          -29.99,
+          "Credit Card"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_09_special_characters_payee",
+      "description": "Payee name containing apostrophes, ampersands, hyphens",
+      "db_rows": [
+        [
+          7,
+          "2026-11-07",
+          "O'Connor & Sons - Hardware",
+          "Tools",
+          62.4,
+          "Debit Card"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_10_special_characters_description",
+      "description": "Description with punctuation, parentheses, percentages, quotes",
+      "db_rows": [
+        [
+          8,
+          "2026-11-08",
+          "Stationery Store",
+          "Pens (black, 0.5mm); notebooks #2 & clips!",
+          18.0,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_11_unicode_and_emojis",
+      "description": "Unicode characters and emojis in payee and description",
+      "db_rows": [
+        [
+          9,
+          "2026-11-09",
+          "Caf\u00e9 Central \u2615",
+          "Matcha latte \ud83c\udf75 & croissant \ud83e\udd50",
+          12.5,
+          "Google Pay"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_12_empty_payee",
+      "description": "Empty string payee name",
+      "db_rows": [
+        [
+          10,
+          "2026-11-10",
+          "",
+          "Anonymous donation",
+          50.0,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_13_empty_description",
+      "description": "Empty string description",
+      "db_rows": [
+        [
+          11,
+          "2026-11-11",
+          "Utility Electric",
+          "",
+          94.3,
+          "Razorpay"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_14_whitespace_fields",
+      "description": "Whitespace-only strings in payee and description",
+      "db_rows": [
+        [
+          12,
+          "2026-11-12",
+          "   ",
+          "   ",
+          5.0,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_15_all_payment_modes",
+      "description": "All 7 standard payment modes represented across rows",
+      "db_rows": [
+        [
+          13,
+          "2026-11-13",
+          "Vendor 1",
+          "Item 1",
+          10.0,
+          "Cash"
+        ],
+        [
+          14,
+          "2026-11-13",
+          "Vendor 2",
+          "Item 2",
+          20.0,
+          "Cheque"
+        ],
+        [
+          15,
+          "2026-11-13",
+          "Vendor 3",
+          "Item 3",
+          30.0,
+          "Credit Card"
+        ],
+        [
+          16,
+          "2026-11-13",
+          "Vendor 4",
+          "Item 4",
+          40.0,
+          "Debit Card"
+        ],
+        [
+          17,
+          "2026-11-13",
+          "Vendor 5",
+          "Item 5",
+          50.0,
+          "Paytm"
+        ],
+        [
+          18,
+          "2026-11-13",
+          "Vendor 6",
+          "Item 6",
+          60.0,
+          "Google Pay"
+        ],
+        [
+          19,
+          "2026-11-13",
+          "Vendor 7",
+          "Item 7",
+          70.0,
+          "Razorpay"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_16_table_mutation_with_multiple_stale_items",
+      "description": "Multiple DB records with table having multiple stale items that must be cleared",
+      "db_rows": [
+        [
+          20,
+          "2026-11-14",
+          "Pharmacy",
+          "Medicine",
+          22.0,
+          "Cash"
+        ],
+        [
+          21,
+          "2026-11-14",
+          "Taxi",
+          "Ride",
+          14.5,
+          "Paytm"
+        ]
+      ],
+      "initial_table": [
+        [
+          991,
+          "2025-01-01",
+          "Old 1",
+          "Old Desc 1",
+          1.0,
+          "Cash"
+        ],
+        [
+          992,
+          "2025-01-02",
+          "Old 2",
+          "Old Desc 2",
+          2.0,
+          "Cash"
+        ]
+      ]
+    },
+    {
+      "id": "input_17_duplicate_payees_same_date",
+      "description": "Duplicate payees and dates with different descriptions and amounts",
+      "db_rows": [
+        [
+          22,
+          "2026-11-15",
+          "Coffee Shop",
+          "Morning Espresso",
+          3.5,
+          "Cash"
+        ],
+        [
+          23,
+          "2026-11-15",
+          "Coffee Shop",
+          "Afternoon Cold Brew",
+          4.5,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_18_duplicate_amounts_different_payees",
+      "description": "Duplicate amounts across distinct payees",
+      "db_rows": [
+        [
+          24,
+          "2026-11-16",
+          "Merchant A",
+          "Subscription A",
+          9.99,
+          "Credit Card"
+        ],
+        [
+          25,
+          "2026-11-16",
+          "Merchant B",
+          "Subscription B",
+          9.99,
+          "Credit Card"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_19_date_format_variations",
+      "description": "Various date format representations (ISO, slash, datetime timestamp)",
+      "db_rows": [
+        [
+          26,
+          "2026-11-17",
+          "Vendor A",
+          "ISO Date",
+          15.0,
+          "Debit Card"
+        ],
+        [
+          27,
+          "11/17/26",
+          "Vendor B",
+          "Slash Date",
+          25.0,
+          "Credit Card"
+        ],
+        [
+          28,
+          "2026-11-17 10:15:30",
+          "Vendor C",
+          "Timestamp",
+          35.0,
+          "Cash"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_20_non_sequential_ids",
+      "description": "Five records with non-contiguous, arbitrary ID values",
+      "db_rows": [
+        [
+          101,
+          "2026-11-18",
+          "P1",
+          "D1",
+          11.0,
+          "Cash"
+        ],
+        [
+          105,
+          "2026-11-18",
+          "P2",
+          "D2",
+          22.0,
+          "Cheque"
+        ],
+        [
+          110,
+          "2026-11-18",
+          "P3",
+          "D3",
+          33.0,
+          "Credit Card"
+        ],
+        [
+          115,
+          "2026-11-18",
+          "P4",
+          "D4",
+          44.0,
+          "Debit Card"
+        ],
+        [
+          120,
+          "2026-11-18",
+          "P5",
+          "D5",
+          55.0,
+          "Paytm"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_21_ten_mixed_records_batch",
+      "description": "Ten mixed records with diverse values and payment methods",
+      "db_rows": [
+        [
+          201,
+          "2026-11-19",
+          "Alpha",
+          "Item Alpha",
+          12.3,
+          "Cash"
+        ],
+        [
+          202,
+          "2026-11-19",
+          "Beta",
+          "Item Beta",
+          45.6,
+          "Cheque"
+        ],
+        [
+          203,
+          "2026-11-19",
+          "Gamma",
+          "Item Gamma",
+          78.9,
+          "Credit Card"
+        ],
+        [
+          204,
+          "2026-11-19",
+          "Delta",
+          "Item Delta",
+          10.0,
+          "Debit Card"
+        ],
+        [
+          205,
+          "2026-11-19",
+          "Epsilon",
+          "Item Epsilon",
+          25.5,
+          "Paytm"
+        ],
+        [
+          206,
+          "2026-11-19",
+          "Zeta",
+          "Item Zeta",
+          99.99,
+          "Google Pay"
+        ],
+        [
+          207,
+          "2026-11-19",
+          "Eta",
+          "Item Eta",
+          5.25,
+          "Razorpay"
+        ],
+        [
+          208,
+          "2026-11-19",
+          "Theta",
+          "Item Theta",
+          150.0,
+          "Cash"
+        ],
+        [
+          209,
+          "2026-11-19",
+          "Iota",
+          "Item Iota",
+          0.75,
+          "Credit Card"
+        ],
+        [
+          210,
+          "2026-11-19",
+          "Kappa",
+          "Item Kappa",
+          300.0,
+          "Cheque"
+        ]
+      ],
+      "initial_table": []
+    },
+    {
+      "id": "input_22_twenty_five_records_high_volume",
+      "description": "Twenty-five records simulating a full monthly expense register",
+      "db_rows": [
+        [
+          301,
+          "2026-11-01",
+          "Vendor_1",
+          "Expense item #1",
+          5.5,
+          "Cash"
+        ],
+        [
+          302,
+          "2026-11-02",
+          "Vendor_2",
+          "Expense item #2",
+          15.5,
+          "Credit Card"
+        ],
+        [
+          303,
+          "2026-11-03",
+          "Vendor_3",
+          "Expense item #3",
+          25.5,
+          "Debit Card"
+        ],
+        [
+          304,
+          "2026-11-04",
+          "Vendor_4",
+          "Expense item #4",
+          35.5,
+          "Paytm"
+        ],
+        [
+          305,
+          "2026-11-05",
+          "Vendor_5",
+          "Expense item #5",
+          45.5,
+          "Google Pay"
+        ],
+        [
+          306,
+          "2026-11-06",
+          "Vendor_6",
+          "Expense item #6",
+          55.5,
+          "Cash"
+        ],
+        [
+          307,
+          "2026-11-07",
+          "Vendor_7",
+          "Expense item #7",
+          65.5,
+          "Credit Card"
+        ],
+        [
+          308,
+          "2026-11-08",
+          "Vendor_8",
+          "Expense item #8",
+          75.5,
+          "Debit Card"
+        ],
+        [
+          309,
+          "2026-11-09",
+          "Vendor_9",
+          "Expense item #9",
+          85.5,
+          "Paytm"
+        ],
+        [
+          310,
+          "2026-11-10",
+          "Vendor_10",
+          "Expense item #10",
+          95.5,
+          "Google Pay"
+        ],
+        [
+          311,
+          "2026-11-11",
+          "Vendor_11",
+          "Expense item #11",
+          105.5,
+          "Cash"
+        ],
+        [
+          312,
+          "2026-11-12",
+          "Vendor_12",
+          "Expense item #12",
+          115.5,
+          "Credit Card"
+        ],
+        [
+          313,
+          "2026-11-13",
+          "Vendor_13",
+          "Expense item #13",
+          125.5,
+          "Debit Card"
+        ],
+        [
+          314,
+          "2026-11-14",
+          "Vendor_14",
+          "Expense item #14",
+          135.5,
+          "Paytm"
+        ],
+        [
+          315,
+          "2026-11-15",
+          "Vendor_15",
+          "Expense item #15",
+          145.5,
+          "Google Pay"
+        ],
+        [
+          316,
+          "2026-11-16",
+          "Vendor_16",
+          "Expense item #16",
+          155.5,
+          "Cash"
+        ],
+        [
+          317,
+          "2026-11-17",
+          "Vendor_17",
+          "Expense item #17",
+          165.5,
+          "Credit Card"
+        ],
+        [
+          318,
+          "2026-11-18",
+          "Vendor_18",
+          "Expense item #18",
+          175.5,
+          "Debit Card"
+        ],
+        [
+          319,
+          "2026-11-19",
+          "Vendor_19",
+          "Expense item #19",
+          185.5,
+          "Paytm"
+        ],
+        [
+          320,
+          "2026-11-20",
+          "Vendor_20",
+          "Expense item #20",
+          195.5,
+          "Google Pay"
+        ],
+        [
+          321,
+          "2026-11-21",
+          "Vendor_21",
+          "Expense item #21",
+          205.5,
+          "Cash"
+        ],
+        [
+          322,
+          "2026-11-22",
+          "Vendor_22",
+          "Expense item #22",
+          215.5,
+          "Credit Card"
+        ],
+        [
+          323,
+          "2026-11-23",
+          "Vendor_23",
+          "Expense item #23",
+          225.5,
+          "Debit Card"
+        ],
+        [
+          324,
+          "2026-11-24",
+          "Vendor_24",
+          "Expense item #24",
+          235.5,
+          "Paytm"
+        ],
+        [
+          325,
+          "2026-11-25",
+          "Vendor_25",
+          "Expense item #25",
+          245.5,
+          "Google Pay"
+        ]
+      ],
+      "initial_table": [
+        [
+          888,
+          "2020-01-01",
+          "Old Stale",
+          "Old Stale",
+          1.0,
+          "Cash"
+        ]
+      ]
+    }
+  ],
+  "mocked_io": [
+    "sqlite3 in-memory database (:memory:) replacing disk 'Expense Tracker.db'",
+    "MockTreeview replacing tkinter.ttk.Treeview",
+    "tkinter.messagebox (tb)",
+    "tkcalendar.DateEntry",
+    "sys.stdout"
+  ]
+}
