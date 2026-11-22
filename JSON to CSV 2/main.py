@@ -1,18 +1,27 @@
 import json
 import csv
 
-with open('./generated.json') as json_file:
-	jsondata = json.load(json_file)
 
-data_file = open('./generated.csv', 'w', newline='')
-csv_writer = csv.writer(data_file)
+def json_to_csv(json_path="./generated.json", csv_path="./generated.csv"):
+    """
+    Convert a JSON list into CSV using separate input and output paths.
 
-count = 0
-for data in jsondata:
-	if count == 0:
-		header = data.keys()
-		csv_writer.writerow(header)
-		count += 1
-	csv_writer.writerow(data.values())
+    Source lines 11-16 establish that the first record supplies the header
+    and each record supplies values in the same key order.
+    """
+    with open(json_path, "r", encoding="utf-8") as json_file:
+        json_data = json.load(json_file)
 
-data_file.close()
+    with open(csv_path, "w", newline="", encoding="utf-8") as csv_file:
+        csv_writer = csv.writer(csv_file)
+
+        for index, data in enumerate(json_data):
+            if index == 0:
+                csv_writer.writerow(data.keys())
+            csv_writer.writerow(data.values())
+
+    return csv_path
+
+
+if __name__ == "__main__":
+    json_to_csv()
