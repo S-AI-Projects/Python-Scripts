@@ -1,0 +1,12 @@
+Fixture:
+characters = ['@', '#', '$', '%', '&', '?']
+
+Preconditions established by source:
+- PasswordGenerator.py line 62: pass_len < 4 returns an error, so 4 is the smallest valid input.
+- PasswordGenerator.py line 4: the characters fixture contains six literal symbols.
+
+Literal test inputs:
+1. pass_len = 4
+2. pass_len = 8
+3. pass_len = 4, called twice
+4. pass_len = 4, with characters fixture observed before and after the call

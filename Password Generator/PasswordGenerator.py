@@ -4,6 +4,8 @@ import string as ss
 characters = ['@', '#', '$', '%', '&', '?']
 
 
+# Contract: pass_len is an integer of at least 4. The function returns
+# (password, uppercase, lowercase, numbers, symbols) and does not mutate characters.
 def generate_password(pass_len):
     # Initialize counters
     total_nums = 0
