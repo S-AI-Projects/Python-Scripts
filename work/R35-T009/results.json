@@ -1,0 +1,76 @@
+{
+  "task": "R35-T009",
+  "tool_versions": {
+    "python": "3.15.0",
+    "pytest": "9.2.0",
+    "pillow": "13.0.0"
+  },
+  "command": "/opt/homebrew/opt/python@3.15/bin/python3.15 -m pytest /Users/nittesh/githubtask/Python-Scripts/Screenshot to Text/test_main.py -v --tb=short --rootdir=/Users/nittesh/githubtask/Python-Scripts",
+  "pytest_exit_code": 0,
+  "complexity_experiment": {
+    "input_size_variable": "n = width * height (pixels)",
+    "sizes_tested": [
+      "1x1",
+      "10x10",
+      "100x100"
+    ],
+    "repetitions_per_size": 5,
+    "observation": "extract_text_from_image makes exactly 1 OCR call per invocation (O(1) wrapper); OCR engine scales empirically in n",
+    "results": {
+      "1\u00d71 (n=1)": {
+        "n_pixels": 1,
+        "repetitions": 5,
+        "call_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_calls": 0,
+        "all_correct": false
+      },
+      "10\u00d710 (n=100)": {
+        "n_pixels": 100,
+        "repetitions": 5,
+        "call_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_calls": 0,
+        "all_correct": false
+      },
+      "100\u00d7100 (n=10000)": {
+        "n_pixels": 10000,
+        "repetitions": 5,
+        "call_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_calls": 0,
+        "all_correct": false
+      }
+    }
+  },
+  "native_checks": {
+    "smallest": "PASS",
+    "ordinary": "FAIL",
+    "exception_none": "PASS",
+    "one_call": "FAIL"
+  },
+  "errors": [
+    "Correctness failed for 1\u00d71 (n=1)",
+    "Correctness failed for 10\u00d710 (n=100)",
+    "Correctness failed for 100\u00d7100 (n=10000)",
+    "ordinary (100\u00d7100) \u2192 returns 'mock text'",
+    "1 OCR call per invocation (O(1) wrapper)"
+  ],
+  "overall": "FAIL",
+  "force_wrong_active": true
+}
