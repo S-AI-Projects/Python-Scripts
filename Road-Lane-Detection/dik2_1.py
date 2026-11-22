@@ -2,6 +2,12 @@ import cv2
 import numpy as np
 
 def canny_edge_detection(frame):
+    """Return a Canny edge image for a BGR frame without modifying the input.
+
+    ``frame`` is expected to be an OpenCV-compatible BGR image. The returned
+    single-channel image is produced by grayscale conversion, a 5x5 Gaussian
+    blur, and Canny thresholds of 50 and 150.
+    """
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
     edges = cv2.Canny(blur, 50, 150)
@@ -64,21 +70,26 @@ def process_frame(frame):
 
     return result
 
-vds = ['lane5.mp4']#add more of your own videos here
+def main():
+    """Run the interactive lane-detection video demo."""
+    vds = ['lane5.mp4']  # Add more of your own videos here.
+    cap = cv2.VideoCapture('videos/' + vds[0])
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
 
-cap = cv2.VideoCapture('videos/'+vds[0])
-while(cap.isOpened()):
-    ret, frame = cap.read()
-    if not ret:
-        break
+        result = process_frame(frame)
+        cv2.imshow('Lane Detection', result)
+        road_cont_mask = detect_road_region(frame)
+        cv2.imshow('Lane Detection2', road_cont_mask)
 
-    result = process_frame(frame)
-    cv2.imshow('Lane Detection', result)
-    road_cont_mask = detect_road_region(frame)
-    cv2.imshow('Lane Detection2', road_cont_mask)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    cap.release()
+    cv2.destroyAllWindows()
 
-cap.release()
-cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
