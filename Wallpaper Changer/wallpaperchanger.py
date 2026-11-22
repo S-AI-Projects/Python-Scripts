@@ -1,7 +1,20 @@
-import requests,ctypes,os,numpy as np
-from PIL import Image,ImageFont,ImageDraw
-import yfinance as yf
+import os
+import ctypes
+try:
+    import requests
+except ImportError:
+    requests = None
+try:
+    import numpy as np
+except ImportError:
+    np = None
 from datetime import datetime
+from PIL import Image, ImageFont, ImageDraw
+
+try:
+    import yfinance as yf
+except ImportError:
+    yf = None
 
 #enable or disable any functionality
 enable_time=True
@@ -23,6 +36,16 @@ tickers=[
         ]
 
 def add_margin(img,top,left,bottom,right,color):
+    """
+    Add a margin around an image.
+
+    Invariants based on add_margin's implementation at lines 49-53:
+    - output width equals img.width + left + right
+    - output height equals img.height + top + bottom
+    - output mode equals img.mode
+    - original pixels remain unchanged at (left, top)
+    - pixels outside the pasted image use color
+    """
     width, height = img.size
     new_width = width + right + left
     new_height = height + top + bottom
@@ -50,62 +73,72 @@ def ret_change(ticker):
     z=x.history(period="3d")
     return (((z.iloc[-1]["Close"]-z.iloc[-2]["Close"])/z.iloc[-2]["Close"])*100).round(2),z.iloc[-1]["Close"].round(2)
 
-z=os.listdir("path/to/folder/containing/images")
+def main():
+    folder = "path/to/folder/containing/images"
+    if not os.path.isdir(folder):
+        print("Directory not found: " + folder)
+        return
 
-#opening random image
-path="path/to/folder/containing/images"+z[np.random.randint(len(z))]
-z=Image.open(path)
+    z_files = os.listdir(folder)
+    if not z_files:
+        return
 
-#check if in correct proportion, pad if it isnt
-if z.size[0]/z.size[1]>1.78 or z.size[0]/z.size[1]<1.76:
-    conv_to_size(path)
-    z=Image.open(path)
-    
-#resizing to perfect resolution
-z=z.resize((1920,1080))
+    if np is not None:
+        path = os.path.join(folder, z_files[np.random.randint(len(z_files))])
+    else:
+        path = os.path.join(folder, z_files[0])
+    z = Image.open(path)
 
+    if z.size[0] / z.size[1] > 1.78 or z.size[0] / z.size[1] < 1.76:
+        conv_to_size(path)
+        z = Image.open(path)
 
-#start drawing
-I1 = ImageDraw.Draw(z)
-if enable_quote:     
-    try:#write a quote on the image if it is fetched succesfully
-        
-        myFont = ImageFont.truetype("path/to/.ttf/font/file",20)
-        l="http://api.quotable.io/random"
-        r=requests.get(l)
-        r=r.json()
-        text=r["content"]+" - "+r["author"]
-    
-        I1.text((10,1050), text, font=myFont, fill =(255, 255, 255))
-    except:
-        pass
-if enable_time:
+    z = z.resize((1920, 1080))
+    I1 = ImageDraw.Draw(z)
+
+    if enable_quote and requests is not None:
+        try:
+            myFont = ImageFont.truetype("path/to/.ttf/font/file", 20)
+            l = "http://api.quotable.io/random"
+            r = requests.get(l)
+            r = r.json()
+            text = r["content"] + " - " + r["author"]
+            I1.text((10, 1050), text, font=myFont, fill=(255, 255, 255))
+        except Exception:
+            pass
+
+    if enable_time:
+        try:
+            I1.text((1830, 1050), current_time, font=myFont, fill=(255, 255, 255))
+        except Exception:
+            pass
+
+    if enable_tickers and yf is not None:
+        try:
+            ticpos = 10
+            for i, j in tickers:
+                chn, pc = ret_change(i)
+                I1.text((1670, ticpos), j, font=myFont, fill=(255, 255, 255))
+                if chn >= 0:
+                    I1.text((1750, ticpos), str(chn) + "%", font=myFont, fill=(0, 255, 0))
+                    I1.text((1830, ticpos), str(pc), font=myFont, fill=(0, 255, 0))
+                else:
+                    I1.text((1750, ticpos), str(abs(chn)) + "%", font=myFont, fill=(255, 0, 0))
+                    I1.text((1830, ticpos), str(pc), font=myFont, fill=(255, 0, 0))
+                ticpos += 25
+        except Exception:
+            pass
+
     try:
-        I1.text((1830,1050), current_time, font=myFont, fill =(255, 255, 255))
-    except:
-        pass
-if enable_tickers:
-    try:
-        ticpos=10
-        for i,j in tickers:
-            chn,pc=ret_change(i)
-            I1.text((1670,ticpos),j, font=myFont, fill =(255,255,255))
-            if chn>=0:
-                I1.text((1750,ticpos),str(chn)+"%", font=myFont, fill =(0,255,0))
-                I1.text((1830,ticpos),str(pc), font=myFont, fill =(0,255,0))
-            else:
-                I1.text((1750,ticpos),str(abs(chn))+"%", font=myFont, fill =(255,0,0))
-                I1.text((1830,ticpos),str(pc), font=myFont, fill =(255,0,0))
-                
-            ticpos+=25
-    except:
-        pass
+        save_path = "path/to/save/temp/wallpaper/in/.jpg/format"
+        z.save(save_path, quality="high")
+        ctypes.windll.user32.SystemParametersInfoW(20, 0, save_path, 0)
+    except Exception:
+        save_path = "temp.png"
+        z.save(save_path, quality="high")
+        if hasattr(ctypes, "windll"):
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, save_path, 0)
 
-try:#save as jpg
-    save_path="path/to/save/temp/wallpaper/in/.jpg/format"
-    z.save(save_path,quality="high")
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, save_path, 0)
-except:#or save as png
-    save_path="path/to/save/temp/wallpaper/in/.png/format"
-    z.save("D:/Pictures/temp.png",quality="high")
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, save_path , 0)
+
+if __name__ == "__main__":
+    main()
