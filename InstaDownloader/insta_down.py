@@ -13,6 +13,11 @@ print('''
 
 # #Function to check the internet connection
 # #Got this from https://stackoverflow.com/a/24460981
+def _print_http_error(error):
+    status_code = error.response.status_code
+    print("Checking internet connection failed, status code {0}.".format(status_code))
+
+
 def connection(url='http://www.google.com/', timeout=5):
     try:
         req = requests.get(url, timeout=timeout)
@@ -20,8 +25,7 @@ def connection(url='http://www.google.com/', timeout=5):
         print("You're connected to internet\n")
         return True
     except requests.HTTPError as e:
-        print("Checking internet connection failed, status code {0}.".format(
-        e.response.status_code))
+        _print_http_error(e)
     except requests.ConnectionError:
         print("No internet connection available.")
     return False
