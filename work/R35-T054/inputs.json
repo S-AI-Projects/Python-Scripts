@@ -1,0 +1,523 @@
+{
+  "module_facts": {
+    "module": "OTP  Verify/Otpverification.py",
+    "public_api": {
+      "generate_otp(rng=None)": {
+        "inputs": "Optional object with random() in [0, 1); omitted uses random.random.",
+        "result": "Six-character ASCII digit string; leading zeroes are preserved.",
+        "mutation": "Advances the supplied RNG state or module-level random state.",
+        "source_lines": "58, 65-73"
+      },
+      "verify_otp(user_input, otp)": {
+        "inputs": "Two strings; no length or digit validation is performed.",
+        "result": "bool from exact string equality.",
+        "mutation": "None; pure comparison.",
+        "source_lines": "76-82"
+      },
+      "send_otp_email(smtp_client, sender, recipient, otp)": {
+        "inputs": "An SMTP-like client and sender, recipient, OTP strings.",
+        "result": "None; calls sendmail(sender, recipient, '<otp> is your OTP').",
+        "mutation": "Calls sendmail on the supplied client; does not establish or authenticate a connection.",
+        "source_lines": "85-92"
+      },
+      "run_interactive(smtp_factory=None, input_fn=input, print_fn=print)": {
+        "inputs": "Optional SMTP-client factory plus injectable input/output callbacks.",
+        "result": "bool verification result; prints the matching success/failure message.",
+        "mutation": "Consumes callback input, invokes output callback, and optionally sends mail via supplied client.",
+        "source_lines": "95-118"
+      }
+    },
+    "external_dependencies": {
+      "packages": "No third-party packages; standard-library math, random, and smtplib.",
+      "io": "Import is inert; direct execution opens Gmail SMTP and uses stdin/stdout. Injected SMTP clients may perform network I/O.",
+      "source_lines": "47-49, 124-137"
+    }
+  },
+  "smallest_cases": [
+    {
+      "test": "TestGenerateOtpSmallestInput",
+      "description": "RNG always returns 0.0 \u2192 digit always '0'",
+      "rng_return_value": 0.0,
+      "expected_otp": "000000"
+    }
+  ],
+  "ordinary_cases": [
+    {
+      "test": "TestGenerateOtpOrdinaryInput",
+      "description": "seed=42 \u2192 deterministic OTP",
+      "seed": 42,
+      "expected_otp": "602276"
+    }
+  ],
+  "property_cases": {
+    "seed": 42,
+    "count": 100,
+    "readable_small_case": {
+      "index": 0,
+      "otp": "602276"
+    },
+    "all_otps": [
+      {
+        "index": 0,
+        "otp": "602276"
+      },
+      {
+        "index": 1,
+        "otp": "804025"
+      },
+      {
+        "index": 2,
+        "otp": "016525"
+      },
+      {
+        "index": 3,
+        "otp": "808631"
+      },
+      {
+        "index": 4,
+        "otp": "930086"
+      },
+      {
+        "index": 5,
+        "otp": "875935"
+      },
+      {
+        "index": 6,
+        "otp": "868570"
+      },
+      {
+        "index": 7,
+        "otp": "220212"
+      },
+      {
+        "index": 8,
+        "otp": "633229"
+      },
+      {
+        "index": 9,
+        "otp": "661713"
+      },
+      {
+        "index": 10,
+        "otp": "965687"
+      },
+      {
+        "index": 11,
+        "otp": "203229"
+      },
+      {
+        "index": 12,
+        "otp": "836394"
+      },
+      {
+        "index": 13,
+        "otp": "225258"
+      },
+      {
+        "index": 14,
+        "otp": "329500"
+      },
+      {
+        "index": 15,
+        "otp": "167403"
+      },
+      {
+        "index": 16,
+        "otp": "959807"
+      },
+      {
+        "index": 17,
+        "otp": "652614"
+      },
+      {
+        "index": 18,
+        "otp": "498251"
+      },
+      {
+        "index": 19,
+        "otp": "982661"
+      },
+      {
+        "index": 20,
+        "otp": "757503"
+      },
+      {
+        "index": 21,
+        "otp": "098830"
+      },
+      {
+        "index": 22,
+        "otp": "890407"
+      },
+      {
+        "index": 23,
+        "otp": "714528"
+      },
+      {
+        "index": 24,
+        "otp": "425723"
+      },
+      {
+        "index": 25,
+        "otp": "964512"
+      },
+      {
+        "index": 26,
+        "otp": "352206"
+      },
+      {
+        "index": 27,
+        "otp": "298026"
+      },
+      {
+        "index": 28,
+        "otp": "219547"
+      },
+      {
+        "index": 29,
+        "otp": "810444"
+      },
+      {
+        "index": 30,
+        "otp": "769043"
+      },
+      {
+        "index": 31,
+        "otp": "821442"
+      },
+      {
+        "index": 32,
+        "otp": "294850"
+      },
+      {
+        "index": 33,
+        "otp": "989981"
+      },
+      {
+        "index": 34,
+        "otp": "424039"
+      },
+      {
+        "index": 35,
+        "otp": "274499"
+      },
+      {
+        "index": 36,
+        "otp": "571295"
+      },
+      {
+        "index": 37,
+        "otp": "570558"
+      },
+      {
+        "index": 38,
+        "otp": "190156"
+      },
+      {
+        "index": 39,
+        "otp": "218256"
+      },
+      {
+        "index": 40,
+        "otp": "455927"
+      },
+      {
+        "index": 41,
+        "otp": "236237"
+      },
+      {
+        "index": 42,
+        "otp": "049902"
+      },
+      {
+        "index": 43,
+        "otp": "298831"
+      },
+      {
+        "index": 44,
+        "otp": "876960"
+      },
+      {
+        "index": 45,
+        "otp": "826911"
+      },
+      {
+        "index": 46,
+        "otp": "152672"
+      },
+      {
+        "index": 47,
+        "otp": "624980"
+      },
+      {
+        "index": 48,
+        "otp": "420762"
+      },
+      {
+        "index": 49,
+        "otp": "754008"
+      },
+      {
+        "index": 50,
+        "otp": "958511"
+      },
+      {
+        "index": 51,
+        "otp": "387882"
+      },
+      {
+        "index": 52,
+        "otp": "217846"
+      },
+      {
+        "index": 53,
+        "otp": "198988"
+      },
+      {
+        "index": 54,
+        "otp": "073988"
+      },
+      {
+        "index": 55,
+        "otp": "827188"
+      },
+      {
+        "index": 56,
+        "otp": "284372"
+      },
+      {
+        "index": 57,
+        "otp": "013892"
+      },
+      {
+        "index": 58,
+        "otp": "639591"
+      },
+      {
+        "index": 59,
+        "otp": "919214"
+      },
+      {
+        "index": 60,
+        "otp": "736535"
+      },
+      {
+        "index": 61,
+        "otp": "270957"
+      },
+      {
+        "index": 62,
+        "otp": "763063"
+      },
+      {
+        "index": 63,
+        "otp": "387334"
+      },
+      {
+        "index": 64,
+        "otp": "421496"
+      },
+      {
+        "index": 65,
+        "otp": "963502"
+      },
+      {
+        "index": 66,
+        "otp": "456442"
+      },
+      {
+        "index": 67,
+        "otp": "497105"
+      },
+      {
+        "index": 68,
+        "otp": "638762"
+      },
+      {
+        "index": 69,
+        "otp": "102480"
+      },
+      {
+        "index": 70,
+        "otp": "461642"
+      },
+      {
+        "index": 71,
+        "otp": "607714"
+      },
+      {
+        "index": 72,
+        "otp": "195028"
+      },
+      {
+        "index": 73,
+        "otp": "486959"
+      },
+      {
+        "index": 74,
+        "otp": "867585"
+      },
+      {
+        "index": 75,
+        "otp": "874226"
+      },
+      {
+        "index": 76,
+        "otp": "756202"
+      },
+      {
+        "index": 77,
+        "otp": "235126"
+      },
+      {
+        "index": 78,
+        "otp": "704542"
+      },
+      {
+        "index": 79,
+        "otp": "495687"
+      },
+      {
+        "index": 80,
+        "otp": "303789"
+      },
+      {
+        "index": 81,
+        "otp": "475622"
+      },
+      {
+        "index": 82,
+        "otp": "403641"
+      },
+      {
+        "index": 83,
+        "otp": "416035"
+      },
+      {
+        "index": 84,
+        "otp": "061403"
+      },
+      {
+        "index": 85,
+        "otp": "237378"
+      },
+      {
+        "index": 86,
+        "otp": "200593"
+      },
+      {
+        "index": 87,
+        "otp": "676791"
+      },
+      {
+        "index": 88,
+        "otp": "011652"
+      },
+      {
+        "index": 89,
+        "otp": "671671"
+      },
+      {
+        "index": 90,
+        "otp": "891036"
+      },
+      {
+        "index": 91,
+        "otp": "937066"
+      },
+      {
+        "index": 92,
+        "otp": "178619"
+      },
+      {
+        "index": 93,
+        "otp": "734353"
+      },
+      {
+        "index": 94,
+        "otp": "881968"
+      },
+      {
+        "index": 95,
+        "otp": "747928"
+      },
+      {
+        "index": 96,
+        "otp": "544728"
+      },
+      {
+        "index": 97,
+        "otp": "808246"
+      },
+      {
+        "index": 98,
+        "otp": "308127"
+      },
+      {
+        "index": 99,
+        "otp": "387209"
+      }
+    ]
+  },
+  "verify_cases": [
+    {
+      "user_input": "0",
+      "otp": "0",
+      "expected": true
+    },
+    {
+      "user_input": "0",
+      "otp": "1",
+      "expected": false
+    },
+    {
+      "user_input": "123456",
+      "otp": "123456",
+      "expected": true
+    },
+    {
+      "user_input": "123457",
+      "otp": "123456",
+      "expected": false
+    },
+    {
+      "user_input": "023456",
+      "otp": "123456",
+      "expected": false
+    },
+    {
+      "user_input": " 123456",
+      "otp": "123456",
+      "expected": false
+    },
+    {
+      "user_input": "ABCDEF",
+      "otp": "abcdef",
+      "expected": false
+    },
+    {
+      "user_input": "",
+      "otp": "",
+      "expected": true
+    },
+    {
+      "user_input": "",
+      "otp": "123456",
+      "expected": false
+    }
+  ],
+  "email_cases": [
+    {
+      "sender": "s@g.com",
+      "recipient": "r@g.com",
+      "otp": "123456",
+      "expected_msg": "123456 is your OTP"
+    },
+    {
+      "sender": "s@g.com",
+      "recipient": "r@g.com",
+      "otp": "000000",
+      "expected_msg": "000000 is your OTP"
+    }
+  ]
+}

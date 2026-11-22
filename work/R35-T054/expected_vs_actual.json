@@ -1,0 +1,104 @@
+[
+  {
+    "test": "generate_otp_smallest",
+    "input": "rng.random()=0.0 always",
+    "expected": "000000",
+    "actual": "000000",
+    "passed": true
+  },
+  {
+    "test": "generate_otp_seed42",
+    "input": "seed=42",
+    "expected": "602276",
+    "actual": "602276",
+    "passed": true
+  },
+  {
+    "test": "verify_otp('0', '0')",
+    "input": {
+      "user_input": "0",
+      "otp": "0"
+    },
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "test": "verify_otp('0', '1')",
+    "input": {
+      "user_input": "0",
+      "otp": "1"
+    },
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "test": "verify_otp('123456', '123456')",
+    "input": {
+      "user_input": "123456",
+      "otp": "123456"
+    },
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "test": "verify_otp('123457', '123456')",
+    "input": {
+      "user_input": "123457",
+      "otp": "123456"
+    },
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "test": "verify_otp(' 123456', '123456')",
+    "input": {
+      "user_input": " 123456",
+      "otp": "123456"
+    },
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "test": "verify_otp('', '')",
+    "input": {
+      "user_input": "",
+      "otp": ""
+    },
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "test": "verify_otp('', '123456')",
+    "input": {
+      "user_input": "",
+      "otp": "123456"
+    },
+    "expected": false,
+    "actual": false,
+    "passed": true
+  },
+  {
+    "test": "send_otp_email_format",
+    "input": {
+      "sender": "s@g.com",
+      "recipient": "r@g.com",
+      "otp": "123456"
+    },
+    "expected": "123456 is your OTP",
+    "actual": "123456 is your OTP",
+    "passed": true
+  },
+  {
+    "test": "property_100_valid_cases_seed42",
+    "input": "100 OTPs from seed=42",
+    "expected": "all length==6, digits-only",
+    "actual": "100 passed, 0 failed",
+    "passed": true
+  }
+]

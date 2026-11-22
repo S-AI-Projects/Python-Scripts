@@ -1,0 +1,54 @@
+{
+  "baseline_mismatch_analysis": {
+    "command": "python3 'Font Art/FontArt.py'",
+    "fixture_input": {
+      "text": "Dhanush N",
+      "font": "slant",
+      "target_platform": "Cross-platform (Windows & POSIX)"
+    },
+    "independent_expected": "Render ASCII art for 'Dhanush N' using 'slant' font; clear terminal using platform-appropriate command ('clear' on POSIX, 'cls' on Windows); configure console dimensions only on Windows; safe import without uncontrolled side effects; graceful dependency handling with declared requirements.txt",
+    "actual_baseline_result": "ModuleNotFoundError: No module named 'pyfiglet' on clean environment. On POSIX systems when pyfiglet exists: 'sh: cls: command not found' (exit code 32512), 'sh: mode: command not found' (exit code 32512). Top-level script executes side-effects on import.",
+    "explanation_of_mismatch": "Baseline assumed a Windows environment and unmanaged pyfiglet installation. Unconditionally invoked Windows-only 'cls' and 'mode con:' commands, lacked requirements.txt, and had no function encapsulation or __name__ == '__main__' guard."
+  },
+  "post_fix_runner_results": {
+    "native_test_command": "python3 -m unittest Font Art/tests/test_font_art.py",
+    "nonzero_test_count": 7,
+    "test_suite_status": "ALL_TESTS_PASSED",
+    "direct_assertions": [
+      {
+        "name": "render_font_art_default_content",
+        "expected": "    ____  __                                __       _   __\n   / __ \\/ /_  ____ _____  __  ___________ / /_     / | / /\n  / / / / __ \\/ __ `/ __ \\/ / / / ___/ __ \\/ __ \\   /  |/ / \n / /_/ / / / / /_/ / / / / /_/ (__  ) / / / / / /  / /|  /  \n/_____/_/ /_/\\__,_/_/ /_/\\__,_/____/_/ /_/_/ /_/  /_/ |_/   \n",
+        "actual": "    ____  __                                __       _   __\n   / __ \\/ /_  ____ _____  __  ___________ / /_     / | / /\n  / / / / __ \\/ __ `/ __ \\/ / / / ___/ __ \\/ __ \\   /  |/ / \n / /_/ / / / / /_/ / / / / /_/ (__  ) / / / / / /  / /|  /  \n/_____/_/ /_/\\__,_/_/ /_/\\__,_/____/_/ /_/_/ /_/  /_/ |_/   \n",
+        "status": "PASS"
+      },
+      {
+        "name": "display_font_art_windows_os_calls",
+        "expected": [
+          "cls",
+          "mode con: cols=75 lines=30"
+        ],
+        "actual": [
+          "cls",
+          "mode con: cols=75 lines=30"
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "display_font_art_posix_os_calls",
+        "expected": [
+          "clear"
+        ],
+        "actual": [
+          "clear"
+        ],
+        "status": "PASS"
+      },
+      {
+        "name": "safe_import_no_side_effects",
+        "expected": "0 os.system calls and empty stdout",
+        "actual": "0 calls, stdout length 0",
+        "status": "PASS"
+      }
+    ]
+  }
+}
