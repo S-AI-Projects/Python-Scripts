@@ -21,7 +21,7 @@ class TestJsonToCsv(unittest.TestCase):
             return csv_file.read().replace("\r\n", "\n")
 
     def test_smallest_valid_input(self):
-        """Source line 11-16 establishes data as a list and the first keys as CSV headers."""
+        """Source lines 18-21 establish the first keys as headers and values as rows."""
         with tempfile.TemporaryDirectory() as temp_dir:
             json_path = Path(temp_dir) / "small.json"
             csv_path = Path(temp_dir) / "small.csv"
@@ -35,7 +35,7 @@ class TestJsonToCsv(unittest.TestCase):
             self.assertEqual(self.read_csv(csv_path), expected_csv)
 
     def test_ordinary_valid_input(self):
-        """Source line 13 establishes that the first record's keys become the header."""
+        """Source line 20 establishes that the first record's keys become the header."""
         with tempfile.TemporaryDirectory() as temp_dir:
             json_path = Path(temp_dir) / "ordinary.json"
             csv_path = Path(temp_dir) / "ordinary.csv"
@@ -51,7 +51,7 @@ class TestJsonToCsv(unittest.TestCase):
             self.assertEqual(self.read_csv(csv_path), expected_csv)
 
     def test_repeatability_and_input_isolation(self):
-        """Source line 4 reads a file and line 7 writes a separate path without shared state."""
+        """Source lines 12-15 use separate read and write file state with proper file closing."""
         with tempfile.TemporaryDirectory() as temp_dir:
             fixture_json = Path(temp_dir) / "fixture.json"
             first_csv = Path(temp_dir) / "first.csv"
