@@ -3,6 +3,10 @@ import random
 choices = ["rock", "paper", "scissors", "lizard", "spock"]
 
 def get_user_choice():
+    # For an input of n characters, lower() takes O(n). The list has five
+    # fixed choices, so membership checks at most five string comparisons
+    # (each may inspect up to n characters): O(n) per attempt. Retries add
+    # the work for each entered string, or O(sum of their lengths).
     user_choice = input("Enter your choice (rock, paper, scissors, lizard, spock): ").lower()
     while user_choice not in choices:
         user_choice = input("Invalid choice. Please enter rock, paper, scissors, lizard, or spock: ").lower()
