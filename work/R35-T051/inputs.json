@@ -1,0 +1,43 @@
+{
+  "module": "Font Art/FontArt.py",
+  "named_module": "FontArt",
+  "public_inputs": {
+    "default_text": "Dhanush N",
+    "default_font": "slant",
+    "windows_console_cols": 75,
+    "windows_console_lines": 30
+  },
+  "functions": {
+    "render_font_art": {
+      "parameters": [
+        "text (default: 'Dhanush N')",
+        "font (default: 'slant')"
+      ],
+      "return_type": "str"
+    },
+    "display_font_art": {
+      "parameters": [
+        "text (default: 'Dhanush N')",
+        "font (default: 'slant')",
+        "cols (default: 75)",
+        "lines (default: 30)"
+      ],
+      "return_type": "str"
+    },
+    "main": {
+      "parameters": [],
+      "return_type": "None"
+    }
+  },
+  "fixtures": {
+    "default_expected_ascii_art": "    ____  __                                __       _   __\n   / __ \\/ /_  ____ _____  __  ___________ / /_     / | / /\n  / / / / __ \\/ __ `/ __ \\/ / / / ___/ __ \\/ __ \\   /  |/ / \n / /_/ / / / / /_/ / / / / /_/ (__  ) / / / / / /  / /|  /  \n/_____/_/ /_/\\__,_/_/ /_/\\__,_/____/_/ /_/_/ /_/  /_/ |_/   \n",
+    "custom_text": "Custom Message",
+    "custom_font": "banner",
+    "custom_expected_art": "CUSTOM_ASCII_ART"
+  },
+  "mocked_io": [
+    "pyfiglet.Figlet",
+    "os.system",
+    "sys.stdout"
+  ]
+}

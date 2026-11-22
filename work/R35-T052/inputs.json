@@ -1,0 +1,125 @@
+{
+  "module": "Hand Volume/main.py",
+  "named_module": "main",
+  "partitions": {
+    "distance_to_percent": {
+      "lower_boundary": 50.0,
+      "upper_boundary": 250.0,
+      "below_lower_boundary": [
+        49.0,
+        0.0,
+        -20.0
+      ],
+      "above_lower_boundary": [
+        52.0
+      ],
+      "valid_interior": [
+        70.0,
+        150.0,
+        210.0
+      ],
+      "below_upper_boundary": [
+        248.0
+      ],
+      "above_upper_boundary": [
+        252.0,
+        350.0
+      ],
+      "unsupported_types": [
+        "None",
+        "'invalid'"
+      ]
+    },
+    "percent_to_volume_change": {
+      "lower_boundary": 0,
+      "upper_boundary": 100,
+      "above_lower_boundary": [
+        10
+      ],
+      "valid_interior": [
+        25,
+        50,
+        75
+      ],
+      "below_upper_boundary": [
+        90
+      ],
+      "above_upper_boundary": [
+        110
+      ],
+      "domain_boundary_unsupported": [
+        -10,
+        -15
+      ],
+      "unsupported_types": [
+        "None",
+        "'bad'"
+      ]
+    },
+    "percent_to_bar_height": {
+      "lower_boundary": 0,
+      "upper_boundary": 100,
+      "below_lower_boundary": [
+        -5
+      ],
+      "above_lower_boundary": [
+        5
+      ],
+      "valid_interior": [
+        50
+      ],
+      "below_upper_boundary": [
+        95
+      ],
+      "above_upper_boundary": [
+        105
+      ]
+    },
+    "calculate_distance": {
+      "coincident_boundary": [
+        [
+          [
+            100,
+            100
+          ],
+          [
+            100,
+            100
+          ]
+        ]
+      ],
+      "strictly_positive_interior": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        [
+          [
+            100,
+            100
+          ],
+          [
+            220,
+            260
+          ]
+        ]
+      ]
+    },
+    "detect_fingers": {
+      "empty_boundary": [],
+      "gesture_interior": "21 landmarks with Thumb and Index extended"
+    }
+  },
+  "mocked_io": [
+    "cv2.VideoCapture",
+    "pycaw.pycaw.AudioUtilities",
+    "comtypes.CLSCTX_ALL",
+    "mediapipe.solutions.hands"
+  ]
+}

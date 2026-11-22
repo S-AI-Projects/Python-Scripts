@@ -1,0 +1,69 @@
+{
+  "baseline_mismatch_analysis": {
+    "command": "python3 'Hand Volume/main.py'",
+    "independent_expected": "Modular execution of distance-to-volume mapping; safe import without camera acquisition or infinite while-loops; partitioned boundary handling for distance [50, 250], percent [0, 100], volume changes [0, 65] dB, and UI bar heights [140, 340].",
+    "actual_baseline_result": "ModuleNotFoundError: No module named 'numpy' / 'cv2' / 'pycaw'. Top-level execution unconditionally invokes Windows COM AudioUtilities and cv2.VideoCapture(0), blocking in while True: loop on import.",
+    "explanation_of_mismatch": "Implementation coupled domain calculation logic directly with unhandled external I/O, device drivers, and an infinite loop at module level."
+  },
+  "post_fix_runner_results": {
+    "native_test_command": "python3 -m unittest Hand Volume/tests/test_hand_volume.py",
+    "nonzero_test_count": 29,
+    "test_suite_status": "ALL_TESTS_PASSED",
+    "direct_assertions": [
+      {
+        "check": "distance_to_percent(50.0)",
+        "expected": 0,
+        "actual": 0,
+        "status": "PASS"
+      },
+      {
+        "check": "distance_to_percent(49.0)",
+        "expected": 0,
+        "actual": 0,
+        "status": "PASS"
+      },
+      {
+        "check": "distance_to_percent(52.0)",
+        "expected": 1,
+        "actual": 1,
+        "status": "PASS"
+      },
+      {
+        "check": "distance_to_percent(250.0)",
+        "expected": 100,
+        "actual": 100,
+        "status": "PASS"
+      },
+      {
+        "check": "distance_to_percent(252.0)",
+        "expected": 100,
+        "actual": 100,
+        "status": "PASS"
+      },
+      {
+        "check": "percent_to_volume_change(-10)",
+        "expected": "ValueError",
+        "actual": "ValueError",
+        "status": "PASS"
+      },
+      {
+        "check": "percent_to_volume_change(100)",
+        "expected": 65,
+        "actual": 65,
+        "status": "PASS"
+      },
+      {
+        "check": "percent_to_bar_height(0)",
+        "expected": 340,
+        "actual": 340,
+        "status": "PASS"
+      },
+      {
+        "check": "percent_to_bar_height(100)",
+        "expected": 140,
+        "actual": 140,
+        "status": "PASS"
+      }
+    ]
+  }
+}
