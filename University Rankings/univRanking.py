@@ -1,20 +1,43 @@
 import pandas as pd
 
 def getInformation(selectedCountry, rankingFileName, capitalsFileName):
-    # add selected country
-    # Total number of universities
-    # show countries
-    # show continents
-    # calculate average score (sum of all uni scores within the selected country) / (number of universities within the selected country)
-    # display the average score
-    # calculate the relative score (average score) / (The highest score within the continent where the university is selected)
+    """Retrieve and write university ranking information for a selected country.
 
+    Contract
+    --------
+    getInformation
+        Source line (precondition anchor): ``def getInformation(...)``  # line 3
+        Smallest valid input  : selectedCountry="Unknown", rankingFileName=<csv with 1 non-matching row>,
+                                capitalsFileName=<csv with 1 row>
+        Ordinary input        : selectedCountry="USA", rankingFileName=<csv with USA rows>,
+                                capitalsFileName=<csv with USA row>
+        Result                : None (side-effect only — writes to output.txt)
+        Data anchors          : ``countries_lst = []``  # line 15
+                                ``continents_lst = []``  # line 16
+        Dependencies          : pandas (CSV I/O), builtins.open (file write)
+        Mutation behaviour    : writes output.txt; no caller-owned state mutated
+
+    Failure path (covered by tests)
+    --------------------------------
+    When ``selectedCountry`` is not found in any row of ``rankingFileName``
+    (i.e. the country has no ranked universities), ``number_of_universities``
+    remains 0 and the division::
+
+        averageScore = university_score / number_of_universities  # ZeroDivisionError
+
+    raises ``ZeroDivisionError``.  This is the smallest valid input reaching
+    the failure branch: pass a country name absent from the rankings CSV.
+
+    After the failure, the caller's own state (``countries_lst``,
+    ``continents_lst``) is unaffected because it was never mutated by the
+    caller — the lists are local to this function.
+    """
     available_countries = 0
     counter = 0
     countries = ""
     continents = ""
-    countries_lst = []
-    continents_lst = []
+    countries_lst = []          # precondition anchor: countries_lst = []
+    continents_lst = []         # precondition anchor: continents_lst = []
     TopUni = pd.read_csv(rankingFileName)
     Capitals = pd.read_csv(capitalsFileName)
     country_counter = 0
@@ -82,8 +105,9 @@ def getInformation(selectedCountry, rankingFileName, capitalsFileName):
         counter += 1
 
     # THE AVERAGE SCORE CALCULATIONS
+    # Failure path: if selectedCountry not in rankings, number_of_universities==0 -> ZeroDivisionError
     averageScore = university_score / number_of_universities
-    file.write("The average score => {}%\n" .format(round(averageScore, 1)))  # PART 6 AVERAGE SCORE                                                                                                         # PART 6
+    file.write("The average score => {}%\n" .format(round(averageScore, 1)))  # PART 6 AVERAGE SCORE
 
     number_of_universities = 0
     university_score = 0
@@ -188,5 +212,6 @@ def __main__():
     file2 = "capitals.csv"
     getInformation(country, file1, file2)
 
-    
-__main__()
+
+if __name__ == "__main__":
+    __main__()

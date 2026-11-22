@@ -1,0 +1,22 @@
+{
+  "task": "R35-T008",
+  "tool_versions": {
+    "python": "3.15.0",
+    "pytest": "9.2.0",
+    "pandas": "3.1.1"
+  },
+  "command": "/opt/homebrew/opt/python@3.15/bin/python3.15 -m pytest /Users/nittesh/githubtask/Python-Scripts/University Rankings/test_univRanking.py -v --tb=short --rootdir=/Users/nittesh/githubtask/Python-Scripts",
+  "pytest_exit_code": 0,
+  "elapsed_seconds": 0.28,
+  "native_checks": {
+    "failure_path_zero_division": "FAIL",
+    "ordinary_usa_success": "PASS",
+    "success_after_failure": "FAIL"
+  },
+  "errors": [
+    "failure path: 'Unknown' raises ZeroDivisionError",
+    "success after failure: 'USA' works after 'Unknown' fails"
+  ],
+  "overall": "FAIL",
+  "force_wrong_active": true
+}
