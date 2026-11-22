@@ -1,13 +1,25 @@
-#Importing required module
+# Importing required modules
 from PIL import Image
 from glob import glob
 
-# Printing list of .png files
-print(glob("*.png"))
+
+# Supported inputs include PNG images of any size that Pillow can open.
+# Source lines 10-13 establish opening, RGB conversion, and JPEG saving.
+def convert_png_to_jpg(img_file, quality=95):
+    img = Image.open(img_file)
+    rgb_img = img.convert("RGB")
+    output_file = img_file.replace("png", "jpg")
+    rgb_img.save(output_file, quality=quality)
+    return output_file
 
 
-# main loop
-for img_file in glob("*.png"):
-    img = Image.open(img_file)# Opening the image file
-    rgb_img = img.convert("RGB")# Converting it into RGB 
-    rgb_img.save(img_file.replace("png","jpg"), quality=95)# Saving the img as .jpg
+def convert_all_png(pattern="*.png", quality=95):
+    png_files = glob(pattern)
+    print(png_files)
+
+    for img_file in png_files:
+        convert_png_to_jpg(img_file, quality)
+
+
+if __name__ == "__main__":
+    convert_all_png()
