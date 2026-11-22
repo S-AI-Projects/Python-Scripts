@@ -1,9 +1,9 @@
 import pyttsx3
 import PyPDF2
-book = open('python_basics.pdf','rb')
 val = input("Enter the page no from where you want to start: ")
 val_converted = int(val)
 start_page = val_converted-1
+book = open('python_basics.pdf', 'rb')
 pdfReader = PyPDF2.PdfFileReader(book)
 page = pdfReader.numPages
 print(page)
