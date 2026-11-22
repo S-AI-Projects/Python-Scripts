@@ -1,0 +1,13 @@
+{
+  "python_version": "3.15.2 (main, Oct 25 2026, 16:57:51) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "python_executable": "/opt/homebrew/opt/python@3.15/bin/python3.15",
+  "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "system": "Darwin",
+  "git_version": "git version 2.50.1 (Apple Git-155)",
+  "test_framework": "unittest (Python standard library; no repository pytest/tox/setup.cfg/pyproject test config found)",
+  "schedule_requirement": "schedule==1.2.2",
+  "schedule_test_mode": "stubbed in sys.modules; no real scheduler or Wi-Fi calls",
+  "runner_command": "python3 work/R35-T060/check.py",
+  "native_test_command": "/opt/homebrew/opt/python@3.15/bin/python3.15 -m unittest discover -s work/R35-T060/tests -p test_wifi_checker.py -v",
+  "nonzero_test_count": 4
+}

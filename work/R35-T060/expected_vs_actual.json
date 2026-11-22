@@ -1,0 +1,93 @@
+{
+  "runner_command": "python3 work/R35-T060/check.py",
+  "native_test_command": "/opt/homebrew/opt/python@3.15/bin/python3.15 -m unittest discover -s work/R35-T060/tests -p test_wifi_checker.py -v",
+  "expected": {
+    "tests_run": "> 0",
+    "test_exit_code": 0,
+    "original_retry_count": 3,
+    "mutant_retry_count": 4
+  },
+  "actual": {
+    "tests_run": 4,
+    "test_exit_code": 0,
+    "evidence": [
+      {
+        "case": "enable nonzero exit",
+        "expected": {
+          "return": null,
+          "command_calls": 1,
+          "stdout_contains": "Failed to enable WiFi",
+          "success_log_calls": 0,
+          "error_log_calls": 1
+        },
+        "actual": {
+          "return": null,
+          "command_calls": 1,
+          "stdout": "Failed to enable WiFi: Command 'netsh interface set interface Wi-Fi enabled' returned non-zero exit status 5.",
+          "success_log_calls": 0,
+          "error_log_calls": 1
+        }
+      },
+      {
+        "case": "enable raised exception",
+        "expected": {
+          "return": null,
+          "stdout_contains": "Failed to enable WiFi: mocked failure",
+          "success_log_calls": 0,
+          "error_log_calls": 1
+        },
+        "actual": {
+          "return": null,
+          "stdout": "Failed to enable WiFi: mocked failure",
+          "success_log_calls": 0,
+          "error_log_calls": 1
+        }
+      },
+      {
+        "case": "enable successful command",
+        "expected": {
+          "return": null,
+          "command_call": "call('netsh interface set interface Wi-Fi enabled', shell=True)",
+          "stdout": "Turning On the laptop WiFi",
+          "success_log": "call('WiFi enabled')"
+        },
+        "actual": {
+          "return": null,
+          "command_call": "call('netsh interface set interface Wi-Fi enabled', shell=True)",
+          "stdout": "Turning On the laptop WiFi",
+          "success_log": "call('WiFi enabled')"
+        }
+      },
+      {
+        "case": "retry boundary mutant",
+        "expected": {
+          "original_retries": 3,
+          "mutant_retries": 4,
+          "original_ping_calls_including_initial_check": 4,
+          "mutant_ping_calls_including_initial_check": 5
+        },
+        "actual": {
+          "original_retries": 3,
+          "mutant_retries": 4,
+          "original_ping_calls_including_initial_check": 4,
+          "mutant_ping_calls_including_initial_check": 5,
+          "original_call_counts": {
+            "ping_calls": 4,
+            "enable_calls": 4,
+            "disable_calls": 3,
+            "sleep_calls": 6
+          },
+          "mutant_call_counts": {
+            "ping_calls": 5,
+            "enable_calls": 5,
+            "disable_calls": 4,
+            "sleep_calls": 8
+          },
+          "mutant_boundary": "while attempt_counter <= max_attempts:",
+          "temporary_copy_used": true
+        }
+      }
+    ],
+    "test_output": "test_enable_reports_nonzero_exit_without_claiming_success (test_wifi_checker.TestWifiChecker.test_enable_reports_nonzero_exit_without_claiming_success) ... ok\ntest_enable_reports_python_exception (test_wifi_checker.TestWifiChecker.test_enable_reports_python_exception) ... ok\ntest_enable_success_preserves_none_result_and_calls_netsh (test_wifi_checker.TestWifiChecker.test_enable_success_preserves_none_result_and_calls_netsh) ... ok\ntest_retry_limit_and_single_boundary_mutant_diverge (test_wifi_checker.TestWifiChecker.test_retry_limit_and_single_boundary_mutant_diverge) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.013s\n\nOK\n"
+  }
+}

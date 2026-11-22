@@ -1,0 +1,70 @@
+{
+  "pre_change_contract": {
+    "module": "Auto WiFi Check/wifi_checker.py",
+    "function": "enable",
+    "public_inputs": [],
+    "result": "Implicitly returns None, including when subprocess.call raises.",
+    "mutation_behavior": [
+      "Calls subprocess.call once with the Windows netsh Wi-Fi-enable command and shell=True.",
+      "Before this change, ignored the subprocess return code and could report success after a failed command.",
+      "On a Python exception, prints and logs a failure; otherwise prints and logs success."
+    ],
+    "direct_dependencies": [
+      "subprocess.call",
+      "print (stdout)",
+      "logging.info / logging.error"
+    ],
+    "module_import_side_effects_to_mock": [
+      "Creates/opens wifi_status_log.txt and configures logging.",
+      "Checks Windows administrator state through ctypes.windll.",
+      "Schedules a job and enters an infinite schedule loop."
+    ],
+    "module_dependencies": [
+      "ctypes (standard library)",
+      "subprocess (standard library)",
+      "sys (standard library)",
+      "time (standard library)",
+      "logging (standard library)",
+      "schedule (third-party; declared as schedule==1.2.2)"
+    ],
+    "algorithm_boundary": {
+      "function": "job",
+      "condition_before_change": "attempt_counter < max_attempts",
+      "max_attempts": 3,
+      "why_used_for_mutation_check": "enable has no boundary, accumulation, or return condition to mutate."
+    }
+  },
+  "enable_checks": [
+    {
+      "case": "successful command",
+      "arguments": [],
+      "mocked_netsh_exit_code": 0
+    },
+    {
+      "case": "command reports failure",
+      "arguments": [],
+      "mocked_netsh_exit_code": 5
+    },
+    {
+      "case": "command raises",
+      "arguments": [],
+      "mocked_exception": "OSError"
+    }
+  ],
+  "reduced_retry_input": {
+    "initial_ping_exit_code": 1,
+    "every_retry_ping_exit_code": 1,
+    "other_state": "fixed or mocked; no real network, sleep, scheduler, file, or OS calls",
+    "reduction": "One constant failure response replaces arbitrary ping histories; only the retry bound and number of retries are observed."
+  },
+  "mutant": {
+    "temporary_copy_only": true,
+    "single_change": "attempt_counter < max_attempts -> attempt_counter <= max_attempts",
+    "reason": "enable contains no algorithmic boundary; job owns the bounded retry loop in this same named module."
+  },
+  "independent_expected_result": {
+    "original_retries": 3,
+    "mutant_retries": 4,
+    "derivation": "The counter starts at 0 and increases once after each failed retry. The strict condition permits values 0, 1, and 2; the mutated inclusive condition also permits 3."
+  }
+}

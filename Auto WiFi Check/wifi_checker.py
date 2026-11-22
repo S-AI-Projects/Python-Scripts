@@ -23,8 +23,11 @@ logging.basicConfig(filename=LOG_FILE,
                     filemode='a')  # Append mode
 
 def enable():
+    command = "netsh interface set interface Wi-Fi enabled"
     try:
-        subprocess.call("netsh interface set interface Wi-Fi enabled", shell=True)
+        return_code = subprocess.call(command, shell=True)
+        if return_code != 0:
+            raise subprocess.CalledProcessError(return_code, command)
         print("Turning On the laptop WiFi")
         logging.info("WiFi enabled")
     except Exception as e:
