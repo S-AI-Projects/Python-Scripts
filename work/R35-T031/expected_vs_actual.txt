@@ -1,0 +1,27 @@
+Test 1 - smallest valid input:
+Input: pass_len = 4
+Mocked random choices: letters=2, numbers=1, uppercase=1, lowercase=1, symbols=1
+Expected: ("Aa0@", 1, 1, 1, 1)
+Actual: ("Aa0@", 1, 1, 1, 1)
+Result: PASS
+
+Test 2 - ordinary input:
+Input: pass_len = 8
+Mocked random choices: letters=5, numbers=2, uppercase=2, lowercase=3, symbols=1
+Expected: ("ABabc12@", 2, 3, 2, 1)
+Actual: ("ABabc12@", 2, 3, 2, 1)
+Result: PASS
+
+Test 3 - repeated boundary case:
+Input: pass_len = 4, called twice
+Expected first: ("Aa0@", 1, 1, 1, 1)
+Actual first: ("Aa0@", 1, 1, 1, 1)
+Expected second: ("Aa0@", 1, 1, 1, 1)
+Actual second: ("Aa0@", 1, 1, 1, 1)
+Result: PASS
+
+Test 4 - observable mutation:
+Input: pass_len = 4
+Expected characters: ['@', '#', '$', '%', '&', '?']
+Actual characters: ['@', '#', '$', '%', '&', '?']
+Result: PASS

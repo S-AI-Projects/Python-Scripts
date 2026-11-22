@@ -1,0 +1,5 @@
+Actual command:
+python3 work/R35-T031/check.py
+
+Number of tests executed: 4
+Result: OK
