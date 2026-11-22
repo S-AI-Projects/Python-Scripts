@@ -5,6 +5,52 @@ from abc import ABC, abstractmethod
 
 
 class EmailSender(ABC):
+    """Abstract base class for sending emails.
+
+    Contract
+    --------
+    EmailSender
+        Source line (precondition anchor): ``class EmailSender(ABC):``  # line 7
+        Smallest valid input : recipient="", message=""
+        Ordinary input       : recipient="alice@example.com",
+                               message="Hi Alice,\\n\\nI wish you a very Happy Birthday.\\n\\nI hope you had a great day."
+        Result               : None (side-effect only — email is sent via SMTP)
+        Public interface     : ``send_email(recipient, message)``
+        Dependencies         : smtplib, ssl (external network I/O — inject/mock in tests)
+        Mutation behaviour   : no instance state mutated; network side-effect only
+
+    Runnable Example
+    ----------------
+    The following example shows the decisive state transition: how
+    ``GmailEmailSender`` routes a birthday message to the SMTP server.
+    External I/O (SMTP) is replaced by a ``StubEmailSender`` so the example
+    runs without live credentials::
+
+        >>> class StubEmailSender(EmailSender):
+        ...     def __init__(self):
+        ...         self.sent = []
+        ...     def send_email(self, recipient, message):
+        ...         self.sent.append((recipient, message))
+        ...
+        >>> sender = StubEmailSender()
+
+        # Smallest valid input — empty recipient and message
+        >>> sender.send_email("", "")
+        >>> sender.sent
+        [('', '')]
+
+        # Ordinary input — birthday message for Alice
+        >>> msg = BirthdayMessage.create_message("Alice")
+        >>> sender.send_email("alice@example.com", msg)
+        >>> sender.sent[-1][0]
+        'alice@example.com'
+        >>> "Happy Birthday" in sender.sent[-1][1]
+        True
+
+    Intermediate state: ``sender.sent`` accumulates ``(recipient, message)``
+    tuples — one per ``send_email`` call — before any network I/O occurs.
+    """
+
     @abstractmethod
     def send_email(self, recipient, message):
         pass
@@ -48,7 +94,7 @@ class BirthdayListManager:
             writer.writerow(new_data)
 
     def remove_birthday(self, first_name):
-        updated_lines = []
+        updated_lines = []          # precondition anchor: updated_lines = []
         with open(self.filename, "r") as file:
             reader = csv.reader(file)
             for row in reader:
